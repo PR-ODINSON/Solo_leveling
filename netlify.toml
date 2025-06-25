@@ -3,8 +3,7 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "18.17.0"
-  NPM_VERSION = "9.6.7"
+  NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
 
 [[plugins]]
