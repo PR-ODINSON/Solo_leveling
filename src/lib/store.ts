@@ -7,7 +7,7 @@ interface AuthState {
   user: any | null
   loading: boolean
   signIn: (email: string, password: string) => Promise<void>
-  signUp: (email: string, password: string) => Promise<void>
+  signUp: (email: string, password: string, username?: string) => Promise<void>
   signOut: () => Promise<void>
   initialize: () => Promise<void>
 }
@@ -77,10 +77,19 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     }
   },
 
-  signUp: async (email: string, password: string) => {
+  signUp: async (email: string, password: string, username?: string) => {
     set({ loading: true })
     try {
-      const { error } = await supabase.auth.signUp({ email, password })
+      const { data, error } = await supabase.auth.signUp({ 
+        email, 
+        password,
+        options: {
+          data: {
+            username: username || email.split('@')[0],
+            display_name: username || email.split('@')[0]
+          }
+        }
+      })
       if (error) throw error
       toast.success('Welcome to AscendOS! Please check your email to verify your account.')
     } catch (error: any) {

@@ -65,9 +65,9 @@ export default function Sidebar() {
               {!isCollapsed && (
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-white truncate">
-                    {user.email}
+                    {user.user_metadata?.username || user.user_metadata?.display_name || user.email?.split('@')[0] || 'Hunter'}
                   </p>
-                  <p className="text-xs text-gray-400">Hunter</p>
+                  <p className="text-xs text-gray-400">Level 1 Hunter</p>
                 </div>
               )}
             </div>
