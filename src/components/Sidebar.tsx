@@ -56,23 +56,21 @@ export default function Sidebar() {
         </div>
 
         {/* User Info */}
-        {user && (
-          <div className="p-4 border-b border-cyberpunk-primary/30">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-cyberpunk-primary/20 rounded-full flex items-center justify-center">
-                <User size={16} className="text-cyberpunk-primary" />
-              </div>
-              {!isCollapsed && (
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-white truncate">
-                    {user.user_metadata?.username || user.user_metadata?.display_name || user.email?.split('@')[0] || 'Hunter'}
-                  </p>
-                  <p className="text-xs text-gray-400">Level 1 Hunter</p>
-                </div>
-              )}
+        <div className="p-4 border-b border-cyberpunk-primary/30">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-cyberpunk-primary/20 rounded-full flex items-center justify-center">
+              <User size={16} className="text-cyberpunk-primary" />
             </div>
+            {!isCollapsed && (
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-white truncate">
+                  Demo Hunter
+                </p>
+                <p className="text-xs text-gray-400">Level 1 Hunter</p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
 
         {/* Navigation */}
         <nav className="flex-1 p-4">
@@ -116,17 +114,14 @@ export default function Sidebar() {
           </button>
         </div>
 
-        {/* Sign Out */}
+        {/* Demo Mode Info */}
         <div className="p-4 border-t border-cyberpunk-primary/30">
-          <button
-            onClick={handleSignOut}
-            className={`flex items-center gap-3 px-4 py-3 w-full text-left text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors ${
-              isCollapsed ? 'justify-center' : ''
-            }`}
-          >
-            <LogOut size={20} />
-            {!isCollapsed && <span className="font-medium">Sign Out</span>}
-          </button>
+          <div className={`flex items-center gap-3 px-4 py-3 text-gray-400 ${
+            isCollapsed ? 'justify-center' : ''
+          }`}>
+            <Settings size={20} />
+            {!isCollapsed && <span className="text-sm">Demo Mode</span>}
+          </div>
         </div>
       </motion.div>
 

@@ -19,6 +19,11 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
     }
   }, [user, initializeStats])
 
+  // Temporarily disable authentication - always show children
+  return <>{children}</>
+
+  // Original auth code (commented out for now)
+  /*
   if (loading) {
     return <LoadingSpinner />
   }
@@ -28,4 +33,5 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
   }
 
   return <>{children}</>
+  */
 } 
