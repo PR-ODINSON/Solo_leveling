@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import AuthWrapper from '../components/AuthWrapper'
 import './globals.css'
-import AuthWrapper from '@/components/AuthWrapper'
 import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'AscendOS - Level Up Your Life',
-  description: 'A Solo Leveling inspired self-improvement system',
+  description: 'A Solo Leveling inspired self-improvement system. Transform daily tasks into epic quests and level up your life.',
 }
 
 export default function RootLayout({

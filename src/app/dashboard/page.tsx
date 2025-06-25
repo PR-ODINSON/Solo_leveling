@@ -3,11 +3,11 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Plus, Zap, Target } from 'lucide-react'
-import Sidebar from '@/components/Sidebar'
-import StatCard from '@/components/StatCard'
-import QuestCard from '@/components/QuestCard'
-import CreateQuestModal from '@/components/CreateQuestModal'
-import { useStatsStore, useQuestsStore, useUIStore } from '@/lib/store'
+import Sidebar from '../../components/Sidebar'
+import StatCard from '../../components/StatCard'
+import QuestCard from '../../components/QuestCard'
+import CreateQuestModal from '../../components/CreateQuestModal'
+import { useStatsStore, useQuestsStore, useUIStore } from '../../lib/store'
 
 export default function DashboardPage() {
   const { stats, fetchStats, loading: statsLoading } = useStatsStore()
