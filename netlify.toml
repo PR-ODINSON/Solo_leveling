@@ -5,6 +5,8 @@
 [build.environment]
   NODE_VERSION = "20"
   NPM_FLAGS = "--prefer-offline --no-audit"
+  NEXT_PUBLIC_SUPABASE_URL = "https://pxooljingzapcvdbissn.supabase.co"
+  NEXT_PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB4b29samluZ3phcGN2ZGJpc3NuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTA3NDY5OTksImV4cCI6MjA2NjMyMjk5OX0.QfGiFcW2G_VnpqrGixBCy0WeUOQk4KqvsxmUvnonIy8"
 
 [[headers]]
   for = "/*"
