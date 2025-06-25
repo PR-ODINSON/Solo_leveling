@@ -20,7 +20,7 @@ export default function AuthForm() {
     if (isLogin) {
       await signIn(email, password)
     } else {
-      await signUp(email, password, username)
+      await signUp(email, password)
     }
   }
 
