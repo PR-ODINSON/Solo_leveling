@@ -15,7 +15,7 @@ export default function RewardsPage() {
   }, [fetchRewards])
 
   const totalXp = stats.reduce((sum, stat) => sum + stat.xp, 0)
-  const availableRewards = rewards.filter(r => !r.claimed && totalXp >= r.cost)
+  const availableRewards = rewards.filter(r => !r.claimed && totalXp >= r.requirement_xp)
   const claimedRewards = rewards.filter(r => r.claimed)
 
   return (
@@ -86,12 +86,12 @@ export default function RewardsPage() {
                     <div className="w-12 h-12 bg-cyberpunk-secondary/20 rounded-lg flex items-center justify-center">
                       <Trophy className="text-cyberpunk-secondary" size={24} />
                     </div>
-                    <div className="text-right">
-                      <div className="text-sm text-gray-400">Cost</div>
-                      <div className="text-lg font-bold text-cyberpunk-primary">
-                        {reward.cost.toLocaleString()} XP
-                      </div>
-                    </div>
+                                         <div className="text-right">
+                       <div className="text-sm text-gray-400">Cost</div>
+                       <div className="text-lg font-bold text-cyberpunk-primary">
+                         {reward.requirement_xp.toLocaleString()} XP
+                       </div>
+                     </div>
                   </div>
                   
                   <h3 className="text-lg font-semibold text-white mb-2">
