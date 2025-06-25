@@ -4,8 +4,8 @@ import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Home, Target, Trophy, LogOut, Menu, X, User } from 'lucide-react'
-import { useAuthStore } from '@/lib/store'
+import { Home, Target, Trophy, LogOut, Menu, X, User, Zap, Settings } from 'lucide-react'
+import { useAuthStore } from '../lib/store'
 
 const navigationItems = [
   { href: '/dashboard', icon: Home, label: 'Dashboard' },
@@ -44,7 +44,7 @@ export default function Sidebar() {
         <div className="p-6 border-b border-cyberpunk-primary/30">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-cyberpunk-primary to-cyberpunk-secondary rounded-lg flex items-center justify-center">
-              <span className="text-cyberpunk-dark font-bold text-lg">A</span>
+              <Zap className="text-cyberpunk-dark" size={16} />
             </div>
             {!isCollapsed && (
               <div>

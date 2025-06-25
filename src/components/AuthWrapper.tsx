@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useAuthStore, useStatsStore } from '@/lib/store'
+import { useAuthStore, useStatsStore } from '../lib/store'
 import AuthForm from './AuthForm'
 import LoadingSpinner from './LoadingSpinner'
 
