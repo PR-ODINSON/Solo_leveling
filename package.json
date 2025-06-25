@@ -2,33 +2,38 @@
   "name": "ascendos",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "build:analyze": "ANALYZE=true npm run build",
-    "export": "next export",
     "deploy": "npm run build && netlify deploy --prod --dir=.next",
     "deploy:preview": "npm run build && netlify deploy --dir=.next"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.50.1",
+    "framer-motion": "^12.19.1",
+    "lucide-react": "^0.523.0",
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hot-toast": "^2.5.2",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
     "@types/node": "^24.0.4",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.29.0",
     "eslint-config-next": "^15.3.4",
-    "framer-motion": "^12.19.1",
-    "lucide-react": "^0.523.0",
-    "next": "^15.3.4",
     "postcss": "^8.5.6",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-hot-toast": "^2.5.2",
     "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.3",
-    "zustand": "^5.0.5"
+    "typescript": "^5.8.3"
   }
 }
