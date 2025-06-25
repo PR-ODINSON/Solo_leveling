@@ -385,7 +385,7 @@ export default function DashboardPage() {
       </div>
 
       <Sidebar />
-
+      
       {/* Floating XP Badges */}
       {floatingXP.map(xp => (
         <FloatingXPBadge
@@ -441,8 +441,8 @@ export default function DashboardPage() {
                 >
                   Level {avgLevel} • Total XP: {totalXP.toLocaleString()}
                 </motion.p>
-              </div>
-              
+          </div>
+
               <div className="flex items-center gap-6">
                 {/* Enhanced Streak Counter */}
                 <motion.div
@@ -461,7 +461,7 @@ export default function DashboardPage() {
                   <div>
                     <div className="text-orange-400 font-bold text-xl">{streak}</div>
                     <div className="text-orange-300 text-sm">Day Streak</div>
-                  </div>
+              </div>
                 </motion.div>
 
                 {/* Enhanced Today's XP */}
@@ -478,13 +478,13 @@ export default function DashboardPage() {
                   >
                     <TrendingUp className="text-green-400" size={24} />
                   </motion.div>
-                  <div>
+              <div>
                     <div className="text-green-400 font-bold text-xl">+{todayXP}</div>
                     <div className="text-green-300 text-sm">Today's XP</div>
-                  </div>
-                </motion.div>
               </div>
+                </motion.div>
             </div>
+          </div>
 
             {/* Enhanced System Notification */}
             <motion.div
@@ -699,8 +699,8 @@ export default function DashboardPage() {
                       </div>
                     </div>
                   </motion.div>
-                ))}
-              </div>
+                  ))}
+                </div>
             </motion.div>
 
             {/* Enhanced Recent Rewards */}
