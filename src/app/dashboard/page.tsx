@@ -1,10 +1,7 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Particles from '@tsparticles/react'
-import { loadStarsPreset } from '@tsparticles/preset-stars'
-import type { Engine } from '@tsparticles/engine'
 import { 
   Zap, 
   Target, 
@@ -63,71 +60,75 @@ const mockQuests = [
 
 // Enhanced Particles Background Component
 const ParticlesBackground = () => {
-  const particlesInit = useCallback(async (engine: Engine) => {
-    await loadStarsPreset(engine)
-  }, [])
-
   return (
-    <Particles
-      id="tsparticles"
-      init={particlesInit}
-      className="absolute inset-0"
-      options={{
-        preset: "stars",
-        background: {
-          opacity: 0
-        },
-        particles: {
-          color: {
-            value: ["#3b82f6", "#8b5cf6", "#06b6d4", "#10b981"]
-          },
-          move: {
-            direction: "none",
-            enable: true,
-            outModes: {
-              default: "bounce"
-            },
-            random: true,
-            speed: 0.5,
-            straight: false
-          },
-          number: {
-            density: {
-              enable: true,
-              area: 1000
-            },
-            value: 100
-          },
-          opacity: {
-            value: { min: 0.1, max: 0.6 },
-            animation: {
-              enable: true,
-              speed: 1,
-              sync: false
-            }
-          },
-          shape: {
-            type: "circle"
-          },
-          size: {
-            value: { min: 1, max: 3 },
-            animation: {
-              enable: true,
-              speed: 2,
-              sync: false
-            }
-          },
-          links: {
-            color: "#3b82f6",
-            distance: 150,
-            enable: true,
-            opacity: 0.1,
-            width: 1
-          }
-        },
-        detectRetina: true
-      }}
-    />
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+      
+      {/* Floating Particles */}
+      {[...Array(150)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          initial={{
+            opacity: 0,
+            scale: 0,
+          }}
+          animate={{
+            opacity: [0, 0.8, 0],
+            scale: [0, 1, 0],
+            y: [-30, -150],
+            x: [0, Math.random() * 60 - 30],
+          }}
+          transition={{
+            duration: Math.random() * 6 + 4,
+            repeat: Infinity,
+            delay: Math.random() * 8,
+            ease: "easeOut"
+          }}
+        >
+          <div 
+            className={`w-1 h-1 rounded-full ${
+              Math.random() > 0.7 ? 'bg-blue-400/60' : 
+              Math.random() > 0.4 ? 'bg-purple-400/60' : 'bg-teal-400/60'
+            }`}
+            style={{
+              boxShadow: `0 0 ${Math.random() * 15 + 5}px currentColor`,
+            }}
+          />
+        </motion.div>
+      ))}
+      
+      {/* Larger Glowing Orbs */}
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={`orb-${i}`}
+          className="absolute w-3 h-3 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            background: `radial-gradient(circle, ${
+              Math.random() > 0.5 ? 'rgba(59, 130, 246, 0.6)' : 'rgba(147, 51, 234, 0.6)'
+            }, transparent)`,
+          }}
+          animate={{ 
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 0.8, 0.3],
+            x: [0, Math.random() * 200 - 100],
+            y: [0, Math.random() * 200 - 100],
+          }}
+          transition={{
+            duration: Math.random() * 8 + 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      ))}
+    </div>
   )
 }
 
