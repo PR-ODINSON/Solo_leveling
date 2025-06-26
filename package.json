@@ -15,8 +15,8 @@
     "build:analyze": "ANALYZE=true npm run build",
     "deploy": "npm run build && netlify deploy --prod --dir=out",
     "deploy:preview": "npm run build && netlify deploy --dir=out",
-    "clean": "rm -rf .next out",
-    "prebuild": "npm run clean"
+    "clean": "rimraf .next out",
+    "verify": "node verify-build.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.50.1",
@@ -37,6 +37,7 @@
     "@types/react-dom": "^19.1.6",
     "eslint": "^9.29.0",
     "eslint-config-next": "^15.3.4",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.3"
   }
 }

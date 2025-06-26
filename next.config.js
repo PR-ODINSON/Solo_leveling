@@ -16,9 +16,7 @@ const nextConfig = {
   assetPrefix: '',
   
   // Disable server-side features that don't work with static export
-  experimental: {
-    appDir: true,
-  },
+  // experimental: {}, // No experimental features needed for Next.js 15
   
   // Webpack configuration
   webpack: (config, { isServer }) => {
