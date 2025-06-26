@@ -170,36 +170,36 @@ export default function MarketingPage() {
   const features = [
     {
       icon: '📘',
-      title: 'Daily Quests',
-      description: 'Create missions and stay consistent with gamified tasks',
+      title: 'Epic Quests',
+      description: 'Transform daily tasks into legendary missions with XP rewards',
       gradient: 'from-blue-500 to-cyan-500',
       glow: 'shadow-blue-500/50'
     },
     {
       icon: '🧠',
-      title: 'Skill Stats',
-      description: 'Track physical, emotional, and academic growth',
+      title: 'Hunter Stats',
+      description: 'Level up your mind, body, and spirit with tracked progression',
       gradient: 'from-purple-500 to-pink-500',
       glow: 'shadow-purple-500/50'
     },
     {
       icon: '🏅',
-      title: 'Real Rewards',
-      description: 'Unlock real-world perks for real effort',
+      title: 'Victory Rewards',
+      description: 'Unlock meaningful real-world perks for your achievements',
       gradient: 'from-yellow-500 to-orange-500',
       glow: 'shadow-yellow-500/50'
     },
     {
       icon: '🎒',
-      title: 'Achievement Vault',
-      description: 'Collect titles, badges, and legendary items',
+      title: 'Legend Vault',
+      description: 'Collect rare titles, badges, and artifacts of your journey',
       gradient: 'from-green-500 to-emerald-500',
       glow: 'shadow-green-500/50'
     },
     {
       icon: '🎮',
-      title: 'RPG Interface',
-      description: 'Immersive Solo Leveling inspired UI design',
+      title: 'Hunter Interface',
+      description: 'Immersive Solo Leveling inspired command center',
       gradient: 'from-red-500 to-rose-500',
       glow: 'shadow-red-500/50'
     }
@@ -207,26 +207,26 @@ export default function MarketingPage() {
 
   const previews = [
     { 
-      title: 'Hunter Dashboard', 
-      desc: 'Track your level, stats, and progress',
+      title: 'Hunter Command Center', 
+      desc: 'Monitor your level, stats, and legendary progress',
       route: '/dashboard',
       bg: 'from-blue-600 to-cyan-600'
     },
     { 
-      title: 'Quest Board', 
-      desc: 'Accept and complete daily missions',
+      title: 'Quest Terminal', 
+      desc: 'Accept daily missions and epic challenges',
       route: '/quests',
       bg: 'from-purple-600 to-pink-600'
     },
     { 
-      title: 'Reward Center', 
-      desc: 'Claim your hard-earned victories',
+      title: 'Victory Hall', 
+      desc: 'Claim your hard-earned rewards and trophies',
       route: '/rewards',
       bg: 'from-yellow-600 to-orange-600'
     },
     { 
-      title: 'Inventory System', 
-      desc: 'Manage artifacts and achievements',
+      title: 'Arsenal Vault', 
+      desc: 'Manage your collection of legendary artifacts',
       route: '/inventory',
       bg: 'from-green-600 to-emerald-600'
     }
@@ -235,28 +235,28 @@ export default function MarketingPage() {
   const steps = [
     {
       number: '01',
-      title: 'Create Your Hunter',
-      description: 'Sign up and assign your starting stats across different life areas',
+      title: 'Awaken Your Hunter',
+      description: 'Create your profile and distribute skill points across life domains',
       icon: '⚡'
     },
     {
       number: '02', 
-      title: 'Accept Quests',
-      description: 'Complete daily missions and challenges to earn XP and level up',
+      title: 'Conquer Daily Quests',
+      description: 'Complete missions, defeat challenges, and watch your XP soar',
       icon: '⚔️'
     },
     {
       number: '03',
-      title: 'Unlock Rewards',
-      description: 'Build real habits and unlock meaningful rewards in your actual life',
+      title: 'Ascend to Legend',
+      description: 'Build unstoppable habits and unlock your true potential',
       icon: '🏆'
     }
   ];
 
   const typewriterTexts = [
-    "System Initializing... 57%...",
-    "Loading Hunter Profile...",
-    "Initialization Complete... Welcome, Hunter."
+    "Hunter System Online... 57%...",
+    "Loading Guild Database...",
+    "Initialization Complete... Welcome, Legend."
   ];
 
   useEffect(() => {
@@ -310,7 +310,7 @@ export default function MarketingPage() {
               transition={{ delay: 0.8, duration: 0.8 }}
               className="text-3xl md:text-4xl text-gray-300 mb-4 font-light"
             >
-              Level Up in Real Life
+              Level Up Your Reality
             </motion.p>
             
             <motion.p
@@ -319,7 +319,7 @@ export default function MarketingPage() {
               transition={{ delay: 1.2, duration: 0.8 }}
               className="text-xl md:text-2xl text-gray-400 mb-12"
             >
-              Gamify your goals with daily quests, XP, and rewards
+              Where every goal becomes an epic quest, every habit a legendary skill
             </motion.p>
           </motion.div>
 
@@ -359,16 +359,26 @@ export default function MarketingPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">Join AscendOS</span>
+                <span className="relative z-10">Begin Your Ascension</span>
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600"
                   initial={{ x: "100%" }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
+                {/* Enhanced Glow Effect */}
                 <motion.div
-                  className="absolute -inset-2 bg-gradient-to-r from-cyan-500/50 to-purple-500/50 blur-xl opacity-0 group-hover:opacity-100 rounded-full"
+                  className="absolute -inset-4 bg-gradient-to-r from-cyan-500/50 to-purple-500/50 blur-xl opacity-0 group-hover:opacity-100 rounded-full"
                   transition={{ duration: 0.3 }}
+                />
+                {/* Particle Effect */}
+                <motion.div
+                  className="absolute inset-0 bg-white/10"
+                  animate={{ 
+                    opacity: [0, 0.3, 0],
+                    scale: [1, 1.2, 1]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 />
               </motion.button>
             </Link>
@@ -387,10 +397,10 @@ export default function MarketingPage() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-6">
-              Power Up Your Life
+              Forge Your Legend
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Transform everyday tasks into epic quests with our RPG-inspired productivity system
+              Master the ancient art of self-improvement through our legendary RPG system
             </p>
           </motion.div>
 
@@ -431,7 +441,7 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* Live Previews */}
+      {/* Enter Your Command Center */}
       <section className="relative py-32 px-4 z-30 bg-black/30">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -442,10 +452,10 @@ export default function MarketingPage() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent mb-6">
-              Experience the Interface
+              Enter Your Command Center
             </h2>
-            <p className="text-xl text-gray-400">
-              Immersive RPG-style dashboard designed for real-world progression
+            <p className="text-xl text-gray-400 max-w-4xl mx-auto">
+              A sleek, RPG-inspired dashboard crafted to track your growth, quests, and real-world victories
             </p>
           </motion.div>
 
@@ -470,7 +480,7 @@ export default function MarketingPage() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Explore {previews[currentPreview].title}
+                      Access {previews[currentPreview].title}
                     </motion.button>
                   </Link>
                 </div>
@@ -528,10 +538,10 @@ export default function MarketingPage() {
             className="text-center mb-20"
           >
             <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 to-cyan-500 bg-clip-text text-transparent mb-6">
-              How AscendOS Works
+              The Path to Ascension
             </h2>
             <p className="text-xl text-gray-400">
-              Your journey from ordinary to extraordinary in 3 simple steps
+              Three legendary steps to transform your ordinary life into an epic adventure
             </p>
           </motion.div>
 
@@ -599,11 +609,11 @@ export default function MarketingPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-6xl md:text-7xl font-black bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-8">
-              Don't just live. Ascend.
+              Your Legend Awaits
             </h2>
             <p className="text-2xl text-gray-300 mb-16 leading-relaxed">
-              Join thousands of hunters who've transformed their daily routines<br />
-              into epic adventures with real-world rewards
+              Join the elite guild of hunters who've transformed their daily routines<br />
+              into legendary quests with epic rewards
             </p>
             
             <Link href="/login">
@@ -612,7 +622,7 @@ export default function MarketingPage() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">Ascend Now</span>
+                <span className="relative z-10">Claim Your Destiny</span>
                 <motion.div
                   className="absolute inset-0 bg-white/10"
                   animate={{ 
@@ -640,7 +650,7 @@ export default function MarketingPage() {
                 AscendOS
               </h3>
               <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                The ultimate gamified productivity system that transforms your daily life into an epic RPG adventure.
+                The legendary productivity system that transforms your daily life into an epic RPG adventure where every goal becomes a quest worth conquering.
               </p>
               <div className="flex space-x-6">
                 <motion.a
@@ -674,19 +684,19 @@ export default function MarketingPage() {
             </div>
             
             <div>
-              <h4 className="text-xl font-bold mb-6 text-white">Quick Access</h4>
+              <h4 className="text-xl font-bold mb-6 text-white">Hunter Portal</h4>
               <div className="space-y-3">
                 <Link href="/login" className="block text-gray-400 hover:text-cyan-400 transition-colors">
-                  Hunter Login
+                  Begin Quest
                 </Link>
                 <Link href="/dashboard" className="block text-gray-400 hover:text-cyan-400 transition-colors">
-                  Dashboard
+                  Command Center
                 </Link>
                 <Link href="/quests" className="block text-gray-400 hover:text-cyan-400 transition-colors">
-                  Quest Board
+                  Quest Terminal
                 </Link>
                 <Link href="/rewards" className="block text-gray-400 hover:text-cyan-400 transition-colors">
-                  Reward Center
+                  Victory Hall
                 </Link>
               </div>
             </div>
@@ -694,7 +704,7 @@ export default function MarketingPage() {
           
           <div className="border-t border-gray-800/50 pt-8 text-center">
             <p className="text-gray-400 mb-2 text-lg">
-              Built with ⚡ by <span className="text-cyan-400 font-bold">@Prithvi Verma</span>
+              Forged with ⚡ by <span className="text-cyan-400 font-bold">@Prithvi Verma</span>
             </p>
             <p className="text-gray-500">
               Inspired by Solo Leveling & Cyberpunk Interfaces • © 2024 AscendOS
