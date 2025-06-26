@@ -21,32 +21,50 @@ import {
   TrendingUp,
   Gamepad2,
   Volume2,
-  VolumeX
+  VolumeX,
+  Crown,
+  Sword,
+  Star,
+  Power
 } from 'lucide-react'
 import Sidebar from '../../components/Sidebar'
 import { useStatsStore, useQuestsStore, useUIStore } from '../../lib/store'
+import { 
+  STAT_ICONS, 
+  STAT_DESCRIPTIONS, 
+  calculateLevel, 
+  getXpProgress, 
+  calculatePowerLevel, 
+  getHunterRank,
+  getQuestDifficulty 
+} from '../../lib/utils'
 
-// Mock data for demo since auth is disabled
+// Mock data with Solo Leveling theme
 const mockStats = [
-  { id: '1', stat_name: 'Intelligence', xp: 450, level: 4, icon: Brain, color: 'from-blue-500 to-cyan-400' },
-  { id: '2', stat_name: 'Strength', xp: 320, level: 3, icon: Dumbbell, color: 'from-red-500 to-orange-400' },
-  { id: '3', stat_name: 'Dexterity', xp: 280, level: 2, icon: Lightning, color: 'from-yellow-500 to-amber-400' },
-  { id: '4', stat_name: 'Wisdom', xp: 510, level: 5, icon: Eye, color: 'from-purple-500 to-indigo-400' },
-  { id: '5', stat_name: 'Charisma', xp: 190, level: 1, icon: Heart, color: 'from-pink-500 to-rose-400' },
-  { id: '6', stat_name: 'Discipline', xp: 380, level: 3, icon: Shield, color: 'from-green-500 to-emerald-400' }
+  { id: '1', stat_name: 'Intelligence', xp: 450, level: 4, icon: '🧠', color: 'from-blue-500 to-cyan-400' },
+  { id: '2', stat_name: 'Strength', xp: 520, level: 5, icon: '⚔️', color: 'from-red-500 to-orange-400' },
+  { id: '3', stat_name: 'Dexterity', xp: 380, level: 3, icon: '🏹', color: 'from-green-500 to-emerald-400' },
+  { id: '4', stat_name: 'Wisdom', xp: 610, level: 6, icon: '🔮', color: 'from-purple-500 to-indigo-400' },
+  { id: '5', stat_name: 'Charisma', xp: 290, level: 2, icon: '👑', color: 'from-yellow-500 to-amber-400' },
+  { id: '6', stat_name: 'Discipline', xp: 480, level: 4, icon: '🛡️', color: 'from-gray-500 to-slate-400' }
 ]
 
 const mockQuests = [
-  { id: '1', title: 'Complete Morning Workout', stat_target: 'Strength', xp_reward: 50, due_date: new Date().toISOString(), completed: false },
-  { id: '2', title: 'Read 30 Pages', stat_target: 'Intelligence', xp_reward: 40, due_date: new Date().toISOString(), completed: false },
-  { id: '3', title: 'Meditate for 15 Minutes', stat_target: 'Wisdom', xp_reward: 35, due_date: new Date().toISOString(), completed: false }
+  { id: '1', title: 'Complete Morning Training Routine', stat_target: 'Strength', xp_reward: 50, rarity: 'Common', due_date: new Date().toISOString(), completed: false },
+  { id: '2', title: 'Study Advanced Magic Theory', stat_target: 'Intelligence', xp_reward: 75, rarity: 'Rare', due_date: new Date().toISOString(), completed: false },
+  { id: '3', title: 'Clear B-Rank Dungeon', stat_target: 'Dexterity', xp_reward: 120, rarity: 'Epic', due_date: new Date().toISOString(), completed: false },
+  { id: '4', title: 'Defeat Shadow Monarch', stat_target: 'Wisdom', xp_reward: 250, rarity: 'Legendary', due_date: new Date().toISOString(), completed: false }
 ]
 
-// Floating Particles Component
-const FloatingParticles = () => {
+// Floating Particles Background
+const ParticleField = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(100)].map((_, i) => (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-20" />
+      
+      {/* Floating Particles */}
+      {[...Array(150)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute"
@@ -59,27 +77,54 @@ const FloatingParticles = () => {
             scale: 0,
           }}
           animate={{
-            opacity: [0, 0.6, 0],
+            opacity: [0, 0.8, 0],
             scale: [0, 1, 0],
-            y: [-20, -100],
-            x: [0, Math.random() * 40 - 20],
+            y: [-30, -150],
+            x: [0, Math.random() * 60 - 30],
           }}
           transition={{
-            duration: Math.random() * 4 + 3,
+            duration: Math.random() * 6 + 4,
             repeat: Infinity,
-            delay: Math.random() * 5,
+            delay: Math.random() * 8,
             ease: "easeOut"
           }}
         >
           <div 
             className={`w-1 h-1 rounded-full ${
-              Math.random() > 0.5 ? 'bg-blue-400/40' : 'bg-purple-400/40'
+              Math.random() > 0.7 ? 'bg-blue-400/60' : 
+              Math.random() > 0.4 ? 'bg-purple-400/60' : 'bg-teal-400/60'
             }`}
             style={{
-              boxShadow: `0 0 ${Math.random() * 10 + 5}px currentColor`,
+              boxShadow: `0 0 ${Math.random() * 15 + 5}px currentColor`,
             }}
           />
         </motion.div>
+      ))}
+      
+      {/* Larger Glowing Orbs */}
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={`orb-${i}`}
+          className="absolute w-3 h-3 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            background: `radial-gradient(circle, ${
+              Math.random() > 0.5 ? 'rgba(59, 130, 246, 0.6)' : 'rgba(147, 51, 234, 0.6)'
+            }, transparent)`,
+          }}
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 0.8, 0.3],
+            x: [0, Math.random() * 200 - 100],
+            y: [0, Math.random() * 200 - 100],
+          }}
+          transition={{
+            duration: Math.random() * 8 + 6,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
       ))}
     </div>
   )
@@ -94,17 +139,18 @@ const FloatingXPBadge = ({ xp, position, onComplete }: { xp: number, position: {
       initial={{ opacity: 0, scale: 0, y: 0 }}
       animate={{ 
         opacity: [0, 1, 1, 0], 
-        scale: [0, 1.2, 1, 0.8], 
-        y: -100 
+        scale: [0, 1.3, 1, 0.8], 
+        y: -120 
       }}
       transition={{ 
-        duration: 2,
+        duration: 2.5,
         ease: "easeOut"
       }}
       onAnimationComplete={onComplete}
     >
-      <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold px-4 py-2 rounded-full shadow-lg">
+      <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-bold px-6 py-3 rounded-full shadow-2xl ui-font text-lg">
         +{xp} XP
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full blur-md opacity-60 -z-10" />
       </div>
     </motion.div>
   )
@@ -121,7 +167,7 @@ const LevelUpModal = ({ isVisible, statName, newLevel, onClose }: {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-lg"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -130,105 +176,96 @@ const LevelUpModal = ({ isVisible, statName, newLevel, onClose }: {
           <motion.div
             className="absolute inset-0"
             initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 3, opacity: [0, 0.3, 0] }}
-            transition={{ duration: 1.5, ease: "easeOut" }}
+            animate={{ scale: 4, opacity: [0, 0.5, 0] }}
+            transition={{ duration: 2, ease: "easeOut" }}
           >
-            <div className="w-full h-full bg-gradient-radial from-blue-500/20 to-transparent" />
+            <div className="w-full h-full bg-gradient-radial from-blue-500/30 via-purple-500/20 to-transparent" />
           </motion.div>
 
           <motion.div
-            className="relative bg-gradient-to-br from-slate-900/90 to-purple-900/90 backdrop-blur-xl border-2 border-blue-400/50 rounded-3xl p-8 text-center max-w-md mx-4"
+            className="relative solo-panel p-12 text-center max-w-lg mx-4 border-2 border-yellow-400/50"
             initial={{ scale: 0, rotate: -180, opacity: 0 }}
             animate={{ scale: 1, rotate: 0, opacity: 1 }}
             exit={{ scale: 0, rotate: 180, opacity: 0 }}
-            transition={{ type: "spring", duration: 1, bounce: 0.3 }}
+            transition={{ type: "spring", duration: 1.2, bounce: 0.4 }}
             style={{
-              boxShadow: '0 0 50px rgba(59, 130, 246, 0.5), inset 0 0 50px rgba(59, 130, 246, 0.1)'
+              boxShadow: '0 0 60px rgba(251, 191, 36, 0.6), inset 0 0 60px rgba(251, 191, 36, 0.1)'
             }}
           >
             {/* Glowing Border Animation */}
             <motion.div
-              className="absolute inset-0 rounded-3xl border-2 border-blue-400/30"
+              className="absolute inset-0 rounded-2xl border-2 border-yellow-400/50"
               animate={{
-                borderColor: ['rgba(59, 130, 246, 0.3)', 'rgba(59, 130, 246, 0.8)', 'rgba(59, 130, 246, 0.3)']
+                borderColor: ['rgba(251, 191, 36, 0.3)', 'rgba(251, 191, 36, 1)', 'rgba(251, 191, 36, 0.3)']
               }}
               transition={{ duration: 2, repeat: Infinity }}
             />
 
             {/* Floating Icons */}
-            {[...Array(8)].map((_, i) => (
+            {[...Array(12)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute text-blue-400/60"
+                className="absolute text-yellow-400/80 text-2xl"
                 style={{
-                  left: `${20 + (i * 10)}%`,
-                  top: `${15 + (i % 2) * 70}%`,
+                  left: `${15 + (i * 6)}%`,
+                  top: `${10 + (i % 3) * 30}%`,
                 }}
                 animate={{
-                  y: [-10, 10, -10],
-                  opacity: [0.3, 0.8, 0.3],
+                  y: [-15, 15, -15],
+                  opacity: [0.4, 1, 0.4],
                   rotate: [0, 360],
+                  scale: [0.8, 1.2, 0.8],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 4,
                   repeat: Infinity,
-                  delay: i * 0.2,
+                  delay: i * 0.3,
                 }}
               >
-                ⚡
+                ⭐
               </motion.div>
             ))}
 
             {/* Main Content */}
             <motion.div
               className="relative z-10"
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.6 }}
             >
               <motion.div
-                className="text-8xl mb-6"
+                className="text-9xl mb-8"
                 animate={{ 
                   rotate: [0, 360],
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.3, 1],
                 }}
                 transition={{ 
-                  rotate: { duration: 2, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 1, repeat: Infinity, ease: "easeInOut" }
+                  rotate: { duration: 3, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
                 }}
               >
                 🆙
               </motion.div>
-
-              <motion.h2 
-                className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4"
-                animate={{ 
-                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
+              
+              <h2 className="text-4xl font-bold mb-4 fantasy-font text-yellow-400 text-shadow-glow">
                 LEVEL UP!
-              </motion.h2>
-
-              <motion.p 
-                className="text-white text-xl mb-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 }}
-              >
-                {statName} reached Level {newLevel}
-              </motion.p>
-
+              </h2>
+              
+              <p className="text-xl mb-2 ui-font text-blue-100">
+                {statName} reached Level {newLevel}!
+              </p>
+              
+              <p className="text-lg text-blue-300/80 mb-8">
+                Your power grows stronger, Hunter!
+              </p>
+              
               <motion.button
                 onClick={onClose}
-                className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+                className="solo-button px-8 py-4 text-lg font-bold"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5 }}
               >
-                Continue
+                Continue Your Journey
               </motion.button>
             </motion.div>
           </motion.div>
@@ -238,115 +275,293 @@ const LevelUpModal = ({ isVisible, statName, newLevel, onClose }: {
   )
 }
 
-// System Tooltip Component
-const SystemTooltip = ({ soundEnabled, toggleSound }: { soundEnabled: boolean, toggleSound: () => void }) => {
+// Enhanced Stat Card Component
+const StatCard = ({ stat }: { stat: any }) => {
+  const progress = getXpProgress(stat.xp)
+  const currentLevelXp = stat.xp % 100
+  
   return (
     <motion.div
-      className="fixed bottom-6 right-6 z-40"
+      className="stat-card group cursor-pointer"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 2 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ duration: 0.3 }}
     >
-      <div className="bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-xl border border-blue-400/30 rounded-xl p-4 space-y-2">
-        <div className="flex items-center gap-2 text-blue-300 text-sm">
-          <Gamepad2 size={16} />
-          <span>Press Q to create a new Quest</span>
+      {/* Glowing Background Effect */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-5 rounded-2xl group-hover:opacity-10 transition-opacity duration-300`} />
+      
+      {/* Level Badge */}
+      <div className="absolute top-4 right-4">
+        <div className="level-badge">
+          LV.{stat.level}
         </div>
-        <div className="flex items-center gap-2 text-purple-300 text-sm">
-          <Target size={16} />
-          <span>Click quests to complete them</span>
-        </div>
-        <div className="flex items-center justify-between pt-2 border-t border-blue-400/20">
-          <span className="text-gray-400 text-xs">System Audio</span>
-          <button
-            onClick={toggleSound}
-            className="text-blue-400 hover:text-blue-300 transition-colors"
+      </div>
+
+      {/* Stat Content */}
+      <div className="relative z-10">
+        <div className="flex items-center gap-4 mb-6">
+          <motion.div 
+            className="text-5xl"
+            animate={{ rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
           >
-            {soundEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
-          </button>
+            {stat.icon}
+          </motion.div>
+          <div>
+            <h3 className="text-2xl font-bold text-blue-100 fantasy-font">
+              {stat.stat_name}
+            </h3>
+            <p className="text-sm text-blue-300/70 ui-font">
+              {STAT_DESCRIPTIONS[stat.stat_name as keyof typeof STAT_DESCRIPTIONS]}
+            </p>
+          </div>
+        </div>
+
+        {/* XP Bar */}
+        <div className="space-y-3">
+          <div className="flex justify-between items-center text-sm ui-font">
+            <span className="text-blue-300/80">Experience</span>
+            <span className="text-blue-100 font-bold">
+              {currentLevelXp}/100 XP
+            </span>
+          </div>
+          
+          <div className="xp-bar">
+            <motion.div
+              className="xp-progress"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ 
+                duration: 1.2, 
+                ease: "easeOut",
+                delay: 0.3 
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Total XP */}
+        <div className="mt-4 text-center">
+          <p className="text-xs text-blue-400/60 ui-font">
+            Total XP: {stat.xp.toLocaleString()}
+          </p>
+        </div>
+      </div>
+
+      {/* Hover Glow Effect */}
+      <motion.div
+        className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+        style={{
+          background: `linear-gradient(135deg, ${stat.color.split(' ')[1]}, ${stat.color.split(' ')[3]})`,
+          filter: 'blur(20px)',
+          zIndex: -1,
+        }}
+      />
+    </motion.div>
+  )
+}
+
+// Hunter Profile Card
+const HunterProfile = () => {
+  const powerLevel = calculatePowerLevel(mockStats)
+  const hunterRank = getHunterRank(powerLevel)
+  const avgLevel = Math.floor(mockStats.reduce((sum, stat) => sum + stat.level, 0) / mockStats.length)
+  
+  return (
+    <motion.div
+      className="solo-panel p-6 mb-8"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      <div className="flex items-center gap-6">
+        {/* Avatar */}
+        <motion.div
+          className="relative"
+          whileHover={{ scale: 1.05 }}
+        >
+          <div className="w-20 h-20 bg-gradient-to-br from-blue-500/30 to-purple-500/30 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-blue-400/50">
+            <Crown size={32} color="#fbbf24" />
+          </div>
+          {/* Power Aura */}
+          <motion.div
+            className="absolute inset-0 rounded-full border-2 border-blue-400/30"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
+        </motion.div>
+        
+        {/* Hunter Info */}
+        <div className="flex-1">
+          <div className="flex items-center gap-3 mb-2">
+            <h2 className="text-2xl font-bold text-blue-100 fantasy-font">Hunter: Prithvi</h2>
+            <span className={`text-lg ${hunterRank.color} ui-font font-bold`}>
+              {hunterRank.icon} {hunterRank.rank}
+            </span>
+          </div>
+          
+          <div className="flex items-center gap-4 text-sm ui-font">
+            <div className="flex items-center gap-1">
+              <Star size={14} color="#fbbf24" />
+              <span className="text-blue-300">Avg Level: {avgLevel}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Power size={14} color="#ef4444" />
+              <span className="text-blue-300">Power: {powerLevel.toLocaleString()}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Zap size={14} color="#3b82f6" />
+              <span className="text-blue-300">Total XP: {mockStats.reduce((sum, stat) => sum + stat.xp, 0).toLocaleString()}</span>
+            </div>
+          </div>
         </div>
       </div>
     </motion.div>
   )
 }
 
+// Quest Card Component
+const QuestCard = ({ quest, onComplete }: { quest: any, onComplete: (questId: string, event: React.MouseEvent) => void }) => {
+  const difficulty = getQuestDifficulty(quest.xp_reward)
+  const rarityColors = {
+    Common: 'border-gray-400/30 bg-slate-800/10',
+    Rare: 'border-blue-400/50 bg-blue-900/10',
+    Epic: 'border-purple-400/50 bg-purple-900/10',
+    Legendary: 'border-yellow-400/50 bg-yellow-900/10'
+  }
+  
+  return (
+    <motion.div
+      className={`solo-panel p-4 ${rarityColors[quest.rarity as keyof typeof rarityColors]} cursor-pointer group`}
+      whileHover={{ scale: 1.02, y: -2 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="text-xs px-2 py-1 rounded-full bg-black/30 text-blue-300 ui-font">
+              {quest.rarity}
+            </span>
+            <span className={`text-xs ${difficulty.color} ui-font`}>
+              {difficulty.difficulty}
+            </span>
+          </div>
+          
+          <h4 className="text-sm font-semibold text-blue-100 mb-1 ui-font">
+            {quest.title}
+          </h4>
+          
+          <div className="flex items-center gap-3 text-xs text-blue-300/70">
+            <span>Target: {quest.stat_target}</span>
+            <span className="text-yellow-400 font-bold">+{quest.xp_reward} XP</span>
+          </div>
+        </div>
+        
+        <motion.button
+          onClick={(e) => onComplete(quest.id, e)}
+          className="solo-button px-4 py-2 text-sm"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Complete
+        </motion.button>
+      </div>
+    </motion.div>
+  )
+}
+
+// System Control Panel
+const SystemTooltip = ({ soundEnabled, toggleSound }: { soundEnabled: boolean, toggleSound: () => void }) => {
+  return (
+    <motion.div
+      className="fixed top-4 right-4 z-40 flex gap-2"
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1 }}
+    >
+      <motion.button
+        onClick={toggleSound}
+        className="solo-panel p-3 text-blue-400 hover:text-blue-300 transition-colors"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        {soundEnabled ? <Volume2 size={18} color="#3b82f6" /> : <VolumeX size={18} color="#3b82f6" />}
+      </motion.button>
+    </motion.div>
+  )
+}
+
 export default function DashboardPage() {
-  const [stats, setStats] = useState(mockStats)
-  const [quests, setQuests] = useState(mockQuests)
-  const [showLevelUp, setShowLevelUp] = useState(false)
-  const [levelUpStat, setLevelUpStat] = useState('')
-  const [levelUpLevel, setLevelUpLevel] = useState(0)
-  const [streak, setStreak] = useState(7)
-  const [todayXP, setTodayXP] = useState(50)
   const [floatingXP, setFloatingXP] = useState<Array<{ id: number, xp: number, position: { x: number, y: number } }>>([])
+  const [levelUpModal, setLevelUpModal] = useState<{ visible: boolean, statName: string, newLevel: number }>({
+    visible: false,
+    statName: '',
+    newLevel: 0
+  })
   const [soundEnabled, setSoundEnabled] = useState(true)
+  const [xpCounter, setXpCounter] = useState(0)
 
-  // Calculate total level and XP
-  const totalXP = stats.reduce((sum, stat) => sum + stat.xp, 0)
-  const avgLevel = Math.floor(stats.reduce((sum, stat) => sum + stat.level, 0) / stats.length)
-
-  // Play sound effect (mock implementation)
   const playSound = (type: 'xp' | 'levelup') => {
     if (!soundEnabled) return
-    // In a real implementation, you would play actual audio files
-    console.log(`Playing ${type} sound effect`)
+    // Sound implementation would go here
+    console.log(`Playing ${type} sound`)
   }
 
   const completeQuest = (questId: string, event: React.MouseEvent) => {
-    const quest = quests.find(q => q.id === questId)
+    const quest = mockQuests.find(q => q.id === questId)
     if (!quest) return
 
-    // Get click position for floating XP
     const rect = (event.target as HTMLElement).getBoundingClientRect()
     const position = {
       x: rect.left + rect.width / 2,
-      y: rect.top
+      y: rect.top + rect.height / 2
     }
 
-    // Add floating XP badge
-    const xpId = Date.now()
-    setFloatingXP(prev => [...prev, { id: xpId, xp: quest.xp_reward, position }])
+    // Add floating XP
+    const newXpId = xpCounter + 1
+    setXpCounter(newXpId)
+    setFloatingXP(prev => [...prev, { id: newXpId, xp: quest.xp_reward, position }])
 
-    // Update quest as completed
-    setQuests(prev => prev.map(q => 
-      q.id === questId ? { ...q, completed: true } : q
-    ))
+    // Play XP sound
+    playSound('xp')
 
-    // Find related stat and update XP
-    const statIndex = stats.findIndex(s => s.stat_name === quest.stat_target)
-    if (statIndex !== -1) {
-      const oldStat = stats[statIndex]
-      const newXP = oldStat.xp + quest.xp_reward
-      const newLevel = Math.floor(newXP / 100)
+    // Check for level up (simplified logic)
+    const targetStat = mockStats.find(s => s.stat_name === quest.stat_target)
+    if (targetStat) {
+      const newXp = targetStat.xp + quest.xp_reward
+      const newLevel = Math.floor(newXp / 100)
+      const currentLevel = Math.floor(targetStat.xp / 100)
       
-      setStats(prev => prev.map((stat, index) => 
-        index === statIndex ? { ...stat, xp: newXP, level: newLevel } : stat
-      ))
-
-      // Check for level up
-      if (newLevel > oldStat.level) {
-        setLevelUpStat(quest.stat_target)
-        setLevelUpLevel(newLevel)
-        setShowLevelUp(true)
-        playSound('levelup')
-      } else {
-        playSound('xp')
+      if (newLevel > currentLevel) {
+        setTimeout(() => {
+          setLevelUpModal({
+            visible: true,
+            statName: quest.stat_target,
+            newLevel: newLevel
+          })
+          playSound('levelup')
+        }, 1000)
       }
     }
 
-    setTodayXP(prev => prev + quest.xp_reward)
+    console.log(`Completed quest: ${quest.title} (+${quest.xp_reward} XP)`)
   }
 
   const removeFloatingXP = (id: number) => {
     setFloatingXP(prev => prev.filter(xp => xp.id !== id))
   }
 
+  const toggleSound = () => setSoundEnabled(!soundEnabled)
+
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
-      if (e.key.toLowerCase() === 'q') {
-        console.log('Create new quest shortcut pressed')
-        // In a real implementation, this would open the create quest modal
+      if (e.key === 'm' || e.key === 'M') {
+        toggleSound()
       }
     }
 
@@ -355,395 +570,107 @@ export default function DashboardPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-      {/* Enhanced Animated Background */}
-      <div className="absolute inset-0">
-        <FloatingParticles />
+    <div className="min-h-screen bg-solo-gradient relative overflow-x-hidden">
+      {/* Particle Background */}
+      <ParticleField />
+      
+      {/* Mesh Gradient Overlay */}
+      <div className="fixed inset-0 bg-mesh-gradient pointer-events-none z-0" />
+      
+      {/* Main Content */}
+      <div className="flex relative z-10">
+        <Sidebar />
         
-        {/* Grid Pattern */}
-        <motion.div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}
-          animate={{
-            backgroundPosition: ['0px 0px', '50px 50px'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
+        <main className="flex-1 md:ml-64 p-6 relative">
+          {/* System Controls */}
+          <SystemTooltip soundEnabled={soundEnabled} toggleSound={toggleSound} />
+          
+          {/* Header */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1 className="text-5xl font-bold mb-4 fantasy-font bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent text-shadow-glow">
+              Hunter Dashboard
+            </h1>
+            <p className="text-xl text-blue-300/80 ui-font">
+              Welcome back, Hunter. Your journey to power continues...
+            </p>
+          </motion.div>
 
-        {/* Ambient Glow */}
-        <div className="absolute inset-0 bg-gradient-radial from-blue-500/5 via-transparent to-purple-500/5" />
+          {/* Hunter Profile */}
+          <HunterProfile />
+
+          {/* Stats Grid */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            <h2 className="text-3xl font-bold mb-6 fantasy-font text-blue-100">
+              Power Statistics
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {mockStats.map((stat, index) => (
+                <motion.div
+                  key={stat.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <StatCard stat={stat} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Active Quests */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+          >
+            <h2 className="text-3xl font-bold mb-6 fantasy-font text-blue-100">
+              Active Quests
+            </h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {mockQuests.slice(0, 4).map((quest, index) => (
+                <motion.div
+                  key={quest.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <QuestCard quest={quest} onComplete={completeQuest} />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </main>
       </div>
 
-      <Sidebar />
-      
       {/* Floating XP Badges */}
-      {floatingXP.map(xp => (
-        <FloatingXPBadge
-          key={xp.id}
-          xp={xp.xp}
-          position={xp.position}
-          onComplete={() => removeFloatingXP(xp.id)}
-        />
-      ))}
+      <AnimatePresence>
+        {floatingXP.map(xp => (
+          <FloatingXPBadge
+            key={xp.id}
+            xp={xp.xp}
+            position={xp.position}
+            onComplete={() => removeFloatingXP(xp.id)}
+          />
+        ))}
+      </AnimatePresence>
 
-      {/* Enhanced Level Up Modal */}
+      {/* Level Up Modal */}
       <LevelUpModal
-        isVisible={showLevelUp}
-        statName={levelUpStat}
-        newLevel={levelUpLevel}
-        onClose={() => setShowLevelUp(false)}
+        isVisible={levelUpModal.visible}
+        statName={levelUpModal.statName}
+        newLevel={levelUpModal.newLevel}
+        onClose={() => setLevelUpModal({ visible: false, statName: '', newLevel: 0 })}
       />
-
-      {/* System Tooltip */}
-      <SystemTooltip 
-        soundEnabled={soundEnabled}
-        toggleSound={() => setSoundEnabled(!soundEnabled)}
-      />
-
-      <main className="md:ml-64 p-6 relative z-10">
-        {/* Header Section with Enhanced Animations */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
-        >
-          <div className="relative bg-gradient-to-r from-blue-600/10 to-purple-600/10 backdrop-blur-xl border border-blue-400/20 rounded-2xl p-6 overflow-hidden">
-            {/* Glassmorphism Enhancement */}
-            <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
-            
-            <div className="relative flex items-center justify-between">
-              <div>
-                <motion.h1 
-                  className="text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent"
-                  animate={{ 
-                    backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  Welcome back, Shadow Hunter
-                </motion.h1>
-                <motion.p 
-                  className="text-blue-300 text-lg mt-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  Level {avgLevel} • Total XP: {totalXP.toLocaleString()}
-                </motion.p>
-          </div>
-
-              <div className="flex items-center gap-6">
-                {/* Enhanced Streak Counter */}
-                <motion.div
-                  className="flex items-center gap-2 bg-orange-500/20 backdrop-blur-sm border border-orange-400/30 rounded-xl px-4 py-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 10, -10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <Flame className="text-orange-400" size={24} />
-                  </motion.div>
-                  <div>
-                    <div className="text-orange-400 font-bold text-xl">{streak}</div>
-                    <div className="text-orange-300 text-sm">Day Streak</div>
-              </div>
-                </motion.div>
-
-                {/* Enhanced Today's XP */}
-                <motion.div
-                  className="flex items-center gap-2 bg-green-500/20 backdrop-blur-sm border border-green-400/30 rounded-xl px-4 py-2"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <motion.div
-                    animate={{ y: [-2, 2, -2] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <TrendingUp className="text-green-400" size={24} />
-                  </motion.div>
-              <div>
-                    <div className="text-green-400 font-bold text-xl">+{todayXP}</div>
-                    <div className="text-green-300 text-sm">Today's XP</div>
-              </div>
-                </motion.div>
-            </div>
-          </div>
-
-            {/* Enhanced System Notification */}
-            <motion.div
-              className="mt-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-blue-400/20 rounded-xl p-4"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6 }}
-            >
-              <div className="flex items-center gap-3">
-                <motion.div 
-                  className="w-2 h-2 bg-blue-400 rounded-full"
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <span className="text-blue-300">📈 System Alert: You gained +{todayXP} XP in Wisdom today</span>
-              </div>
-            </motion.div>
-          </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
-          {/* Enhanced Stats Section */}
-          <div className="xl:col-span-2">
-            <motion.h2
-              className="text-2xl font-bold text-white mb-6 flex items-center gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              >
-                <Sparkles className="text-blue-400" />
-              </motion.div>
-              Hunter Statistics
-            </motion.h2>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon
-                const progress = (stat.xp % 100) / 100
-
-                return (
-                  <motion.div
-                    key={stat.id}
-                    className="group relative"
-                    initial={{ opacity: 0, y: 50, rotateX: -15 }}
-                    animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                    transition={{ 
-                      delay: index * 0.1 + 0.5,
-                      type: "spring",
-                      bounce: 0.3
-                    }}
-                    whileHover={{ 
-                      scale: 1.05,
-                      rotateY: 5,
-                      rotateX: 5,
-                      z: 50
-                    }}
-                    style={{ perspective: 1000 }}
-                  >
-                    {/* Enhanced Glow Effect */}
-                    <motion.div 
-                      className={`absolute inset-0 bg-gradient-to-r ${stat.color} opacity-0 group-hover:opacity-30 rounded-2xl blur-xl transition-opacity duration-500`}
-                      whileHover={{ scale: 1.1 }}
-                    />
-                    
-                    {/* Glassmorphism Card */}
-                    <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:border-blue-400/30 transition-all duration-500 shadow-2xl">
-                      {/* Ambient Inner Glow */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl" />
-                      
-                      {/* Header */}
-                      <div className="relative flex items-center justify-between mb-4">
-                        <motion.div 
-                          className={`w-12 h-12 bg-gradient-to-r ${stat.color} rounded-xl flex items-center justify-center shadow-lg`}
-                          whileHover={{ rotate: 360 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <IconComponent className="text-white" size={24} />
-                        </motion.div>
-                        <div className="text-right">
-                          <motion.div 
-                            className="text-2xl font-bold text-white"
-                            key={stat.level}
-                            initial={{ scale: 1.5, color: '#60A5FA' }}
-                            animate={{ scale: 1, color: '#FFFFFF' }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            Lv.{stat.level}
-                          </motion.div>
-                          <div className="text-sm text-gray-400">{stat.xp} XP</div>
-                        </div>
-                      </div>
-
-                      {/* Stat Name */}
-                      <h3 className="relative text-lg font-semibold text-white mb-3">{stat.stat_name}</h3>
-
-                      {/* Enhanced XP Progress Bar */}
-                      <div className="relative space-y-2">
-                        <div className="flex justify-between text-sm text-gray-400">
-                          <span>{stat.xp % 100} / 100 XP</span>
-                          <span>Next: Lv.{stat.level + 1}</span>
-                        </div>
-                        
-                        <div className="h-3 bg-slate-800/50 rounded-full overflow-hidden border border-slate-700/50">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r ${stat.color} rounded-full relative overflow-hidden shadow-lg`}
-                            initial={{ width: 0 }}
-                            animate={{ width: `${progress * 100}%` }}
-                            transition={{ duration: 1.5, delay: index * 0.1 + 0.8, ease: "easeOut" }}
-                          >
-                            {/* Enhanced Shimmer Effect */}
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                              animate={{ x: [-100, 200] }}
-                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                            />
-                            {/* Pulse Effect */}
-                            <motion.div
-                              className="absolute inset-0 bg-white/20"
-                              animate={{ opacity: [0, 0.5, 0] }}
-                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                            />
-                          </motion.div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Enhanced Right Column */}
-          <div className="space-y-8">
-            {/* Enhanced Active Quests */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, type: "spring", bounce: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <Target className="text-purple-400" />
-                </motion.div>
-                Active Quests
-              </h2>
-
-              <div className="space-y-4">
-                {quests.map((quest, index) => (
-                  <motion.div
-                    key={quest.id}
-                    className="relative bg-white/5 backdrop-blur-xl border border-purple-400/20 rounded-xl p-4 hover:border-purple-400/40 transition-all duration-300 shadow-lg"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 + 0.8, type: "spring", bounce: 0.2 }}
-                    whileHover={{ scale: 1.02, y: -2 }}
-                  >
-                    {/* Glassmorphism Enhancement */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-xl" />
-                    
-                    <div className="relative flex items-center justify-between">
-                      <div className="flex-1">
-                        <h3 className="text-white font-medium mb-1">{quest.title}</h3>
-                        <div className="flex items-center gap-2 text-sm text-gray-400">
-                          <span>{quest.stat_target}</span>
-                          <span>•</span>
-                          <motion.span 
-                            className="text-yellow-400"
-                            animate={{ opacity: [0.7, 1, 0.7] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          >
-                            +{quest.xp_reward} XP
-                          </motion.span>
-                        </div>
-                      </div>
-
-                      <div className="flex gap-2">
-                        {!quest.completed ? (
-                          <>
-                            <motion.button
-                              onClick={(e) => completeQuest(quest.id, e)}
-                              className="w-10 h-10 bg-green-500/20 backdrop-blur-sm border border-green-400/30 rounded-lg flex items-center justify-center text-green-400 hover:bg-green-500/30 transition-colors shadow-lg"
-                              whileHover={{ scale: 1.1, rotate: 5 }}
-                              whileTap={{ scale: 0.9 }}
-                            >
-                              <CheckCircle size={16} />
-                            </motion.button>
-                            <motion.button
-                              className="w-10 h-10 bg-red-500/20 backdrop-blur-sm border border-red-400/30 rounded-lg flex items-center justify-center text-red-400 hover:bg-red-500/30 transition-colors shadow-lg"
-                              whileHover={{ scale: 1.1, rotate: -5 }}
-                              whileTap={{ scale: 0.9 }}
-                            >
-                              <XCircle size={16} />
-                            </motion.button>
-                          </>
-                        ) : (
-                          <motion.div 
-                            className="w-10 h-10 bg-green-500/20 backdrop-blur-sm border border-green-400/30 rounded-lg flex items-center justify-center text-green-400"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", bounce: 0.5 }}
-                          >
-                            <CheckCircle size={16} />
-                          </motion.div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
-                  ))}
-                </div>
-            </motion.div>
-
-            {/* Enhanced Recent Rewards */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, type: "spring", bounce: 0.3 }}
-            >
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-                <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <Trophy className="text-yellow-400" />
-                </motion.div>
-                Recent Rewards
-              </h2>
-
-              <motion.div 
-                className="relative bg-white/5 backdrop-blur-xl border border-yellow-400/20 rounded-xl p-6 shadow-lg"
-                whileHover={{ scale: 1.02, y: -2 }}
-              >
-                {/* Glassmorphism Enhancement */}
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 to-orange-500/5 rounded-xl" />
-                
-                <div className="relative flex items-center gap-4">
-                  <motion.div 
-                    className="w-12 h-12 bg-yellow-500/20 backdrop-blur-sm rounded-xl flex items-center justify-center"
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Gift className="text-yellow-400" size={24} />
-                  </motion.div>
-                  <div>
-                    <h3 className="text-white font-medium">Gym Session Unlocked!</h3>
-                    <p className="text-gray-400 text-sm">Earned with 500 Strength XP</p>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </main>
     </div>
   )
 }
