@@ -1,268 +1,413 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  * {
-    border-color: rgb(30 41 59);
-  }
-  
-  body {
-    @apply bg-slate-950 text-blue-100;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-    background-attachment: fixed;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
-  }
-  
+:root {
+  --solo-dark: #0a0a0f;
+  --solo-darker: #050507;
+  --solo-blue: #1e40af;
+  --solo-purple: #7c3aed;
+  --solo-teal: #0891b2;
+  --solo-gold: #f59e0b;
+  --solo-silver: #64748b;
+  --solo-red: #dc2626;
+  --solo-green: #059669;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background: var(--solo-dark);
+  color: #e2e8f0;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
   html {
-    scroll-behavior: smooth;
-  }
-
-  /* Fantasy heading font */
-  h1, h2, h3, .fantasy-font {
-    font-family: 'Orbitron', 'Rajdhani', sans-serif;
-    font-weight: 700;
-  }
-
-  /* Gamer UI font */
-  .ui-font {
-    font-family: 'Rajdhani', sans-serif;
+    color-scheme: dark;
   }
 }
 
-@layer components {
-  /* Solo Leveling inspired glassmorphism panels */
+/* Solo Leveling Theme */
+.bg-solo-gradient {
+  background: linear-gradient(135deg, 
+    #0a0a0f 0%, 
+    #1a1a2e 25%, 
+    #16213e 50%, 
+    #0f172a 75%, 
+    #020617 100%
+  );
+  background-attachment: fixed;
+  position: relative;
+}
+
+.bg-solo-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.bg-mesh-gradient {
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(147, 51, 234, 0.05) 0%, transparent 50%);
+  opacity: 0.8;
+}
+
+/* Typography */
+.fantasy-font {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.ui-font {
+  font-family: 'Inter', 'Rajdhani', sans-serif;
+  font-weight: 500;
+}
+
+.text-shadow-glow {
+  text-shadow: 
+    0 0 10px rgba(59, 130, 246, 0.5),
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 30px rgba(59, 130, 246, 0.2);
+}
+
+/* Glassmorphism Panels */
+.solo-panel {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 1rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 0 0 1px rgba(59, 130, 246, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.solo-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+}
+
+/* Enhanced Buttons */
+.solo-button {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 0.8) 0%, 
+    rgba(147, 51, 234, 0.8) 50%, 
+    rgba(6, 182, 212, 0.8) 100%
+  );
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 0.75rem;
+  color: white;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 15px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.solo-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.solo-button:hover::before {
+  left: 100%;
+}
+
+.solo-button:hover {
+  background: linear-gradient(135deg, 
+    rgba(59, 130, 246, 1) 0%, 
+    rgba(147, 51, 234, 1) 50%, 
+    rgba(6, 182, 212, 1) 100%
+  );
+  box-shadow: 
+    0 8px 25px rgba(59, 130, 246, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* XP Progress Bars */
+.xp-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.xp-progress {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    #3b82f6 0%, 
+    #8b5cf6 50%, 
+    #06b6d4 100%
+  );
+  border-radius: 1rem;
+  position: relative;
+  box-shadow: 
+    0 0 10px rgba(59, 130, 246, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.xp-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* Level Badges */
+.level-badge {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #1f2937;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 
+    0 2px 8px rgba(251, 191, 36, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+}
+
+/* Stat Cards */
+.stat-card {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+}
+
+.stat-card:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Quest Cards */
+.quest-common { border-color: rgba(156, 163, 175, 0.3); }
+.quest-rare { border-color: rgba(59, 130, 246, 0.5); }
+.quest-epic { border-color: rgba(147, 51, 234, 0.5); }
+.quest-legendary { border-color: rgba(251, 191, 36, 0.5); }
+
+/* Particle Background */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  border-radius: 4px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes level-up-burst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Utility Classes */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+.animate-floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-level-up-burst {
+  animation: level-up-burst 0.6s ease-out forwards;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .solo-panel {
-    @apply bg-gradient-to-br from-slate-900/40 to-slate-800/20 backdrop-blur-xl border border-blue-400/30 rounded-2xl relative overflow-hidden;
-    box-shadow: 
-      0 8px 32px rgba(0, 0, 0, 0.4),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 0 20px rgba(59, 130, 246, 0.1);
+    margin: 0.5rem;
+    padding: 1rem;
   }
-
-  .solo-panel::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
-  }
-
-  /* Enhanced stat cards with glow effects */
+  
   .stat-card {
-    @apply solo-panel p-6 transition-all duration-500 hover:scale-105;
-  }
-
-  .stat-card:hover {
-    box-shadow: 
-      0 20px 40px rgba(0, 0, 0, 0.6),
-      0 0 30px rgba(59, 130, 246, 0.3),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    transform: translateY(-8px) scale(1.02);
-  }
-
-  /* Neon gradient buttons */
-  .solo-button {
-    @apply relative px-6 py-3 font-semibold text-white rounded-xl transition-all duration-300 ui-font;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
-    background-size: 200% 200%;
-    animation: gradientShift 3s ease infinite;
-    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-  }
-
-  .solo-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
-    animation-duration: 1s;
-  }
-
-  .solo-button::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 2px;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
-    border-radius: inherit;
-    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: xor;
-  }
-
-  /* XP Progress bars with glow */
-  .xp-bar {
-    @apply h-4 bg-slate-800/50 rounded-full overflow-hidden relative border border-slate-700/50;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    padding: 1.5rem;
   }
   
-  .xp-progress {
-    @apply h-full rounded-full transition-all duration-1000 ease-out relative;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
-    box-shadow: 
-      0 0 10px rgba(59, 130, 246, 0.5),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-
-  .xp-progress::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    animation: shimmer 2s infinite;
-  }
-
-  /* Level badges with fantasy styling */
-  .level-badge {
-    @apply bg-gradient-to-r from-yellow-400 to-orange-500 text-black px-4 py-2 rounded-full font-bold text-sm ui-font;
-    box-shadow: 
-      0 4px 8px rgba(0, 0, 0, 0.3),
-      0 0 15px rgba(251, 191, 36, 0.5);
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  }
-
-  /* Floating particles background */
-  .particles-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Quest cards with rarity styling */
-  .quest-common {
-    @apply border-gray-400/30 bg-slate-800/20;
-  }
-  
-  .quest-rare {
-    @apply border-blue-400/50 bg-blue-900/10;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
-  }
-  
-  .quest-epic {
-    @apply border-purple-400/50 bg-purple-900/10;
-    box-shadow: 0 0 15px rgba(147, 51, 234, 0.2);
-  }
-
-  .quest-legendary {
-    @apply border-yellow-400/50 bg-yellow-900/10;
-    box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
-  }
-
-  /* Glow effects for hover states */
-  .glow-blue {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-  }
-  
-  .glow-purple {
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
-  }
-  
-  .glow-teal {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
-  }
-
-  /* Animated background grid */
-  .bg-grid-pattern {
-    background-image: 
-      linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: gridMove 20s linear infinite;
-  }
-
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: rgba(15, 23, 42, 0.8);
-    border-radius: 6px;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-    border-radius: 6px;
-    border: 2px solid rgba(15, 23, 42, 0.8);
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
-  }
-
-  /* Selection styling */
-  ::selection {
-    background: rgba(59, 130, 246, 0.3);
-    color: white;
+  .fantasy-font {
+    font-size: clamp(1.5rem, 4vw, 3rem);
   }
 }
 
-@layer utilities {
-  /* Animation keyframes */
-  @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
+}
 
-  @keyframes shimmer {
-    0% { left: -100%; }
-    100% { left: 100%; }
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .solo-panel {
+    border: 2px solid #3b82f6;
+    background: rgba(15, 23, 42, 0.9);
   }
-
-  @keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+  
+  .solo-button {
+    border: 2px solid #3b82f6;
   }
+}
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
-  }
+/* Focus states for accessibility */
+.solo-button:focus,
+.stat-card:focus,
+.solo-panel:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
 
-  @keyframes pulse-glow {
-    0%, 100% { 
-      box-shadow: 0 0 5px rgba(59, 130, 246, 0.5), 0 0 10px rgba(59, 130, 246, 0.3);
-    }
-    50% { 
-      box-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.5);
-    }
-  }
-
-  @keyframes levelUpBurst {
-    0% { transform: scale(1) rotate(0deg); opacity: 1; }
-    50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
-    100% { transform: scale(2) rotate(360deg); opacity: 0; }
-  }
-
-  /* Utility classes */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  .animate-level-up-burst {
-    animation: levelUpBurst 1.5s ease-out;
-  }
-
-  .text-shadow-glow {
-    text-shadow: 0 0 10px currentColor;
-  }
-
+/* Print styles */
+@media print {
+  .bg-solo-gradient,
   .bg-mesh-gradient {
-    background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+    background: white !important;
+  }
+  
+  .solo-panel {
+    border: 1px solid #000;
+    background: white;
+    color: black;
   }
 } 
