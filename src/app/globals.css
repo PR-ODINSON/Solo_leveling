@@ -55,7 +55,7 @@
 
   /* Enhanced stat cards with glow effects */
   .stat-card {
-    @apply solo-panel p-6 transition-all duration-500 hover:scale-105 group;
+    @apply solo-panel p-6 transition-all duration-500 hover:scale-105;
   }
 
   .stat-card:hover {
