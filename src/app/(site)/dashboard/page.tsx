@@ -29,8 +29,8 @@ import {
   Users,
   Activity
 } from 'lucide-react'
-import Sidebar from '../../components/Sidebar'
-import { useStatsStore, useQuestsStore, useUIStore } from '../../lib/store'
+
+import { useStatsStore, useQuestsStore, useUIStore } from '../../../lib/store'
 import { 
   STAT_ICONS, 
   STAT_DESCRIPTIONS, 
@@ -39,7 +39,7 @@ import {
   calculatePowerLevel, 
   getHunterRank,
   getQuestDifficulty 
-} from '../../lib/utils'
+} from '../../../lib/utils'
 
 // Mock data with Solo Leveling theme
 const mockStats = [
@@ -58,79 +58,7 @@ const mockQuests = [
   { id: '4', title: 'Defeat Shadow Monarch', stat_target: 'Wisdom', xp_reward: 250, rarity: 'Legendary', category: 'Boss Fight', icon: '👑', due_date: new Date().toISOString(), completed: false }
 ]
 
-// Enhanced Particles Background Component
-const ParticlesBackground = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {/* Animated Grid Background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-20" />
-      
-      {/* Floating Particles */}
-      {[...Array(150)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          initial={{
-            opacity: 0,
-            scale: 0,
-          }}
-          animate={{
-            opacity: [0, 0.8, 0],
-            scale: [0, 1, 0],
-            y: [-30, -150],
-            x: [0, Math.random() * 60 - 30],
-          }}
-          transition={{
-            duration: Math.random() * 6 + 4,
-            repeat: Infinity,
-            delay: Math.random() * 8,
-            ease: "easeOut"
-          }}
-        >
-          <div 
-            className={`w-1 h-1 rounded-full ${
-              Math.random() > 0.7 ? 'bg-blue-400/60' : 
-              Math.random() > 0.4 ? 'bg-purple-400/60' : 'bg-teal-400/60'
-            }`}
-            style={{
-              boxShadow: `0 0 ${Math.random() * 15 + 5}px currentColor`,
-            }}
-          />
-        </motion.div>
-      ))}
-      
-      {/* Larger Glowing Orbs */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={`orb-${i}`}
-          className="absolute w-3 h-3 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            background: `radial-gradient(circle, ${
-              Math.random() > 0.5 ? 'rgba(59, 130, 246, 0.6)' : 'rgba(147, 51, 234, 0.6)'
-            }, transparent)`,
-          }}
-          animate={{ 
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.8, 0.3],
-            x: [0, Math.random() * 200 - 100],
-            y: [0, Math.random() * 200 - 100],
-          }}
-          transition={{
-            duration: Math.random() * 8 + 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      ))}
-    </div>
-  )
-}
+
 
 // Enhanced RPG User Profile Component
 const RPGUserProfile = () => {
@@ -812,101 +740,86 @@ export default function DashboardPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-solo-gradient relative overflow-x-hidden">
-      {/* Enhanced Particles Background */}
-      <div className="fixed inset-0 z-0">
-        <ParticlesBackground />
-      </div>
+    <>
+      {/* System Controls */}
+      <SystemTooltip soundEnabled={soundEnabled} toggleSound={toggleSound} />
       
-      {/* Mesh Gradient Overlay */}
-      <div className="fixed inset-0 bg-mesh-gradient pointer-events-none z-0" />
-      
-      {/* Main Content */}
-      <div className="flex relative z-10">
-        <Sidebar />
-        
-        <main className="flex-1 md:ml-64 p-6 relative">
-          {/* System Controls */}
-          <SystemTooltip soundEnabled={soundEnabled} toggleSound={toggleSound} />
-          
-          {/* Header */}
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-6xl font-bold mb-4 fantasy-font bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent text-shadow-glow">
-              Hunter Command Center
-            </h1>
-            <p className="text-xl text-blue-300/80 ui-font">
-              Welcome back, Shadow Hunter. Your ascension continues...
-            </p>
-          </motion.div>
+      {/* Header */}
+      <motion.div
+        className="mb-8"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <h1 className="text-6xl font-bold mb-4 fantasy-font bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent text-shadow-glow">
+          Hunter Command Center
+        </h1>
+        <p className="text-xl text-blue-300/80 ui-font">
+          Welcome back, Shadow Hunter. Your ascension continues...
+        </p>
+      </motion.div>
 
-          {/* RPG User Profile */}
-          <RPGUserProfile />
+      {/* RPG User Profile */}
+      <RPGUserProfile />
 
-          {/* Stats Grid */}
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+      {/* Stats Grid */}
+      <motion.div
+        className="mb-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
+          <motion.span
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           >
-            <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
-              <motion.span
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                ⚡
-              </motion.span>
-              Power Statistics
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mockStats.map((stat, index) => (
-                <motion.div
-                  key={stat.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                >
-                  <EnhancedStatCard stat={stat} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+            ⚡
+          </motion.span>
+          Power Statistics
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {mockStats.map((stat, index) => (
+            <motion.div
+              key={stat.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * index }}
+            >
+              <EnhancedStatCard stat={stat} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
 
-          {/* Active Quests */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6 }}
+      {/* Active Quests */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+      >
+        <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
+          <motion.span
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                🗡️
-              </motion.span>
-              Active Quests
-            </h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {mockQuests.slice(0, 4).map((quest, index) => (
-                <motion.div
-                  key={quest.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 * index }}
-                >
-                  <EnhancedQuestCard quest={quest} onComplete={completeQuest} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </main>
-      </div>
+            🗡️
+          </motion.span>
+          Active Quests
+        </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {mockQuests.slice(0, 4).map((quest, index) => (
+            <motion.div
+              key={quest.id}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 * index }}
+            >
+              <EnhancedQuestCard quest={quest} onComplete={completeQuest} />
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Floating XP Badges */}
       <AnimatePresence>
@@ -927,6 +840,6 @@ export default function DashboardPage() {
         newLevel={levelUpModal.newLevel}
         onClose={() => setLevelUpModal({ visible: false, statName: '', newLevel: 0 })}
       />
-    </div>
+    </>
   )
 }

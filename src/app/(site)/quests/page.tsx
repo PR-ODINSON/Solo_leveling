@@ -22,8 +22,7 @@ import {
   Eye,
   Heart
 } from 'lucide-react'
-import Sidebar from '../../components/Sidebar'
-import { useQuestsStore, useUIStore } from '../../lib/store'
+import { useQuestsStore, useUIStore } from '../../../lib/store'
 
 // Mock data for demo since auth is disabled
 const mockQuests = [
@@ -148,53 +147,7 @@ export default function QuestsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        {/* Floating Particles */}
-        {[...Array(80)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: [0, 0.4, 0],
-              scale: [0, 1, 0],
-              y: [-20, -100],
-              x: [0, Math.random() * 30 - 15],
-            }}
-            transition={{
-              duration: Math.random() * 4 + 3,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeOut"
-            }}
-          >
-            <div className={`w-1 h-1 rounded-full ${Math.random() > 0.5 ? 'bg-blue-400/30' : 'bg-purple-400/30'}`} />
-          </motion.div>
-        ))}
-        
-        {/* Grid Pattern */}
-        <motion.div 
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px'
-          }}
-          animate={{ backgroundPosition: ['0px 0px', '40px 40px'] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
-
-      <Sidebar />
-
+    <>
       {/* Floating Effects */}
       {floatingEffects.map(effect => (
         effect.type === 'xp' ? (
@@ -212,8 +165,6 @@ export default function QuestsPage() {
           />
         )
       ))}
-
-      <main className="md:ml-64 p-6 relative z-10">
         {/* Hunter Mission Terminal Header */}
         <motion.div
           className="mb-8"
@@ -448,14 +399,13 @@ export default function QuestsPage() {
             </motion.div>
           )}
         </div>
-      </main>
 
       {/* Create Quest Modal */}
       <CreateQuestModalComponent isVisible={showCreateModal} onClose={() => setShowCreateModal(false)} onSubmit={(newQuest) => {
         setQuests(prev => [...prev, { ...newQuest, id: Date.now().toString(), completed: false, missed: false }])
         setShowCreateModal(false)
       }} />
-    </div>
+    </>
   )
 }
 

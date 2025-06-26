@@ -61,9 +61,19 @@ export default function Sidebar() {
     setIsMobileOpen(false)
   }, [pathname])
 
-  const handleSignOut = () => {
-    console.log('Sign out clicked - Demo mode')
-    // In real app: await supabase.auth.signOut()
+  const handleSignOut = async () => {
+    try {
+      const { supabase } = await import('../lib/supabase')
+      const { error } = await supabase.auth.signOut()
+      if (error) {
+        console.error('Error signing out:', error)
+      } else {
+        // Redirect to home page or login
+        window.location.href = '/'
+      }
+    } catch (error) {
+      console.error('Error during sign out:', error)
+    }
   }
 
   return (

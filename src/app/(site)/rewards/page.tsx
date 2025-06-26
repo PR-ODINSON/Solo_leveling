@@ -22,7 +22,7 @@ import {
   Crown,
   Gem
 } from 'lucide-react'
-import Sidebar from '../../components/Sidebar'
+
 
 // Mock data for demo since auth is disabled
 const mockRewards = [
@@ -269,53 +269,7 @@ export default function RewardsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0">
-        {/* Floating Particles */}
-        {[...Array(60)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: [0, 0.6, 0],
-              scale: [0, 1, 0],
-              y: [-20, -100],
-              x: [0, Math.random() * 40 - 20],
-            }}
-            transition={{
-              duration: Math.random() * 4 + 3,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeOut"
-            }}
-          >
-            <div className={`w-1 h-1 rounded-full ${Math.random() > 0.5 ? 'bg-yellow-400/40' : 'bg-purple-400/40'}`} />
-          </motion.div>
-        ))}
-        
-        {/* Grid Pattern */}
-        <motion.div 
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(255, 215, 0, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(255, 215, 0, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px'
-          }}
-          animate={{ backgroundPosition: ['0px 0px', '50px 50px'] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
-
-      <Sidebar />
-
+    <>
       {/* Claim Modal */}
       <ClaimModal 
         isVisible={showClaimModal} 
@@ -323,7 +277,7 @@ export default function RewardsPage() {
         onClose={handleClaimComplete} 
       />
 
-      <main className="md:ml-64 p-6 relative z-10">
+
         {/* Treasure Vault Header */}
         <motion.div
           className="mb-8"
@@ -526,8 +480,7 @@ export default function RewardsPage() {
             </div>
           </motion.section>
         )}
-      </main>
-    </div>
+    </>
   )
 }
 

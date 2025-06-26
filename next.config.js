@@ -1,15 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ensure static optimization
-  output: 'standalone',
+  // Enable static export for Netlify
+  output: 'export',
   
-  // Optimize images for static deployment
+  // Disable image optimization for static export
   images: {
     unoptimized: true,
   },
   
   // Ensure proper trailing slash handling
   trailingSlash: false,
+  
+  // Base path and asset prefix (leave empty for root domain)
+  basePath: '',
+  assetPrefix: '',
+  
+  // Disable server-side features that don't work with static export
+  experimental: {
+    appDir: true,
+  },
   
   // Webpack configuration
   webpack: (config, { isServer }) => {
@@ -18,9 +27,16 @@ const nextConfig = {
       config.resolve.fallback = {
         ...config.resolve.fallback,
         fs: false,
+        net: false,
+        tls: false,
       };
     }
     return config;
+  },
+  
+  // Environment variables
+  env: {
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   },
 }
 
