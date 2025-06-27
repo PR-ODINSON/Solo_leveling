@@ -43,8 +43,7 @@ const AssessmentPage = () => {
         const { data: questions, error } = await supabase
           .from('trait_questions')
           .select('*')
-          .order('trait_name', { ascending: true })
-          .order('question_order', { ascending: true });
+          .order('trait_name', { ascending: true });
 
         if (error) {
           console.error('Supabase error:', error);
