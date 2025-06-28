@@ -514,7 +514,7 @@ const ResultsPage = () => {
                   </motion.div>
                 </div>
               </motion.div>
-            </motion.div>
+          </motion.div>
 
                                       {/* Clean & Modern Rank Display */}
              <motion.div
@@ -534,12 +534,12 @@ const ResultsPage = () => {
                  >
                    <h2 className="text-2xl md:text-3xl font-medium text-white/90 mb-2 font-sans">
                      Classification Complete
-                   </h2>
+          </h2>
                    <p className="text-base text-white/60 font-sans">
                      Your assessment results
-                   </p>
-                 </motion.div>
-                 
+          </p>
+        </motion.div>
+
                  {/* Main rank display */}
                  <motion.div
                    className="text-center mb-8"
@@ -558,9 +558,9 @@ const ResultsPage = () => {
                    </motion.div>
                    
                    {/* Rank title */}
-                   <motion.div
+        <motion.div
                      initial={{ opacity: 0, y: 20 }}
-                     animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
                      transition={{ delay: 5.2 }}
                    >
                      <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 font-sans">
@@ -653,8 +653,8 @@ const ResultsPage = () => {
             >
               <motion.h3 
                 className="text-3xl md:text-4xl font-bold text-center text-white mb-8"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
               >
                 Your Core Stats
@@ -764,18 +764,18 @@ const ResultsPage = () => {
                              / 10
                            </div>
                          </div>
-                       </div>
-                       
+              </div>
+              
                        {/* Progress bar */}
                        <div className="mb-4">
                          <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
-                           <motion.div
+                <motion.div
                              className={`h-full bg-gradient-to-r ${config.color} rounded-full`}
-                             initial={{ width: 0 }}
-                             animate={{ width: `${trait.percentage}%` }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${trait.percentage}%` }}
                              transition={{ delay: index * 0.05 + 0.3, duration: 1, ease: "easeOut" }}
-                           />
-                         </div>
+                />
+              </div>
                        </div>
                        
                        {/* Description */}
@@ -820,30 +820,30 @@ const ResultsPage = () => {
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
             <Link href="/onboarding/goals" className="w-full sm:w-auto">
-              <motion.button
+            <motion.button
                 className="w-full px-8 py-4 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-bold text-lg rounded-2xl shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-300"
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 0 30px rgba(168, 85, 247, 0.6)"
                 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              whileTap={{ scale: 0.95 }}
+            >
                 🎯 Set Your Goals
-              </motion.button>
-            </Link>
-            
+            </motion.button>
+          </Link>
+          
             <Link href="/dashboard" className="w-full sm:w-auto">
-              <motion.button
+            <motion.button
                 className="w-full px-8 py-4 bg-gradient-to-r from-slate-600 to-slate-700 text-white font-bold text-lg rounded-2xl border border-white/20 hover:border-white/40 transition-all duration-300"
                 whileHover={{ 
                   scale: 1.05,
                   backgroundColor: "rgba(71, 85, 105, 0.8)"
                 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              whileTap={{ scale: 0.95 }}
+            >
                 ⚡ Enter Dashboard
-              </motion.button>
-            </Link>
+            </motion.button>
+          </Link>
           </div>
           
           <motion.p 
@@ -857,6 +857,6 @@ const ResultsPage = () => {
       </div>
     </div>
   );
-};
+  };
 
 export default ResultsPage; 
