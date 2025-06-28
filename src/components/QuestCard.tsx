@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { CheckCircle, Clock, Trash2, Calendar, Target, Zap, Sword, Crown, Shield } from 'lucide-react'
-import { CATEGORY_COLORS, formatDate, getDaysUntilDue, isQuestOverdue, getQuestDifficulty } from '@/lib/utils'
+import { LEGACY_CATEGORY_COLORS, formatDate, getDaysUntilDue, isQuestOverdue, getQuestDifficulty } from '@/lib/utils'
 import { useQuestsStore } from '@/lib/store'
-import type { Quest } from '@/lib/supabase'
+import type { LegacyQuest as Quest } from '@/lib/supabase'
 
 interface QuestCardProps {
   quest: Quest & { rarity?: string }
@@ -15,7 +15,7 @@ export default function QuestCard({ quest }: QuestCardProps) {
   
   const daysUntilDue = getDaysUntilDue(quest.due_date)
   const isOverdue = isQuestOverdue(quest.due_date)
-  const categoryGradient = CATEGORY_COLORS[quest.category as keyof typeof CATEGORY_COLORS] || CATEGORY_COLORS['Daily']
+  const categoryGradient = LEGACY_CATEGORY_COLORS[quest.category as keyof typeof LEGACY_CATEGORY_COLORS] || LEGACY_CATEGORY_COLORS['Academic']
   const difficulty = getQuestDifficulty(quest.xp_reward)
 
   // Rarity styling
@@ -31,9 +31,9 @@ export default function QuestCard({ quest }: QuestCardProps) {
 
   // Category icons
   const categoryIcons = {
-    Daily: Target,
-    Weekly: Sword,
-    'Boss Fight': Crown
+    Academic: Target,
+    Emotional: Shield,
+    Physical: Sword
   }
 
   const CategoryIcon = categoryIcons[quest.category as keyof typeof categoryIcons] || Target

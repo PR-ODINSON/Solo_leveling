@@ -28,7 +28,10 @@ export const STAT_DESCRIPTIONS = {
 }
 
 // Solo Leveling quest categories
-export const QUEST_CATEGORIES = ['Daily', 'Weekly', 'Boss Fight'] as const
+export const QUEST_CATEGORIES = ['daily', 'weekly', 'monthly', 'milestone'] as const
+
+// Legacy quest categories for backward compatibility
+export const LEGACY_QUEST_CATEGORIES = ['Academic', 'Emotional', 'Physical'] as const
 
 // Quest rarity system
 export const QUEST_RARITIES = ['Common', 'Rare', 'Epic', 'Legendary'] as const
@@ -48,9 +51,16 @@ export const RARITY_GLOWS = {
 }
 
 export const CATEGORY_COLORS = {
-  Daily: 'from-blue-500 to-cyan-500',
-  Weekly: 'from-purple-500 to-pink-500',
-  'Boss Fight': 'from-red-500 to-orange-500'
+  daily: 'from-blue-500 to-cyan-500',
+  weekly: 'from-purple-500 to-pink-500',
+  monthly: 'from-green-500 to-emerald-500',
+  milestone: 'from-red-500 to-orange-500'
+}
+
+export const LEGACY_CATEGORY_COLORS = {
+  Academic: 'from-blue-500 to-cyan-500',
+  Emotional: 'from-purple-500 to-pink-500',
+  Physical: 'from-green-500 to-emerald-500'
 }
 
 // Power level calculation (Solo Leveling style)

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Plus, Target, Calendar, Zap } from 'lucide-react'
 import { useQuestsStore, useUIStore } from '@/lib/store'
-import { STAT_NAMES, QUEST_CATEGORIES } from '@/lib/utils'
+import { STAT_NAMES, LEGACY_QUEST_CATEGORIES } from '@/lib/utils'
 
 export default function CreateQuestModal() {
   const { showCreateQuestModal, setShowCreateQuestModal } = useUIStore()
@@ -121,7 +121,7 @@ export default function CreateQuestModal() {
                   onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
                   className="w-full px-3 py-2 bg-cyberpunk-gray border border-cyberpunk-primary/30 rounded-lg text-white focus:outline-none focus:border-cyberpunk-primary"
                 >
-                  {QUEST_CATEGORIES.map(category => (
+                  {LEGACY_QUEST_CATEGORIES.map(category => (
                     <option key={category} value={category}>{category}</option>
                   ))}
                 </select>

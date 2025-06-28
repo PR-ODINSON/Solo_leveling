@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { supabase, type Stat, type Quest, type Reward, type Streak } from './supabase'
+import { supabase, type Stat, type LegacyQuest as Quest, type Reward, type Streak } from './supabase'
 import { calculateLevel } from './utils'
 import toast from 'react-hot-toast'
 
