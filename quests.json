@@ -1,0 +1,4538 @@
+[[
+    {
+      "id": "shadow_clone_study_sprint",
+      "title": "Shadow Clone Study Sprint",
+      "description": "Master the art of focused learning through short, intense study sessions. Build your foundation as a Knowledge Hunter by establishing consistent daily learning habits.",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 50,
+      "primary_trait": "consistency",
+      "secondary_traits": ["curiosity", "focus"],
+      "estimated_time": "30 minutes",
+      "tasks": [
+        {
+          "id": "daily_study_15min",
+          "title": "15-Minute Knowledge Burst",
+          "description": "Study any topic of your choice for exactly 15 minutes using the Pomodoro technique",
+          "type": "learning",
+          "completion_criteria": "Complete one 15-minute focused study session",
+          "xp_reward": 15
+        },
+        {
+          "id": "learning_log_entry",
+          "title": "Knowledge Codex Entry",
+          "description": "Write 3 key insights you learned in your personal knowledge journal",
+          "type": "habit",
+          "completion_criteria": "Log 3 specific insights or facts learned",
+          "xp_reward": 10
+        },
+        {
+          "id": "curiosity_question",
+          "title": "Hunter's Inquiry",
+          "description": "Generate one curious question about your study topic for tomorrow's exploration",
+          "type": "creative",
+          "completion_criteria": "Write down one thoughtful question to explore later",
+          "xp_reward": 5
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your high curiosity is your greatest weapon, Hunter. Start small but stay consistent - even the mightiest Knowledge Masters began with single pages."
+    },
+    {
+      "id": "mana_meditation_focus",
+      "title": "Mana Meditation for Focus",
+      "description": "Harness your mental energy through mindful learning practices. Strengthen your focus stat while absorbing knowledge like a true Hunter.",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 45,
+      "primary_trait": "focus",
+      "secondary_traits": ["consistency", "mindfulness"],
+      "estimated_time": "25 minutes",
+      "tasks": [
+        {
+          "id": "mindful_reading",
+          "title": "Mindful Knowledge Absorption",
+          "description": "Read for 20 minutes with full attention, no distractions",
+          "type": "learning",
+          "completion_criteria": "Complete 20 minutes of distraction-free reading",
+          "xp_reward": 20
+        },
+        {
+          "id": "comprehension_check",
+          "title": "Understanding Verification",
+          "description": "Summarize what you read in 3-5 sentences without looking back",
+          "type": "learning",
+          "completion_criteria": "Write a summary from memory",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Focus is the bridge between curiosity and mastery. Train your mind like you would train your body - with discipline and intention."
+    },
+    {
+      "id": "novice_researcher_path",
+      "title": "Novice Researcher's Path",
+      "description": "Begin your journey as a knowledge seeker by exploring topics that spark your natural curiosity and building research fundamentals.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 65,
+      "primary_trait": "curiosity",
+      "secondary_traits": ["research_skills", "critical_thinking"],
+      "estimated_time": "35 minutes",
+      "tasks": [
+        {
+          "id": "topic_deep_dive",
+          "title": "Curiosity Deep Dive",
+          "description": "Choose a topic that genuinely interests you and research it for 25 minutes using 3 different sources",
+          "type": "learning",
+          "completion_criteria": "Research using at least 3 different sources (articles, videos, books)",
+          "xp_reward": 25
+        },
+        {
+          "id": "fact_verification",
+          "title": "Truth Seeker's Validation",
+          "description": "Cross-reference one key fact from your research with additional sources",
+          "type": "learning",
+          "completion_criteria": "Verify one fact using at least 2 additional sources",
+          "xp_reward": 15
+        },
+        {
+          "id": "knowledge_connection",
+          "title": "Synaptic Link Formation",
+          "description": "Connect your new learning to something you already know",
+          "type": "creative",
+          "completion_criteria": "Write down one connection between new and existing knowledge",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"curiosity": 30},
+        "prerequisite_quests": ["shadow_clone_study_sprint"]
+      },
+      "hunter_notes": "Your curiosity score of 52 is exceptional, Hunter. Use it as your primary weapon to cut through information and find genuine understanding."
+    },
+    {
+      "id": "confidence_building_tutorial",
+      "title": "Confidence Building Tutorial",
+      "description": "Strengthen your knowledge confidence through teaching and sharing what you've learned. Transform uncertainty into expertise.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 70,
+      "primary_trait": "confidence",
+      "secondary_traits": ["communication", "teaching"],
+      "estimated_time": "40 minutes",
+      "tasks": [
+        {
+          "id": "teach_someone",
+          "title": "Knowledge Transfer Protocol",
+          "description": "Explain something you learned this week to a friend, family member, or online community",
+          "type": "social",
+          "completion_criteria": "Successfully explain a concept to another person",
+          "xp_reward": 30
+        },
+        {
+          "id": "confidence_reflection",
+          "title": "Self-Assurance Assessment",
+          "description": "Write about one thing you're becoming more confident about in your learning journey",
+          "type": "habit",
+          "completion_criteria": "Write a brief reflection on growing confidence",
+          "xp_reward": 15
+        },
+        {
+          "id": "mistake_learning",
+          "title": "Error Transformation Ritual",
+          "description": "Identify one mistake you made recently and what you learned from it",
+          "type": "learning",
+          "completion_criteria": "Document one mistake and its lesson",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"confidence": 25},
+        "prerequisite_quests": ["novice_researcher_path"]
+      },
+      "hunter_notes": "Your confidence of 35 has room to grow, Hunter. Remember: every expert was once a beginner who refused to give up."
+    },
+    {
+      "id": "consistency_foundation_forge",
+      "title": "Consistency Foundation Forge",
+      "description": "Forge unbreakable learning habits through systematic daily practice. Your consistency may be low now, but every Master was forged in the fires of repetition.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 55,
+      "primary_trait": "consistency",
+      "secondary_traits": ["discipline", "habit_formation"],
+      "estimated_time": "30 minutes",
+      "tasks": [
+        {
+          "id": "habit_stack",
+          "title": "Learning Chain Formation",
+          "description": "Complete your learning session immediately after an existing daily habit (like morning coffee)",
+          "type": "habit",
+          "completion_criteria": "Successfully link learning to an existing habit",
+          "xp_reward": 20
+        },
+        {
+          "id": "streak_tracking",
+          "title": "Momentum Measurement",
+          "description": "Track your learning streak for the day - even 5 minutes counts",
+          "type": "habit",
+          "completion_criteria": "Log completion of any amount of learning",
+          "xp_reward": 15
+        },
+        {
+          "id": "tomorrow_prep",
+          "title": "Future Self Preparation",
+          "description": "Set up your learning materials for tomorrow (book, topic, questions)",
+          "type": "action",
+          "completion_criteria": "Prepare tomorrow's learning setup before bed",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {},
+        "prerequisite_quests": ["mana_meditation_focus"]
+      },
+      "hunter_notes": "Consistency of 18 is your growth edge, Hunter. Small daily actions compound into legendary achievements. Start where you are."
+    },
+    {
+      "id": "codex_compilation_ritual",
+      "title": "Codex Compilation Ritual",
+      "description": "Master the ancient art of knowledge organization by creating your personal learning codex. Transform scattered information into structured wisdom.",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 200,
+      "primary_trait": "organization",
+      "secondary_traits": ["synthesis", "curiosity"],
+      "estimated_time": "2 hours over the week",
+      "tasks": [
+        {
+          "id": "knowledge_categorization",
+          "title": "Wisdom Taxonomy Creation",
+          "description": "Organize your week's learning into categories and themes",
+          "type": "learning",
+          "completion_criteria": "Create 3-5 categories for your weekly learning",
+          "xp_reward": 50
+        },
+        {
+          "id": "insight_synthesis",
+          "title": "Truth Crystallization",
+          "description": "Write one key insight that connects multiple things you learned this week",
+          "type": "creative",
+          "completion_criteria": "Synthesize one major insight from multiple learnings",
+          "xp_reward": 75
+        },
+        {
+          "id": "future_applications",
+          "title": "Knowledge Weaponization",
+          "description": "List 3 ways you can apply what you learned in real situations",
+          "type": "action",
+          "completion_criteria": "Identify 3 practical applications of your learning",
+          "xp_reward": 50
+        },
+        {
+          "id": "curiosity_seeds",
+          "title": "Next Quest Preparation",
+          "description": "Generate 5 new questions based on your week's learning",
+          "type": "creative",
+          "completion_criteria": "Create 5 follow-up questions for future exploration",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 5,
+        "required_traits": {"curiosity": 40},
+        "prerequisite_quests": ["novice_researcher_path", "consistency_foundation_forge"]
+      },
+      "hunter_notes": "Your exceptional curiosity demands proper organization, Hunter. A scattered mind cannot wield the full power of accumulated knowledge."
+    },
+    {
+      "id": "guild_research_directive",
+      "title": "Guild Research Directive",
+      "description": "Join forces with fellow Knowledge Hunters to tackle complex research challenges. Collaboration amplifies individual learning exponentially.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 250,
+      "primary_trait": "collaboration",
+      "secondary_traits": ["confidence", "communication"],
+      "estimated_time": "3 hours over the week",
+      "tasks": [
+        {
+          "id": "research_partner",
+          "title": "Alliance Formation",
+          "description": "Find a study partner or join an online learning community",
+          "type": "social",
+          "completion_criteria": "Connect with at least one learning partner or community",
+          "xp_reward": 75
+        },
+        {
+          "id": "collaborative_project",
+          "title": "Joint Knowledge Raid",
+          "description": "Work together on researching a topic that interests you both",
+          "type": "learning",
+          "completion_criteria": "Complete a collaborative research project or discussion",
+          "xp_reward": 100
+        },
+        {
+          "id": "peer_teaching",
+          "title": "Knowledge Exchange Protocol",
+          "description": "Teach something to your partner and learn something from them",
+          "type": "social",
+          "completion_criteria": "Exchange knowledge through mutual teaching",
+          "xp_reward": 75
+        }
+      ],
+      "unlock_conditions": {
+        "level": 7,
+        "required_traits": {"confidence": 30},
+        "prerequisite_quests": ["confidence_building_tutorial"]
+      },
+      "hunter_notes": "Even the strongest Hunters work in guilds, Hunter. Your growing confidence (35) is ready for collaborative challenges."
+    },
+    {
+      "id": "ancient_lore_hunt",
+      "title": "Ancient Lore Hunt",
+      "description": "Embark on a deep dive into a complex subject that has fascinated humanity for centuries. Master the art of sustained inquiry.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 275,
+      "primary_trait": "curiosity",
+      "secondary_traits": ["persistence", "depth"],
+      "estimated_time": "4 hours over the week",
+      "tasks": [
+        {
+          "id": "complex_topic_selection",
+          "title": "Ancient Mystery Selection",
+          "description": "Choose a complex, historically significant topic that genuinely fascinates you",
+          "type": "learning",
+          "completion_criteria": "Select and commit to one complex topic for deep study",
+          "xp_reward": 25
+        },
+        {
+          "id": "multi_source_research",
+          "title": "Scholar's Investigation",
+          "description": "Research your topic using at least 5 different types of sources (books, papers, documentaries, experts, etc.)",
+          "type": "learning",
+          "completion_criteria": "Use 5+ diverse source types in your research",
+          "xp_reward": 100
+        },
+        {
+          "id": "historical_timeline",
+          "title": "Chronological Mapping",
+          "description": "Create a timeline or mind map showing the evolution of understanding in your chosen topic",
+          "type": "creative",
+          "completion_criteria": "Create a visual representation of your topic's development",
+          "xp_reward": 75
+        },
+        {
+          "id": "expert_perspective",
+          "title": "Master's Wisdom Seeking",
+          "description": "Find and analyze what current experts say about your topic",
+          "type": "learning",
+          "completion_criteria": "Research current expert opinions and theories",
+          "xp_reward": 75
+        }
+      ],
+      "unlock_conditions": {
+        "level": 8,
+        "required_traits": {"curiosity": 45},
+        "prerequisite_quests": ["codex_compilation_ritual"]
+      },
+      "hunter_notes": "Your curiosity of 52 is your legendary weapon, Hunter. Use it to uncover secrets that others might never pursue."
+    },
+    {
+      "id": "knowledge_fortress_construction",
+      "title": "Knowledge Fortress Construction",
+      "description": "Build an impregnable fortress of learning habits that will serve you for years. This is where consistency transforms from weakness to strength.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 225,
+      "primary_trait": "consistency",
+      "secondary_traits": ["habit_formation", "discipline"],
+      "estimated_time": "3.5 hours over the week",
+      "tasks": [
+        {
+          "id": "habit_architecture",
+          "title": "Fortress Blueprint Creation",
+          "description": "Design a sustainable daily learning routine that fits your life",
+          "type": "action",
+          "completion_criteria": "Create a detailed, realistic daily learning schedule",
+          "xp_reward": 50
+        },
+        {
+          "id": "consistency_measurement",
+          "title": "Stronghold Monitoring System",
+          "description": "Track your learning consistency for 7 days straight, noting patterns and obstacles",
+          "type": "habit",
+          "completion_criteria": "Complete 7 days of consistency tracking with analysis",
+          "xp_reward": 100
+        },
+        {
+          "id": "obstacle_solutions",
+          "title": "Defense Strategy Development",
+          "description": "Identify your top 3 consistency obstacles and create specific solutions for each",
+          "type": "action",
+          "completion_criteria": "Document 3 obstacles and their corresponding solutions",
+          "xp_reward": 75
+        }
+      ],
+      "unlock_conditions": {
+        "level": 6,
+        "required_traits": {"consistency": 15},
+        "prerequisite_quests": ["consistency_foundation_forge"]
+      },
+      "hunter_notes": "Your consistency of 18 is not a weakness, Hunter - it's your greatest opportunity for growth. Every fortress starts with a single stone."
+    },
+    {
+      "id": "master_thesis_initiation",
+      "title": "Master Thesis Initiation",
+      "description": "Begin your journey toward true mastery by selecting and deeply exploring a subject that will become your specialty. This is where Knowledge Hunters become Knowledge Masters.",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 500,
+      "primary_trait": "specialization",
+      "secondary_traits": ["curiosity", "persistence"],
+      "estimated_time": "8 hours over the month",
+      "tasks": [
+        {
+          "id": "mastery_domain_selection",
+          "title": "Destiny Path Selection",
+          "description": "Choose one area of knowledge that you want to master over the next 6 months",
+          "type": "learning",
+          "completion_criteria": "Commit to one specific domain for deep mastery",
+          "xp_reward": 75
+        },
+        {
+          "id": "expert_landscape_mapping",
+          "title": "Master Cartography",
+          "description": "Research who the leading experts are in your chosen field and what they focus on",
+          "type": "learning",
+          "completion_criteria": "Identify and research 5-7 leading experts in your domain",
+          "xp_reward": 150
+        },
+        {
+          "id": "fundamental_principles",
+          "title": "Core Truth Excavation",
+          "description": "Identify and deeply understand the 5-10 fundamental principles of your chosen domain",
+          "type": "learning",
+          "completion_criteria": "Document and explain 5-10 core principles in your own words",
+          "xp_reward": 175
+        },
+        {
+          "id": "mastery_roadmap",
+          "title": "Ascension Path Charting",
+          "description": "Create a 6-month learning roadmap for your domain mastery",
+          "type": "action",
+          "completion_criteria": "Develop a detailed 6-month mastery plan",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 10,
+        "required_traits": {"curiosity": 45, "consistency": 20},
+        "prerequisite_quests": ["ancient_lore_hunt", "knowledge_fortress_construction"]
+      },
+      "hunter_notes": "True mastery awaits, Hunter. Your exceptional curiosity and growing consistency are ready for this legendary challenge."
+    },
+    {
+      "id": "wisdom_synthesis_chamber",
+      "title": "Wisdom Synthesis Chamber",
+      "description": "Forge connections between disparate knowledge domains to create original insights. This is where information transforms into wisdom.",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 650,
+      "primary_trait": "synthesis",
+      "secondary_traits": ["creativity", "critical_thinking"],
+      "estimated_time": "10 hours over the month",
+      "tasks": [
+        {
+          "id": "domain_bridging",
+          "title": "Interdisciplinary Portal Creation",
+          "description": "Find meaningful connections between your specialty and 3 other fields",
+          "type": "creative",
+          "completion_criteria": "Document 3 meaningful cross-domain connections",
+          "xp_reward": 200
+        },
+        {
+          "id": "original_theory",
+          "title": "Novel Insight Crystallization",
+          "description": "Develop one original idea or theory based on your synthesis work",
+          "type": "creative",
+          "completion_criteria": "Create and document one original insight or theory",
+          "xp_reward": 250
+        },
+        {
+          "id": "peer_validation",
+          "title": "Wisdom Council Presentation",
+          "description": "Present your synthesis and original idea to knowledgeable peers for feedback",
+          "type": "social",
+          "completion_criteria": "Present to and receive feedback from qualified peers",
+          "xp_reward": 200
+        }
+      ],
+      "unlock_conditions": {
+        "level": 15,
+        "required_traits": {"curiosity": 50, "confidence": 35},
+        "prerequisite_quests": ["master_thesis_initiation", "guild_research_directive"]
+      },
+      "hunter_notes": "You stand at the threshold of true wisdom, Hunter. Your curiosity of 52 is perfectly calibrated for synthesis mastery."
+    },
+    {
+      "id": "knowledge_kingdom_establishment",
+      "title": "Knowledge Kingdom Establishment",
+      "description": "Build a comprehensive system for lifelong learning that serves not just you, but others seeking knowledge. Become a beacon for future Knowledge Hunters.",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 750,
+      "primary_trait": "leadership",
+      "secondary_traits": ["systematization", "mentorship"],
+      "estimated_time": "12 hours over the month",
+      "tasks": [
+        {
+          "id": "learning_system_design",
+          "title": "Royal Learning Architecture",
+          "description": "Design a comprehensive personal learning system that could be replicated by others",
+          "type": "action",
+          "completion_criteria": "Create a detailed, replicable learning system framework",
+          "xp_reward": 200
+        },
+        {
+          "id": "knowledge_repository",
+          "title": "Royal Library Construction",
+          "description": "Build a searchable, organized repository of all your learning",
+          "type": "action",
+          "completion_criteria": "Create an organized, accessible knowledge database",
+          "xp_reward": 250
+        },
+        {
+          "id": "mentorship_initiation",
+          "title": "Apprentice Training Program",
+          "description": "Begin mentoring someone else in their learning journey",
+          "type": "social",
+          "completion_criteria": "Actively mentor at least one person for the month",
+          "xp_reward": 300
+        }
+      ],
+      "unlock_conditions": {
+        "level": 18,
+        "required_traits": {"confidence": 40, "consistency": 25},
+        "prerequisite_quests": ["wisdom_synthesis_chamber"]
+      },
+      "hunter_notes": "Your journey transforms from seeker to teacher, Hunter. Your growing confidence and improving consistency make you ready to lead others."
+    },
+    {
+      "id": "enlightenment_trial_ascension",
+      "title": "Enlightenment Trial: The Ascension",
+      "description": "Face the ultimate test of Knowledge Mastery. Prove that you have transcended mere information gathering to become a true Master of Wisdom.",
+      "category": "milestone",
+      "difficulty": "B",
+      "xp_reward": 1000,
+      "primary_trait": "mastery",
+      "secondary_traits": ["wisdom", "innovation"],
+      "estimated_time": "15 hours total",
+      "tasks": [
+        {
+          "id": "mastery_demonstration",
+          "title": "Supreme Knowledge Manifestation",
+          "description": "Create a substantial work (research paper, presentation, or project) demonstrating mastery of your chosen domain",
+          "type": "creative",
+          "completion_criteria": "Complete a substantial mastery demonstration work",
+          "xp_reward": 400
+        },
+        {
+          "id": "innovation_contribution",
+          "title": "Legacy Knowledge Creation",
+          "description": "Contribute something new to your field - whether through original research, novel connections, or innovative applications",
+          "type": "creative",
+          "completion_criteria": "Make an original contribution to your knowledge domain",
+          "xp_reward": 350
+        },
+        {
+          "id": "wisdom_integration",
+          "title": "Life Integration Protocol",
+          "description": "Demonstrate how your learning has fundamentally changed how you approach life and decisions",
+          "type": "learning",
+          "completion_criteria": "Document specific ways learning has transformed your approach to life",
+          "xp_reward": 250
+        }
+      ],
+      "unlock_conditions": {
+        "level": 22,
+        "required_traits": {"curiosity": 55, "confidence": 45, "consistency": 30},
+        "prerequisite_quests": ["knowledge_kingdom_establishment"]
+      },
+      "hunter_notes": "The final trial awaits, Master. Your exceptional curiosity, growing confidence, and strengthened consistency have prepared you for this moment."
+    },
+    {
+      "id": "grand_master_ascension",
+      "title": "Grand Master Ascension: Beyond Mortal Understanding",
+      "description": "Transcend the boundaries between seeker and master. Become a legend whose knowledge creates knowledge, whose questions birth new fields of inquiry.",
+      "category": "milestone",
+      "difficulty": "A",
+      "xp_reward": 1500,
+      "primary_trait": "transcendence",
+      "secondary_traits": ["innovation", "legacy"],
+      "estimated_time": "20+ hours total",
+      "tasks": [
+        {
+          "id": "paradigm_creation",
+          "title": "Reality Reshaping Revelation",
+          "description": "Develop a new framework, methodology, or paradigm that could influence how others think about your domain",
+          "type": "creative",
+          "completion_criteria": "Create an original framework or paradigm with potential broader impact",
+          "xp_reward": 500
+        },
+        {
+          "id": "master_network",
+          "title": "Council of Legends Assembly",
+          "description": "Build relationships with recognized experts and thought leaders in your field",
+          "type": "social",
+          "completion_criteria": "Establish meaningful connections with 3+ recognized experts",
+          "xp_reward": 400
+        },
+        {
+          "id": "knowledge_dissemination",
+          "title": "Wisdom Broadcasting Protocol",
+          "description": "Share your knowledge through teaching, writing, speaking, or other means that reach a significant audience",
+          "type": "social",
+          "completion_criteria": "Reach and impact 100+ people with your knowledge",
+          "xp_reward": 350
+        },
+        {
+          "id": "legacy_establishment",
+          "title": "Immortal Impact Initiative",
+          "description": "Create something that will continue to educate and inspire others long after you've moved on to new challenges",
+          "type": "creative",
+          "completion_criteria": "Establish a lasting educational resource or legacy project",
+          "xp_reward": 250
+        }
+      ],
+      "unlock_conditions": {
+        "level": 30,
+        "required_traits": {"curiosity": 60, "confidence": 50, "consistency": 40},
+        "prerequisite_quests": ["enlightenment_trial_ascension"]
+      },
+      "hunter_notes": "You stand where few have stood, Master. Your legendary curiosity, unshakeable confidence, and diamond-forged consistency make you ready to reshape reality itself."
+    },
+    {
+      "id": "eternal_scholar_apotheosis",
+      "title": "Eternal Scholar Apotheosis: The Final Transformation",
+      "description": "Achieve the impossible - become a living embodiment of knowledge itself. Transform from Master to Myth, from Seeker to Source of Infinite Wisdom.",
+      "category": "legendary",
+      "difficulty": "S",
+      "xp_reward": 5000,
+      "primary_trait": "omniscience",
+      "secondary_traits": ["transcendence", "eternal_impact"],
+      "estimated_time": "Lifetime commitment",
+      "tasks": [
+        {
+          "id": "universal_synthesis",
+          "title": "Cosmic Knowledge Integration",
+          "description": "Demonstrate mastery across multiple domains and create revolutionary cross-disciplinary insights",
+          "type": "creative",
+          "completion_criteria": "Achieve recognized expertise in 3+ major domains with novel synthesis",
+          "xp_reward": 1500
+        },
+        {
+          "id": "civilization_impact",
+          "title": "Species-Level Contribution",
+          "description": "Make a contribution to human knowledge that fundamentally advances our species' understanding",
+          "type": "creative",
+          "completion_criteria": "Create work that significantly advances human knowledge or capability",
+          "xp_reward": 2000
+        },
+        {
+          "id": "immortal_teaching",
+          "title": "Eternal Wisdom Transmission",
+          "description": "Establish educational systems, institutions, or movements that will continue teaching for generations",
+          "type": "social",
+          "completion_criteria": "Create educational legacy systems that outlast your lifetime",
+          "xp_reward": 1000
+        },
+        {
+          "id": "knowledge_transcendence",
+          "title": "Beyond Learning: Pure Understanding",
+          "description": "Reach a state where learning and being become indistinguishable - where you embody knowledge itself",
+          "type": "learning",
+          "completion_criteria": "Achieve recognition as a living source of wisdom in your field(s)",
+          "xp_reward": 500
+        }
+      ],
+      "unlock_conditions": {
+        "level": 50,
+        "required_traits": {"curiosity": 80, "confidence": 70, "consistency": 60},
+        "prerequisite_quests": ["grand_master_ascension"]
+      },
+      "hunter_notes": "You approach the ultimate mystery, Eternal Scholar. Your boundless curiosity, unbreakable confidence, and perfect consistency have prepared you for transformation beyond mortal understanding. This is not just mastery - this is becoming one with knowledge itself."
+    }
+  ],
+  [
+    {
+      "id": "beast_awakening_morning",
+      "title": "Beast Awakening: Dawn Ritual",
+      "description": "Channel your high energy into a powerful morning activation sequence that sets the foundation for titan-level transformation.",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 50,
+      "primary_trait": "energy",
+      "secondary_traits": ["discipline", "consistency"],
+      "estimated_time": "15 minutes",
+      "tasks": [
+        {
+          "id": "morning_stretch",
+          "title": "Hunter's Flexibility Protocol",
+          "description": "Perform 5 minutes of dynamic stretching focusing on major muscle groups",
+          "type": "habit",
+          "completion_criteria": "Complete full body dynamic stretch routine",
+          "xp_reward": 15
+        },
+        {
+          "id": "energy_burst",
+          "title": "Beast Mode Activation",
+          "description": "10 jumping jacks, 10 bodyweight squats, 10 push-ups (modified if needed)",
+          "type": "action",
+          "completion_criteria": "Complete all three exercises without extended breaks",
+          "xp_reward": 25
+        },
+        {
+          "id": "warrior_hydration",
+          "title": "Titan Fuel Intake",
+          "description": "Drink a full glass of water immediately after waking",
+          "type": "habit",
+          "completion_criteria": "Consume 16oz of water within 30 minutes of waking",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your natural high energy is your greatest weapon, Hunter. Use these morning moments to forge the discipline that will carry you to titan status. Every dawn is a new chance to level up!"
+    },
+    {
+      "id": "iron_foundation_steps",
+      "title": "Iron Foundation: Daily March",
+      "description": "Build unshakeable consistency through the simple yet powerful act of daily movement, one step at a time.",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 40,
+      "primary_trait": "consistency",
+      "secondary_traits": ["energy", "discipline"],
+      "estimated_time": "20-30 minutes",
+      "tasks": [
+        {
+          "id": "titan_steps",
+          "title": "Titan's Journey",
+          "description": "Walk for at least 2000 steps (indoor or outdoor)",
+          "type": "action",
+          "completion_criteria": "Reach 2000 steps tracked by phone or counter",
+          "xp_reward": 25
+        },
+        {
+          "id": "mindful_breathing",
+          "title": "Hunter's Focus Breath",
+          "description": "Practice 3 minutes of deep breathing while walking",
+          "type": "habit",
+          "completion_criteria": "Focus on breath for 3 continuous minutes during walk",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Consistency is your weakest stat right now, but every titan started somewhere. This simple daily quest will become the foundation of your transformation. Trust the process!"
+    },
+    {
+      "id": "discipline_forge_core",
+      "title": "Discipline Forge: Core Ignition",
+      "description": "Strengthen your core while forging the mental discipline that separates hunters from titans.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 60,
+      "primary_trait": "discipline",
+      "secondary_traits": ["energy", "consistency"],
+      "estimated_time": "10-15 minutes",
+      "tasks": [
+        {
+          "id": "plank_hold",
+          "title": "Titan's Foundation Hold",
+          "description": "Hold a plank position for 30 seconds (can be modified on knees)",
+          "type": "action",
+          "completion_criteria": "Maintain proper plank form for full 30 seconds",
+          "xp_reward": 20
+        },
+        {
+          "id": "core_circuit",
+          "title": "Beast Core Awakening",
+          "description": "10 crunches, 10 bicycle crunches, 10 leg raises (modify as needed)",
+          "type": "action",
+          "completion_criteria": "Complete all exercises with focus on form",
+          "xp_reward": 25
+        },
+        {
+          "id": "mental_steel",
+          "title": "Mind-Muscle Forge",
+          "description": "Focus entirely on muscle engagement during each rep",
+          "type": "learning",
+          "completion_criteria": "Consciously think about core muscles throughout workout",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your medium discipline score shows potential, Hunter. This quest will sharpen that blade. Feel each rep building not just your core, but your mental fortitude!"
+    },
+    {
+      "id": "energy_channeling_burst",
+      "title": "Energy Channeling: Power Surge",
+      "description": "Transform your abundant energy into focused power through high-intensity burst training.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 70,
+      "primary_trait": "energy",
+      "secondary_traits": ["discipline", "consistency"],
+      "estimated_time": "20 minutes",
+      "tasks": [
+        {
+          "id": "burst_intervals",
+          "title": "Lightning Strike Training",
+          "description": "30 seconds high-intensity movement (jumping jacks, burpees, or mountain climbers), 90 seconds rest. Repeat 3 times.",
+          "type": "action",
+          "completion_criteria": "Complete 3 full intervals with maximum effort during work periods",
+          "xp_reward": 35
+        },
+        {
+          "id": "recovery_ritual",
+          "title": "Hunter's Recovery Protocol",
+          "description": "5 minutes of cool-down stretching focusing on muscles used",
+          "type": "habit",
+          "completion_criteria": "Complete gentle stretching routine post-workout",
+          "xp_reward": 20
+        },
+        {
+          "id": "power_assessment",
+          "title": "Beast Mode Evaluation",
+          "description": "Rate your energy level before and after (1-10 scale)",
+          "type": "learning",
+          "completion_criteria": "Record energy levels and notice the difference",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your high energy is a rare gift, Hunter! This quest teaches you to weaponize that energy instead of letting it scatter. Focus your power and watch yourself ascend!"
+    },
+    {
+      "id": "titan_sleep_preparation",
+      "title": "Titan Sleep: Recovery Sanctuary",
+      "description": "Master the art of recovery by establishing evening rituals that prepare your body for optimal regeneration.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 45,
+      "primary_trait": "discipline",
+      "secondary_traits": ["consistency", "energy"],
+      "estimated_time": "15-20 minutes",
+      "tasks": [
+        {
+          "id": "device_shutdown",
+          "title": "Digital Detox Protocol",
+          "description": "Turn off all screens 1 hour before target bedtime",
+          "type": "habit",
+          "completion_criteria": "No phones, TV, or computer screens 60 minutes before sleep",
+          "xp_reward": 15
+        },
+        {
+          "id": "evening_stretch",
+          "title": "Warrior's Wind-Down",
+          "description": "5 minutes of gentle stretching or yoga poses",
+          "type": "action",
+          "completion_criteria": "Complete relaxing stretch routine before bed",
+          "xp_reward": 20
+        },
+        {
+          "id": "sleep_timing",
+          "title": "Recovery Schedule Lock",
+          "description": "Go to bed at the same time for consistent sleep schedule",
+          "type": "habit",
+          "completion_criteria": "Maintain consistent bedtime within 30-minute window",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "True titans understand that growth happens during recovery, not just training. Build this foundation now and your future self will thank you with unstoppable energy!"
+    },
+    {
+      "id": "strength_temple_weekly",
+      "title": "Strength Temple: Weekly Pilgrimage",
+      "description": "Dedicate sacred time each week to pushing your physical limits and discovering new levels of power.",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 150,
+      "primary_trait": "discipline",
+      "secondary_traits": ["energy", "consistency"],
+      "estimated_time": "45-60 minutes",
+      "tasks": [
+        {
+          "id": "strength_session",
+          "title": "Titan Forge Training",
+          "description": "Complete 3 strength exercises focusing on major muscle groups (push-ups, squats, planks)",
+          "type": "action",
+          "completion_criteria": "Perform 3 sets of each exercise with proper form",
+          "xp_reward": 60
+        },
+        {
+          "id": "progressive_challenge",
+          "title": "Ascension Protocol",
+          "description": "Increase reps or hold time by 10% from previous week",
+          "type": "action",
+          "completion_criteria": "Document improvement from last week's performance",
+          "xp_reward": 50
+        },
+        {
+          "id": "recovery_ritual",
+          "title": "Temple Restoration",
+          "description": "15 minutes of stretching and reflection on progress",
+          "type": "habit",
+          "completion_criteria": "Complete post-workout recovery and log feelings",
+          "xp_reward": 40
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {"consistency": 15},
+        "prerequisite_quests": ["iron_foundation_steps"]
+      },
+      "hunter_notes": "This is where your journey from hunter to titan truly begins. Each week you complete this quest, you're literally rebuilding yourself stronger. Your medium discipline will flourish here!"
+    },
+    {
+      "id": "endurance_beast_hunt",
+      "title": "Endurance Beast Hunt: Stamina Trial",
+      "description": "Hunt down your cardio limits and push beyond them, building the stamina worthy of a Physical Titan.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 180,
+      "primary_trait": "energy",
+      "secondary_traits": ["discipline", "consistency"],
+      "estimated_time": "40-50 minutes",
+      "tasks": [
+        {
+          "id": "cardio_hunt",
+          "title": "Beast Pursuit Training",
+          "description": "25 minutes of continuous cardio (walking, jogging, cycling, or dancing)",
+          "type": "action",
+          "completion_criteria": "Maintain steady movement for full 25 minutes",
+          "xp_reward": 80
+        },
+        {
+          "id": "intensity_tracking",
+          "title": "Hunter's Heart Monitor",
+          "description": "Check your heart rate at 3 different points during exercise",
+          "type": "learning",
+          "completion_criteria": "Record heart rate at start, middle, and end of session",
+          "xp_reward": 40
+        },
+        {
+          "id": "endurance_log",
+          "title": "Stamina Chronicle",
+          "description": "Write 3 sentences about how you felt during and after",
+          "type": "learning",
+          "completion_criteria": "Document energy levels and physical sensations",
+          "xp_reward": 60
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"energy": 35},
+        "prerequisite_quests": ["energy_channeling_burst"]
+      },
+      "hunter_notes": "Your high energy score makes you a natural endurance hunter! This quest will teach you to sustain that power over time. Every minute you push through builds titan-level stamina!"
+    },
+    {
+      "id": "flexibility_mystic_arts",
+      "title": "Flexibility Mystic Arts: Mobility Mastery",
+      "description": "Unlock the hidden power of mobility and flexibility, the secret weapons of true Physical Titans.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 140,
+      "primary_trait": "consistency",
+      "secondary_traits": ["discipline", "energy"],
+      "estimated_time": "30-40 minutes",
+      "tasks": [
+        {
+          "id": "yoga_flow",
+          "title": "Mystic Movement Sequence",
+          "description": "Follow a 20-minute beginner yoga video or stretching routine",
+          "type": "action",
+          "completion_criteria": "Complete full mobility session without skipping",
+          "xp_reward": 60
+        },
+        {
+          "id": "flexibility_test",
+          "title": "Range of Motion Assessment",
+          "description": "Test and record your reach in 3 different stretches",
+          "type": "learning",
+          "completion_criteria": "Measure progress in forward fold, side reach, and shoulder mobility",
+          "xp_reward": 40
+        },
+        {
+          "id": "mindful_movement",
+          "title": "Zen Warrior Focus",
+          "description": "Practice moving slowly and mindfully for 10 minutes",
+          "type": "habit",
+          "completion_criteria": "Focus on breath and body awareness during movement",
+          "xp_reward": 40
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"consistency": 20},
+        "prerequisite_quests": ["discipline_forge_core"]
+      },
+      "hunter_notes": "Flexibility might seem less exciting than strength, but titans know it's the key to injury-free progression. Your consistency challenges will dissolve as you build this mindful practice!"
+    },
+    {
+      "id": "nutrition_alchemy_mastery",
+      "title": "Nutrition Alchemy: Fuel Mastery",
+      "description": "Master the ancient art of nutrition alchemy, transforming simple foods into titan-building fuel.",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 120,
+      "primary_trait": "discipline",
+      "secondary_traits": ["consistency", "energy"],
+      "estimated_time": "30 minutes planning + daily application",
+      "tasks": [
+        {
+          "id": "meal_planning",
+          "title": "Titan Fuel Strategy",
+          "description": "Plan 5 healthy meals/snacks for the week including protein sources",
+          "type": "learning",
+          "completion_criteria": "Write down specific meals with protein, carbs, and vegetables",
+          "xp_reward": 50
+        },
+        {
+          "id": "hydration_mastery",
+          "title": "Elixir of Power Protocol",
+          "description": "Track daily water intake and aim for 8 glasses per day",
+          "type": "habit",
+          "completion_criteria": "Consume at least 64oz of water daily for 5 days",
+          "xp_reward": 40
+        },
+        {
+          "id": "energy_tracking",
+          "title": "Fuel Efficiency Monitor",
+          "description": "Rate your energy levels before and after meals (1-10 scale)",
+          "type": "learning",
+          "completion_criteria": "Log energy levels for 3 meals to identify best fuel sources",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"discipline": 25},
+        "prerequisite_quests": ["titan_sleep_preparation"]
+      },
+      "hunter_notes": "You can't out-train a bad diet, Hunter. Your medium discipline will shine here as you learn to fuel your titan transformation properly. Every healthy choice is a victory!"
+    },
+    {
+      "id": "titan_transformation_monthly",
+      "title": "Titan Transformation: Monthly Evolution",
+      "description": "Complete a comprehensive monthly assessment and challenge that marks your ascension to the next level of physical mastery.",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 400,
+      "primary_trait": "consistency",
+      "secondary_traits": ["discipline", "energy"],
+      "estimated_time": "2-3 hours spread across the month",
+      "tasks": [
+        {
+          "id": "fitness_battery",
+          "title": "Titan Assessment Protocol",
+          "description": "Complete fitness tests: max push-ups, plank hold time, 1-mile walk/run time",
+          "type": "action",
+          "completion_criteria": "Record baseline measurements in all three categories",
+          "xp_reward": 120
+        },
+        {
+          "id": "habit_mastery",
+          "title": "Consistency Crown Achievement",
+          "description": "Complete at least 20 days of daily quests this month",
+          "type": "habit",
+          "completion_criteria": "Achieve 80% completion rate on daily physical activities",
+          "xp_reward": 150
+        },
+        {
+          "id": "progress_chronicle",
+          "title": "Evolution Documentation",
+          "description": "Write a detailed reflection on physical and mental changes",
+          "type": "learning",
+          "completion_criteria": "Document 5 specific improvements and 3 lessons learned",
+          "xp_reward": 80
+        },
+        {
+          "id": "goal_evolution",
+          "title": "Next Level Vision Quest",
+          "description": "Set 3 specific physical goals for the next month",
+          "type": "learning",
+          "completion_criteria": "Define clear, measurable objectives for continued growth",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"consistency": 25, "discipline": 30},
+        "prerequisite_quests": ["strength_temple_weekly", "endurance_beast_hunt"]
+      },
+      "hunter_notes": "This is where you prove you're no longer just a hunter, but a true Physical Titan in training. Your consistency struggles end here as you document undeniable proof of your transformation!"
+    },
+    {
+      "id": "beast_mode_monthly_challenge",
+      "title": "Beast Mode: Monthly Dominance Challenge",
+      "description": "Channel your peak energy into an epic monthly challenge that pushes every aspect of your physical capabilities.",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 500,
+      "primary_trait": "energy",
+      "secondary_traits": ["discipline", "consistency"],
+      "estimated_time": "1 hour per week + daily micro-actions",
+      "tasks": [
+        {
+          "id": "mega_workout",
+          "title": "Titan's Gauntlet Challenge",
+          "description": "Complete a 45-minute full-body workout combining strength, cardio, and flexibility",
+          "type": "action",
+          "completion_criteria": "Finish comprehensive workout without giving up",
+          "xp_reward": 180
+        },
+        {
+          "id": "daily_power_moments",
+          "title": "Beast Spark Daily Ignition",
+          "description": "Perform 50 burpees, squats, or jumping jacks every day for 30 days",
+          "type": "habit",
+          "completion_criteria": "Complete daily power movement for 25+ days this month",
+          "xp_reward": 200
+        },
+        {
+          "id": "energy_optimization",
+          "title": "Power Source Mastery",
+          "description": "Track and optimize sleep, nutrition, and stress for peak energy",
+          "type": "learning",
+          "completion_criteria": "Maintain energy tracking log and implement 3 optimizations",
+          "xp_reward": 120
+        }
+      ],
+      "unlock_conditions": {
+        "level": 4,
+        "required_traits": {"energy": 40, "discipline": 35},
+        "prerequisite_quests": ["nutrition_alchemy_mastery", "flexibility_mystic_arts"]
+      },
+      "hunter_notes": "Your natural high energy is about to become your greatest weapon! This challenge will forge that raw power into focused titan strength. Show the world what a true Physical Titan looks like!"
+    },
+    {
+      "id": "iron_discipline_fortress",
+      "title": "Iron Discipline: Fortress Construction",
+      "description": "Build an unbreakable fortress of discipline through month-long challenges that would break ordinary hunters.",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 450,
+      "primary_trait": "discipline",
+      "secondary_traits": ["consistency", "energy"],
+      "estimated_time": "Daily micro-habits + weekly challenges",
+      "tasks": [
+        {
+          "id": "cold_exposure",
+          "title": "Ice Titan Conditioning",
+          "description": "Take cold showers or end showers with 30 seconds of cold water daily",
+          "type": "habit",
+          "completion_criteria": "Complete cold exposure for 20+ days this month",
+          "xp_reward": 150
+        },
+        {
+          "id": "fasting_discipline",
+          "title": "Hunger Mastery Protocol",
+          "description": "Practice intermittent fasting (12-16 hours) twice per week",
+          "type": "habit",
+          "completion_criteria": "Successfully complete 6+ fasting periods this month",
+          "xp_reward": 120
+        },
+        {
+          "id": "comfort_zone_destroyer",
+          "title": "Fear Barrier Demolition",
+          "description": "Attempt one physical activity that intimidates you",
+          "type": "action",
+          "completion_criteria": "Try something new that pushes your physical comfort zone",
+          "xp_reward": 100
+        },
+        {
+          "id": "discipline_meditation",
+          "title": "Mind Fortress Construction",
+          "description": "Practice 10 minutes of meditation or mindfulness daily",
+          "type": "habit",
+          "completion_criteria": "Complete mindfulness practice for 22+ days this month",
+          "xp_reward": 80
+        }
+      ],
+      "unlock_conditions": {
+        "level": 5,
+        "required_traits": {"discipline": 40, "consistency": 30},
+        "prerequisite_quests": ["titan_transformation_monthly"]
+      },
+      "hunter_notes": "Your medium discipline is about to become your greatest strength! This fortress will be unbreakable once completed. Every uncomfortable moment is forging you into an unstoppable Physical Titan!"
+    },
+    {
+      "id": "apex_predator_milestone",
+      "title": "Apex Predator: Dominance Milestone",
+      "description": "Achieve a major physical milestone that demonstrates your evolution from hunter to apex predator in the fitness realm.",
+      "category": "milestone",
+      "difficulty": "B",
+      "xp_reward": 800,
+      "primary_trait": "energy",
+      "secondary_traits": ["discipline", "consistency"],
+      "estimated_time": "2-3 months of preparation",
+      "tasks": [
+        {
+          "id": "strength_milestone",
+          "title": "Titan Strength Proof",
+          "description": "Achieve one major strength goal: 50 push-ups, 2-minute plank, or 100 squats",
+          "type": "action",
+          "completion_criteria": "Complete chosen strength milestone with perfect form",
+          "xp_reward": 300
+        },
+        {
+          "id": "endurance_milestone",
+          "title": "Beast Stamina Proof",
+          "description": "Complete 5K run/walk, 10K steps daily for a week, or 45-minute workout without stopping",
+          "type": "action",
+          "completion_criteria": "Successfully complete chosen endurance challenge",
+          "xp_reward": 250
+        },
+        {
+          "id": "consistency_milestone",
+          "title": "Discipline Mastery Proof",
+          "description": "Complete 60 consecutive days of daily physical activity",
+          "type": "habit",
+          "completion_criteria": "Document unbroken streak of daily movement for 60 days",
+          "xp_reward": 200
+        },
+        {
+          "id": "transformation_showcase",
+          "title": "Apex Evolution Documentation",
+          "description": "Create before/after documentation of your physical transformation",
+          "type": "creative",
+          "completion_criteria": "Document measurable changes in strength, endurance, and habits",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 6,
+        "required_traits": {"energy": 45, "discipline": 40, "consistency": 35},
+        "prerequisite_quests": ["beast_mode_monthly_challenge", "iron_discipline_fortress"]
+      },
+      "hunter_notes": "This is it, Hunter! Time to prove you've evolved into an Apex Predator. Your high energy combined with hard-earned discipline and consistency will carry you through this ultimate test. The titan within you is ready to emerge!"
+    },
+    {
+      "id": "titan_guild_leadership",
+      "title": "Titan Guild: Leadership Ascension",
+      "description": "Transcend personal transformation by becoming a leader who inspires others to begin their own journey to Physical Titan status.",
+      "category": "milestone",
+      "difficulty": "A",
+      "xp_reward": 1000,
+      "primary_trait": "discipline",
+      "secondary_traits": ["consistency", "energy"],
+      "estimated_time": "Ongoing leadership commitment",
+      "tasks": [
+        {
+          "id": "mentor_someone",
+          "title": "Titan Wisdom Sharing",
+          "description": "Help guide someone else on their fitness journey for at least 4 weeks",
+          "type": "social",
+          "completion_criteria": "Provide consistent support and guidance to a fitness newcomer",
+          "xp_reward": 350
+        },
+        {
+          "id": "community_challenge",
+          "title": "Guild Rally Organization",
+          "description": "Organize or lead a group fitness activity or challenge",
+          "type": "social",
+          "completion_criteria": "Successfully coordinate group physical activity with 3+ people",
+          "xp_reward": 300
+        },
+        {
+          "id": "knowledge_mastery",
+          "title": "Titan Codex Creation",
+          "description": "Research and compile a comprehensive guide on one aspect of fitness",
+          "type": "learning",
+          "completion_criteria": "Create detailed resource on nutrition, exercise form, or habit building",
+          "xp_reward": 250
+        },
+        {
+          "id": "inspire_transformation",
+          "title": "Legendary Influence Manifestation",
+          "description": "Document how your transformation inspired at least one person to start their journey",
+          "type": "creative",
+          "completion_criteria": "Provide evidence of positive influence on another person's fitness journey",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 8,
+        "required_traits": {"discipline": 50, "consistency": 45, "energy": 50},
+        "prerequisite_quests": ["apex_predator_milestone"]
+      },
+      "hunter_notes": "You've reached the pinnacle, Titan! Your transformation is so complete that others now look to you for guidance. Your journey from struggling with consistency to titan-level discipline is proof that anyone can ascend. Lead by example and watch the world transform around you!"
+    },
+    {
+      "id": "legendary_immortal_titan",
+      "title": "Legendary Quest: Immortal Titan Ascension",
+      "description": "Achieve the ultimate transformation - becoming a Physical Titan whose strength, discipline, and consistency are the stuff of legends.",
+      "category": "milestone",
+      "difficulty": "S",
+      "xp_reward": 2000,
+      "primary_trait": "consistency",
+      "secondary_traits": ["discipline", "energy"],
+      "estimated_time": "6-12 months of sustained excellence",
+      "tasks": [
+        {
+          "id": "perfect_year",
+          "title": "Year of the Immortal Titan",
+          "description": "Maintain daily physical activity for an entire year without missing a single day",
+          "type": "habit",
+          "completion_criteria": "Complete 365 consecutive days of documented physical activity",
+          "xp_reward": 800
+        },
+        {
+          "id": "ultimate_challenge",
+          "title": "Legendary Physical Feat",
+          "description": "Complete an extraordinary physical challenge: marathon, tough mudder, or personal ultimate goal",
+          "type": "action",
+          "completion_criteria": "Successfully complete a major physical endurance challenge",
+          "xp_reward": 500
+        },
+        {
+          "id": "master_all_domains",
+          "title": "Omnipotent Titan Mastery",
+          "description": "Demonstrate excellence in strength, endurance, flexibility, and mental discipline",
+          "type": "action",
+          "completion_criteria": "Meet advanced benchmarks in 4 different physical/mental categories",
+          "xp_reward": 400
+        },
+        {
+          "id": "life_transformation",
+          "title": "Reality Reshaping Achievement",
+          "description": "Document how physical transformation completely changed your life perspective and opportunities",
+          "type": "creative",
+          "completion_criteria": "Create comprehensive documentation of life-wide transformation impact",
+          "xp_reward": 200
+        },
+        {
+          "id": "immortal_legacy",
+          "title": "Eternal Titan Legacy Creation",
+          "description": "Establish a lasting system, program, or resource that will help future hunters become titans",
+          "type": "creative",
+          "completion_criteria": "Create something permanent that will continue helping others long-term",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 10,
+        "required_traits": {"consistency": 60, "discipline": 60, "energy": 55},
+        "prerequisite_quests": ["titan_guild_leadership"]
+      },
+      "hunter_notes": "You started with low consistency, medium discipline, but incredible energy. Look at you now - an Immortal Titan whose very existence inspires legends. Your transformation proves that anyone, regardless of starting point, can achieve the impossible. You are no longer becoming a Physical Titan... you ARE the Physical Titan. Your legend will echo through eternity!"
+    }
+  ],
+  [
+    {
+      "id": "voice_activation_protocol",
+      "title": "Voice Activation Protocol",
+      "description": "Begin your journey as a Social Commander by establishing your daily communication foundation through meaningful conversations.",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 50,
+      "primary_trait": "social_courage",
+      "secondary_traits": ["confidence", "communication"],
+      "estimated_time": "15 minutes",
+      "tasks": [
+        {
+          "id": "daily_conversation",
+          "title": "Initiate One Meaningful Exchange",
+          "description": "Start a conversation with someone you don't usually talk to, asking about their day or interests",
+          "type": "social",
+          "completion_criteria": "Have a 5+ minute conversation beyond small talk",
+          "xp_reward": 25
+        },
+        {
+          "id": "active_listening",
+          "title": "Practice Active Listening",
+          "description": "During conversations, focus on asking follow-up questions and reflecting back what you heard",
+          "type": "habit",
+          "completion_criteria": "Ask at least 2 follow-up questions in conversations",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your high Social Courage gives you the power to break conversational barriers. Use this strength to forge new connections daily!"
+    },
+    {
+      "id": "confidence_beacon_ignition",
+      "title": "Confidence Beacon Ignition",
+      "description": "Light up your inner confidence by sharing your thoughts and opinions in daily interactions.",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 45,
+      "primary_trait": "confidence",
+      "secondary_traits": ["social_courage", "communication"],
+      "estimated_time": "20 minutes",
+      "tasks": [
+        {
+          "id": "opinion_sharing",
+          "title": "Voice Your Perspective",
+          "description": "Share your opinion on a topic during a conversation or meeting",
+          "type": "social",
+          "completion_criteria": "Express your viewpoint clearly at least once",
+          "xp_reward": 20
+        },
+        {
+          "id": "reflection_log",
+          "title": "Confidence Reflection",
+          "description": "Write 3 sentences about how you felt when sharing your opinion",
+          "type": "learning",
+          "completion_criteria": "Complete reflection in writing or voice note",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Building confidence starts with small acts of courage. Your voice matters - let it be heard!"
+    },
+    {
+      "id": "social_radar_sweep",
+      "title": "Social Radar Sweep",
+      "description": "Develop your initiative by reaching out and making connections proactively.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 60,
+      "primary_trait": "initiative",
+      "secondary_traits": ["social_courage", "networking"],
+      "estimated_time": "25 minutes",
+      "tasks": [
+        {
+          "id": "proactive_outreach",
+          "title": "Send Connection Message",
+          "description": "Reach out to someone via text, email, or social media to check in or share something interesting",
+          "type": "action",
+          "completion_criteria": "Send a thoughtful message to someone you haven't contacted recently",
+          "xp_reward": 30
+        },
+        {
+          "id": "conversation_starter",
+          "title": "Prepare Social Ammunition",
+          "description": "Identify 3 interesting topics or questions you can use to start conversations",
+          "type": "learning",
+          "completion_criteria": "Write down or mentally prepare 3 conversation starters",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {"social_courage": 30},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Initiative is your growth edge. Channel your social courage into proactive connection-building!"
+    },
+    {
+      "id": "charisma_spark_training",
+      "title": "Charisma Spark Training",
+      "description": "Enhance your natural charm through positive interactions and genuine interest in others.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 55,
+      "primary_trait": "charisma",
+      "secondary_traits": ["confidence", "empathy"],
+      "estimated_time": "30 minutes",
+      "tasks": [
+        {
+          "id": "genuine_compliment",
+          "title": "Authentic Appreciation",
+          "description": "Give a sincere, specific compliment to someone",
+          "type": "social",
+          "completion_criteria": "Give a thoughtful compliment focusing on effort or character",
+          "xp_reward": 25
+        },
+        {
+          "id": "energy_matching",
+          "title": "Energy Calibration",
+          "description": "Practice matching and slightly elevating the energy level of people you interact with",
+          "type": "habit",
+          "completion_criteria": "Consciously match energy in at least 2 interactions",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Charisma isn't about being the loudest - it's about making others feel valued and energized in your presence."
+    },
+    {
+      "id": "diplomatic_dialogue_daily",
+      "title": "Diplomatic Dialogue Daily",
+      "description": "Master the art of navigating different viewpoints and finding common ground in conversations.",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 65,
+      "primary_trait": "communication",
+      "secondary_traits": ["empathy", "emotional_intelligence"],
+      "estimated_time": "35 minutes",
+      "tasks": [
+        {
+          "id": "perspective_bridge",
+          "title": "Build Understanding Bridges",
+          "description": "When someone disagrees with you, actively seek to understand their perspective before responding",
+          "type": "social",
+          "completion_criteria": "Use phrases like 'I see your point' or 'Help me understand' in a disagreement",
+          "xp_reward": 35
+        },
+        {
+          "id": "common_ground",
+          "title": "Find the Connection",
+          "description": "Identify at least one thing you have in common with someone you interact with",
+          "type": "social",
+          "completion_criteria": "Discover and acknowledge a shared interest or experience",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {"social_courage": 35},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your social courage gives you the strength to navigate difficult conversations. Use it to build bridges, not walls."
+    },
+    {
+      "id": "influence_orbit_expansion",
+      "title": "Influence Orbit Expansion",
+      "description": "Expand your social circle and strengthen existing relationships through consistent weekly engagement.",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 150,
+      "primary_trait": "networking",
+      "secondary_traits": ["initiative", "relationship_building"],
+      "estimated_time": "2 hours",
+      "tasks": [
+        {
+          "id": "new_connection",
+          "title": "Forge New Alliance",
+          "description": "Meet and have a meaningful conversation with someone new",
+          "type": "social",
+          "completion_criteria": "Exchange contact information and plan a follow-up",
+          "xp_reward": 60
+        },
+        {
+          "id": "relationship_nurturing",
+          "title": "Strengthen Existing Bonds",
+          "description": "Reach out to 3 people in your network to maintain relationships",
+          "type": "action",
+          "completion_criteria": "Have meaningful check-ins with 3 existing contacts",
+          "xp_reward": 50
+        },
+        {
+          "id": "value_delivery",
+          "title": "Provide Social Value",
+          "description": "Help someone in your network by making an introduction, sharing a resource, or offering assistance",
+          "type": "action",
+          "completion_criteria": "Actively help someone without expecting anything in return",
+          "xp_reward": 40
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"initiative": 25},
+        "prerequisite_quests": ["social_radar_sweep"]
+      },
+      "hunter_notes": "Your growing initiative combined with social courage creates a powerful networking force. Time to expand your influence!"
+    },
+    {
+      "id": "public_speaking_arena",
+      "title": "Public Speaking Arena",
+      "description": "Step into the spotlight and build confidence through public expression and presentation.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 180,
+      "primary_trait": "confidence",
+      "secondary_traits": ["public_speaking", "presentation"],
+      "estimated_time": "3 hours",
+      "tasks": [
+        {
+          "id": "micro_presentation",
+          "title": "Deliver Mini-Speech",
+          "description": "Give a 2-3 minute presentation or speech to a group (work meeting, social gathering, etc.)",
+          "type": "action",
+          "completion_criteria": "Speak publicly for 2+ minutes without notes",
+          "xp_reward": 70
+        },
+        {
+          "id": "storytelling_practice",
+          "title": "Master the Narrative",
+          "description": "Practice telling a personal story or anecdote in an engaging way",
+          "type": "learning",
+          "completion_criteria": "Tell the same story to 3 different people, refining it each time",
+          "xp_reward": 60
+        },
+        {
+          "id": "feedback_collection",
+          "title": "Gather Intelligence",
+          "description": "Ask for specific feedback on your communication style from someone you trust",
+          "type": "social",
+          "completion_criteria": "Request and receive constructive feedback on your speaking",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"confidence": 40},
+        "prerequisite_quests": ["confidence_beacon_ignition"]
+      },
+      "hunter_notes": "The arena awaits! Your social courage will carry you through the spotlight. Each time you speak publicly, you level up your confidence exponentially."
+    },
+    {
+      "id": "team_synergy_protocol",
+      "title": "Team Synergy Protocol",
+      "description": "Practice leadership skills by facilitating group dynamics and collaborative problem-solving.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 200,
+      "primary_trait": "leadership",
+      "secondary_traits": ["collaboration", "facilitation"],
+      "estimated_time": "4 hours",
+      "tasks": [
+        {
+          "id": "group_facilitation",
+          "title": "Lead the Charge",
+          "description": "Volunteer to facilitate a meeting, group project, or social activity",
+          "type": "action",
+          "completion_criteria": "Successfully guide a group through a decision or activity",
+          "xp_reward": 80
+        },
+        {
+          "id": "conflict_mediation",
+          "title": "Peace Negotiator",
+          "description": "Help resolve a disagreement or tension between two people or in a group",
+          "type": "social",
+          "completion_criteria": "Facilitate a conversation that leads to better understanding",
+          "xp_reward": 70
+        },
+        {
+          "id": "team_motivation",
+          "title": "Inspiration Catalyst",
+          "description": "Encourage and motivate team members during a challenging project or situation",
+          "type": "social",
+          "completion_criteria": "Provide meaningful encouragement that energizes others",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 4,
+        "required_traits": {"leadership": 30},
+        "prerequisite_quests": ["influence_orbit_expansion"]
+      },
+      "hunter_notes": "Leadership isn't about authority - it's about bringing out the best in others. Your social courage gives you the foundation to inspire teams!"
+    },
+    {
+      "id": "charismatic_challenger_trial",
+      "title": "Charismatic Challenger Trial",
+      "description": "Push your charisma to new heights through challenging social situations and influence exercises.",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 175,
+      "primary_trait": "charisma",
+      "secondary_traits": ["influence", "persuasion"],
+      "estimated_time": "3.5 hours",
+      "tasks": [
+        {
+          "id": "difficult_conversation",
+          "title": "Navigate the Storm",
+          "description": "Have a challenging but necessary conversation you've been avoiding",
+          "type": "social",
+          "completion_criteria": "Complete the conversation with mutual respect maintained",
+          "xp_reward": 70
+        },
+        {
+          "id": "persuasion_practice",
+          "title": "Influence Without Force",
+          "description": "Convince someone to try something new or see a different perspective using logic and emotional connection",
+          "type": "social",
+          "completion_criteria": "Successfully influence someone's opinion or decision through respectful persuasion",
+          "xp_reward": 60
+        },
+        {
+          "id": "social_energy_boost",
+          "title": "Atmosphere Transformer",
+          "description": "Deliberately improve the mood or energy of a group or social situation",
+          "type": "social",
+          "completion_criteria": "Noticeably lift spirits or energy in a group setting",
+          "xp_reward": 45
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"charisma": 35},
+        "prerequisite_quests": ["charisma_spark_training"]
+      },
+      "hunter_notes": "True charisma is tested in challenging moments. Your social courage has prepared you for these trials - time to shine!"
+    },
+    {
+      "id": "social_mastery_month",
+      "title": "Social Mastery Month",
+      "description": "Undertake a comprehensive month-long journey to elevate all aspects of your social commanding abilities.",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 400,
+      "primary_trait": "communication",
+      "secondary_traits": ["confidence", "leadership", "networking"],
+      "estimated_time": "15 hours",
+      "tasks": [
+        {
+          "id": "social_skill_audit",
+          "title": "Commander Assessment",
+          "description": "Complete a thorough self-assessment of your social skills and create an improvement plan",
+          "type": "learning",
+          "completion_criteria": "Written assessment with specific goals for the month",
+          "xp_reward": 80
+        },
+        {
+          "id": "weekly_social_challenges",
+          "title": "Progressive Challenge Series",
+          "description": "Complete one increasingly difficult social challenge each week",
+          "type": "action",
+          "completion_criteria": "Successfully complete 4 progressive social challenges",
+          "xp_reward": 150
+        },
+        {
+          "id": "mentorship_initiation",
+          "title": "Wisdom Exchange",
+          "description": "Either mentor someone less experienced or seek mentorship for your own growth",
+          "type": "social",
+          "completion_criteria": "Establish an ongoing mentorship relationship",
+          "xp_reward": 100
+        },
+        {
+          "id": "public_contribution",
+          "title": "Community Impact",
+          "description": "Make a meaningful contribution to your community through social leadership",
+          "type": "action",
+          "completion_criteria": "Lead an initiative that positively impacts others",
+          "xp_reward": 70
+        }
+      ],
+      "unlock_conditions": {
+        "level": 5,
+        "required_traits": {"communication": 45, "confidence": 40},
+        "prerequisite_quests": ["public_speaking_arena", "team_synergy_protocol"]
+      },
+      "hunter_notes": "This month will transform you from someone with social courage into a true Social Commander. Your journey culminates here!"
+    },
+    {
+      "id": "influence_empire_building",
+      "title": "Influence Empire Building",
+      "description": "Build a substantial network and establish yourself as a thought leader in your field or community.",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 500,
+      "primary_trait": "influence",
+      "secondary_traits": ["networking", "thought_leadership", "personal_brand"],
+      "estimated_time": "20 hours",
+      "tasks": [
+        {
+          "id": "content_creation",
+          "title": "Voice Amplification",
+          "description": "Create and share valuable content that showcases your expertise (blog posts, videos, presentations)",
+          "type": "creative",
+          "completion_criteria": "Publish 4 pieces of valuable content and track engagement",
+          "xp_reward": 120
+        },
+        {
+          "id": "speaking_engagement",
+          "title": "Platform Command",
+          "description": "Secure and deliver a speaking opportunity at an event, podcast, or professional gathering",
+          "type": "action",
+          "completion_criteria": "Successfully complete a speaking engagement",
+          "xp_reward": 150
+        },
+        {
+          "id": "strategic_networking",
+          "title": "Alliance Network",
+          "description": "Build relationships with 10 new influential people in your field",
+          "type": "social",
+          "completion_criteria": "Establish meaningful connections with 10 new contacts",
+          "xp_reward": 130
+        },
+        {
+          "id": "community_leadership",
+          "title": "Commander's Council",
+          "description": "Take on a leadership role in a professional or community organization",
+          "type": "action",
+          "completion_criteria": "Accept and begin executing a leadership position",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 7,
+        "required_traits": {"influence": 50, "initiative": 40},
+        "prerequisite_quests": ["social_mastery_month"]
+      },
+      "hunter_notes": "Your social courage has evolved into true influence. Time to build an empire of positive impact and thought leadership!"
+    },
+    {
+      "id": "communication_grand_mastery",
+      "title": "Communication Grand Mastery",
+      "description": "Achieve mastery in advanced communication techniques and become a beacon for others seeking social growth.",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 450,
+      "primary_trait": "communication",
+      "secondary_traits": ["emotional_intelligence", "persuasion", "coaching"],
+      "estimated_time": "18 hours",
+      "tasks": [
+        {
+          "id": "advanced_skill_mastery",
+          "title": "Technique Perfection",
+          "description": "Master 3 advanced communication techniques (like NLP, active listening frameworks, or persuasion models)",
+          "type": "learning",
+          "completion_criteria": "Demonstrate proficiency in 3 advanced techniques",
+          "xp_reward": 120
+        },
+        {
+          "id": "difficult_situation_mastery",
+          "title": "Crisis Communication",
+          "description": "Successfully navigate 3 very challenging communication situations",
+          "type": "social",
+          "completion_criteria": "Turn 3 potential conflicts into positive outcomes through communication",
+          "xp_reward": 140
+        },
+        {
+          "id": "teaching_others",
+          "title": "Knowledge Transfer",
+          "description": "Teach communication skills to others through workshops, coaching, or mentoring",
+          "type": "action",
+          "completion_criteria": "Successfully help 3 people improve their communication skills",
+          "xp_reward": 110
+        },
+        {
+          "id": "signature_style",
+          "title": "Personal Communication Brand",
+          "description": "Develop and refine your unique communication style that others recognize and remember",
+          "type": "creative",
+          "completion_criteria": "Receive feedback that confirms your distinctive communication presence",
+          "xp_reward": 80
+        }
+      ],
+      "unlock_conditions": {
+        "level": 8,
+        "required_traits": {"communication": 60, "emotional_intelligence": 45},
+        "prerequisite_quests": ["charismatic_challenger_trial"]
+      },
+      "hunter_notes": "You've transcended basic social courage to become a master communicator. Your words now carry the power to transform lives!"
+    },
+    {
+      "id": "legendary_social_commander",
+      "title": "Legendary Social Commander Ascension",
+      "description": "Achieve legendary status by establishing yourself as a transformative leader who elevates entire communities.",
+      "category": "milestone",
+      "difficulty": "B",
+      "xp_reward": 750,
+      "primary_trait": "leadership",
+      "secondary_traits": ["vision", "transformation", "legacy"],
+      "estimated_time": "25 hours",
+      "tasks": [
+        {
+          "id": "vision_articulation",
+          "title": "Commander's Vision",
+          "description": "Develop and articulate a compelling vision that inspires others to action",
+          "type": "creative",
+          "completion_criteria": "Create a vision statement that motivates at least 10 people to take action",
+          "xp_reward": 200
+        },
+        {
+          "id": "transformation_leadership",
+          "title": "Change Catalyst",
+          "description": "Lead a significant positive change initiative in your organization or community",
+          "type": "action",
+          "completion_criteria": "Successfully complete a change initiative that benefits 50+ people",
+          "xp_reward": 250
+        },
+        {
+          "id": "successor_development",
+          "title": "Legacy Building",
+          "description": "Develop and empower other social leaders to continue your work",
+          "type": "social",
+          "completion_criteria": "Successfully mentor 3 people to become social leaders themselves",
+          "xp_reward": 200
+        },
+        {
+          "id": "recognition_achievement",
+          "title": "Commander's Honor",
+          "description": "Achieve external recognition for your leadership and social impact",
+          "type": "action",
+          "completion_criteria": "Receive formal recognition or award for your social leadership",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 10,
+        "required_traits": {"leadership": 70, "influence": 65},
+        "prerequisite_quests": ["influence_empire_building", "communication_grand_mastery"]
+      },
+      "hunter_notes": "You have evolved from someone with social courage into a legendary Social Commander. Your influence now shapes communities and inspires generations!"
+    },
+    {
+      "id": "elite_persuasion_mastery",
+      "title": "Elite Persuasion Mastery",
+      "description": "Master the highest levels of ethical influence and persuasion to create win-win outcomes in any situation.",
+      "category": "milestone",
+      "difficulty": "A",
+      "xp_reward": 900,
+      "primary_trait": "persuasion",
+      "secondary_traits": ["emotional_intelligence", "ethics", "strategic_thinking"],
+      "estimated_time": "30 hours",
+      "tasks": [
+        {
+          "id": "negotiation_mastery",
+          "title": "Win-Win Architect",
+          "description": "Successfully negotiate 5 complex situations where all parties feel they won",
+          "type": "social",
+          "completion_criteria": "Complete 5 negotiations with documented positive outcomes for all parties",
+          "xp_reward": 250
+        },
+        {
+          "id": "influence_ethics_code",
+          "title": "Ethical Influence Framework",
+          "description": "Develop and live by a personal code of ethical influence that others respect and follow",
+          "type": "learning",
+          "completion_criteria": "Create an ethics framework and have it adopted by 5+ other influencers",
+          "xp_reward": 200
+        },
+        {
+          "id": "impossible_consensus",
+          "title": "Unity From Division",
+          "description": "Bring together opposing groups or viewpoints to find common ground and shared solutions",
+          "type": "social",
+          "completion_criteria": "Successfully mediate a significant conflict between opposing parties",
+          "xp_reward": 250
+        },
+        {
+          "id": "persuasion_teaching",
+          "title": "Master's Academy",
+          "description": "Teach ethical persuasion and influence to others through formal or informal channels",
+          "type": "action",
+          "completion_criteria": "Successfully train 10+ people in ethical influence techniques",
+          "xp_reward": 200
+        }
+      ],
+      "unlock_conditions": {
+        "level": 12,
+        "required_traits": {"persuasion": 75, "emotional_intelligence": 70},
+        "prerequisite_quests": ["legendary_social_commander"]
+      },
+      "hunter_notes": "You have reached the pinnacle of social mastery. Your persuasion skills are now legendary, creating positive change wherever you apply them!"
+    },
+    {
+      "id": "mythical_social_transcendence",
+      "title": "Mythical Social Transcendence",
+      "description": "Transcend ordinary social leadership to become a mythical figure whose influence ripples across generations and transforms society.",
+      "category": "legendary",
+      "difficulty": "S",
+      "xp_reward": 2000,
+      "primary_trait": "legacy",
+      "secondary_traits": ["wisdom", "transformation", "inspiration"],
+      "estimated_time": "50 hours",
+      "tasks": [
+        {
+          "id": "societal_movement",
+          "title": "Movement Genesis",
+          "description": "Start or significantly contribute to a social movement that creates lasting positive change",
+          "type": "action",
+          "completion_criteria": "Launch a movement that grows to 1000+ active participants",
+          "xp_reward": 500
+        },
+        {
+          "id": "wisdom_documentation",
+          "title": "Sage's Chronicles",
+          "description": "Document your social leadership journey and wisdom in a form that can guide future generations",
+          "type": "creative",
+          "completion_criteria": "Publish a book, create a course, or establish a framework that teaches others",
+          "xp_reward": 400
+        },
+        {
+          "id": "global_influence",
+          "title": "Transcendent Reach",
+          "description": "Extend your positive influence beyond your immediate community to impact global conversations",
+          "type": "action",
+          "completion_criteria": "Achieve international recognition or impact through your social leadership",
+          "xp_reward": 600
+        },
+        {
+          "id": "successor_network",
+          "title": "Commander's Legion",
+          "description": "Build a network of social leaders who carry forward your vision and multiply your impact",
+          "type": "social",
+          "completion_criteria": "Develop 25+ social leaders who actively promote positive change",
+          "xp_reward": 500
+        }
+      ],
+      "unlock_conditions": {
+        "level": 15,
+        "required_traits": {"legacy": 80, "wisdom": 75, "transformation": 70},
+        "prerequisite_quests": ["elite_persuasion_mastery"]
+      },
+      "hunter_notes": "You have transcended from human social courage to mythical Social Commander. Your legacy will inspire social leaders for generations to come. You are no longer just playing the game - you have become the game itself."
+    }
+  ],
+  [
+    {
+      "id": "morning_mana_ritual",
+      "title": "Morning Mana Conservation Ritual",
+      "description": "Establish a mindful morning routine that protects your mental energy before engaging with digital devices",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 30,
+      "primary_trait": "focus",
+      "secondary_traits": ["digital_minimalism"],
+      "estimated_time": "15 minutes",
+      "tasks": [
+        {
+          "id": "device_free_morning",
+          "title": "Device-Free Dawn",
+          "description": "Spend first 30 minutes awake without touching any digital device",
+          "type": "habit",
+          "completion_criteria": "Complete 30 minutes without phone, computer, or tablet",
+          "xp_reward": 15
+        },
+        {
+          "id": "intention_setting",
+          "title": "Digital Intention Setting",
+          "description": "Write down 3 specific digital goals for the day",
+          "type": "creative",
+          "completion_criteria": "Write 3 concrete digital usage intentions",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your high focus is your greatest weapon - use it to start each day with clarity before the digital chaos begins."
+    },
+    {
+      "id": "notification_purge",
+      "title": "Notification Demon Banishment",
+      "description": "Eliminate attention-stealing notifications and reclaim your mental sovereignty",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 35,
+      "primary_trait": "digital_minimalism",
+      "secondary_traits": ["focus"],
+      "estimated_time": "20 minutes",
+      "tasks": [
+        {
+          "id": "notification_audit",
+          "title": "Demon Identification",
+          "description": "List all apps currently sending notifications",
+          "type": "action",
+          "completion_criteria": "Create complete list of notification sources",
+          "xp_reward": 10
+        },
+        {
+          "id": "notification_disable",
+          "title": "Mass Banishment",
+          "description": "Disable all non-essential notifications",
+          "type": "action",
+          "completion_criteria": "Turn off notifications for social media, news, and entertainment apps",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Time to silence the digital demons that scatter your focus. Your attention is precious - guard it fiercely."
+    },
+    {
+      "id": "focus_forge_session",
+      "title": "Deep Focus Forge Session",
+      "description": "Harness your natural focus abilities for extended periods of productive digital work",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 40,
+      "primary_trait": "focus",
+      "secondary_traits": ["learning_agility"],
+      "estimated_time": "45 minutes",
+      "tasks": [
+        {
+          "id": "environment_setup",
+          "title": "Sacred Space Creation",
+          "description": "Set up distraction-free digital workspace",
+          "type": "action",
+          "completion_criteria": "Close all unnecessary tabs, apps, and notifications",
+          "xp_reward": 10
+        },
+        {
+          "id": "deep_work_block",
+          "title": "Forge Fire Ignition",
+          "description": "Complete 45 minutes of focused digital work without breaks",
+          "type": "habit",
+          "completion_criteria": "Work continuously for 45 minutes on single task",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your focus score of 47 is impressive - time to forge it into an unbreakable weapon of productivity."
+    },
+    {
+      "id": "micro_learning_quest",
+      "title": "Micro-Skill Absorption Protocol",
+      "description": "Build learning agility through bite-sized daily tech skill acquisition",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 35,
+      "primary_trait": "learning_agility",
+      "secondary_traits": ["focus"],
+      "estimated_time": "25 minutes",
+      "tasks": [
+        {
+          "id": "skill_selection",
+          "title": "Knowledge Target Acquisition",
+          "description": "Choose one small tech skill to learn today",
+          "type": "learning",
+          "completion_criteria": "Select specific 5-minute skill (keyboard shortcut, app feature, etc.)",
+          "xp_reward": 10
+        },
+        {
+          "id": "skill_practice",
+          "title": "Neural Pathway Formation",
+          "description": "Practice the chosen skill until comfortable",
+          "type": "learning",
+          "completion_criteria": "Successfully demonstrate the skill 3 times",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Small daily wins will gradually boost your learning agility. Every micro-skill adds to your digital mastery."
+    },
+    {
+      "id": "screen_time_guardian",
+      "title": "Screen Time Guardian Protocol",
+      "description": "Monitor and consciously control your daily screen consumption",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 25,
+      "primary_trait": "digital_minimalism",
+      "secondary_traits": ["focus"],
+      "estimated_time": "10 minutes",
+      "tasks": [
+        {
+          "id": "time_tracking",
+          "title": "Digital Consumption Audit",
+          "description": "Check screen time statistics and log findings",
+          "type": "action",
+          "completion_criteria": "Record total screen time and top 3 apps used",
+          "xp_reward": 10
+        },
+        {
+          "id": "conscious_reduction",
+          "title": "Mindful Cutback",
+          "description": "Identify one app to use 10 minutes less today",
+          "type": "habit",
+          "completion_criteria": "Successfully reduce usage of chosen app by 10+ minutes",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Awareness is the first step to mastery. Track your digital consumption like a true guardian of your time."
+    },
+    {
+      "id": "app_archaeology",
+      "title": "Digital Archaeology Expedition",
+      "description": "Unearth forgotten apps and declutter your digital realm",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 80,
+      "primary_trait": "digital_minimalism",
+      "secondary_traits": ["focus"],
+      "estimated_time": "60 minutes",
+      "tasks": [
+        {
+          "id": "app_inventory",
+          "title": "Artifact Cataloging",
+          "description": "Create complete inventory of all installed apps",
+          "type": "action",
+          "completion_criteria": "List all apps on all devices with last used date",
+          "xp_reward": 30
+        },
+        {
+          "id": "mass_deletion",
+          "title": "Digital Excavation",
+          "description": "Delete unused apps and organize remaining ones",
+          "type": "action",
+          "completion_criteria": "Remove at least 10 unused apps and organize remaining into folders",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {"digital_minimalism": 25},
+        "prerequisite_quests": ["notification_purge"]
+      },
+      "hunter_notes": "Time to excavate the digital ruins cluttering your devices. Every deleted app is space reclaimed for what matters."
+    },
+    {
+      "id": "social_sabbath",
+      "title": "The Social Media Sabbath",
+      "description": "Take a complete break from social media for enhanced mental clarity",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 100,
+      "primary_trait": "digital_minimalism",
+      "secondary_traits": ["focus", "learning_agility"],
+      "estimated_time": "24 hours",
+      "tasks": [
+        {
+          "id": "platform_logout",
+          "title": "Digital Monastery Entry",
+          "description": "Log out of all social media platforms",
+          "type": "action",
+          "completion_criteria": "Sign out of Facebook, Instagram, Twitter, TikTok, etc.",
+          "xp_reward": 20
+        },
+        {
+          "id": "sabbath_maintenance",
+          "title": "Sacred Silence",
+          "description": "Maintain social media abstinence for 24 hours",
+          "type": "habit",
+          "completion_criteria": "Complete 24 hours without accessing any social media",
+          "xp_reward": 60
+        },
+        {
+          "id": "reflection_ritual",
+          "title": "Clarity Harvesting",
+          "description": "Document insights gained during the digital break",
+          "type": "creative",
+          "completion_criteria": "Write 200+ words about the experience and insights",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"digital_minimalism": 30},
+        "prerequisite_quests": ["app_archaeology"]
+      },
+      "hunter_notes": "Your medium digital minimalism skills are ready for this challenge. Discover the clarity that comes from digital silence."
+    },
+    {
+      "id": "keyboard_mastery",
+      "title": "Keyboard Warrior Ascension",
+      "description": "Master advanced keyboard shortcuts and text manipulation techniques",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 75,
+      "primary_trait": "learning_agility",
+      "secondary_traits": ["focus"],
+      "estimated_time": "90 minutes",
+      "tasks": [
+        {
+          "id": "shortcut_research",
+          "title": "Ancient Key Combinations Study",
+          "description": "Research 15 new keyboard shortcuts for your main applications",
+          "type": "learning",
+          "completion_criteria": "Create list of 15 useful shortcuts with descriptions",
+          "xp_reward": 25
+        },
+        {
+          "id": "muscle_memory_training",
+          "title": "Finger Dance Mastery",
+          "description": "Practice shortcuts until they become automatic",
+          "type": "learning",
+          "completion_criteria": "Successfully use 10 shortcuts without thinking",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"learning_agility": 15},
+        "prerequisite_quests": ["micro_learning_quest"]
+      },
+      "hunter_notes": "Transform your low learning agility through repetitive mastery. Every shortcut learned is efficiency gained."
+    },
+    {
+      "id": "cloud_organization",
+      "title": "CloudMind Reconfiguration",
+      "description": "Organize and optimize your cloud storage and digital file systems",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 90,
+      "primary_trait": "focus",
+      "secondary_traits": ["digital_minimalism"],
+      "estimated_time": "2 hours",
+      "tasks": [
+        {
+          "id": "cloud_audit",
+          "title": "Digital Realm Survey",
+          "description": "Assess current state of all cloud storage services",
+          "type": "action",
+          "completion_criteria": "Document storage usage, file organization, and redundancies",
+          "xp_reward": 30
+        },
+        {
+          "id": "file_architecture",
+          "title": "Information Architecture Design",
+          "description": "Create logical folder structure and naming conventions",
+          "type": "creative",
+          "completion_criteria": "Implement consistent folder hierarchy across all cloud services",
+          "xp_reward": 40
+        },
+        {
+          "id": "redundancy_elimination",
+          "title": "Digital Duplicate Purge",
+          "description": "Remove duplicate files and unnecessary data",
+          "type": "action",
+          "completion_criteria": "Delete at least 1GB of redundant or unnecessary files",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"focus": 40},
+        "prerequisite_quests": ["focus_forge_session"]
+      },
+      "hunter_notes": "Your strong focus will serve you well in this meticulous task. A organized digital realm reflects an organized mind."
+    },
+    {
+      "id": "automation_apprentice",
+      "title": "Digital Automation Apprenticeship",
+      "description": "Create your first automated workflows to reduce repetitive digital tasks",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 150,
+      "primary_trait": "learning_agility",
+      "secondary_traits": ["focus"],
+      "estimated_time": "3 hours",
+      "tasks": [
+        {
+          "id": "automation_research",
+          "title": "Golem Crafting Study",
+          "description": "Research automation tools suitable for your workflow",
+          "type": "learning",
+          "completion_criteria": "Compare 3 automation platforms and choose one to learn",
+          "xp_reward": 40
+        },
+        {
+          "id": "first_automation",
+          "title": "Digital Servant Creation",
+          "description": "Create your first working automation",
+          "type": "learning",
+          "completion_criteria": "Build and test one functional automated workflow",
+          "xp_reward": 80
+        },
+        {
+          "id": "automation_optimization",
+          "title": "Golem Enhancement",
+          "description": "Refine and improve your automation",
+          "type": "action",
+          "completion_criteria": "Test automation for 1 week and make improvements",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 5,
+        "required_traits": {"learning_agility": 25},
+        "prerequisite_quests": ["keyboard_mastery"]
+      },
+      "hunter_notes": "Time to transcend manual labor. Your growing learning agility will help you master the art of digital automation."
+    },
+    {
+      "id": "digital_detox_retreat",
+      "title": "The Great Digital Purification",
+      "description": "Complete a comprehensive 3-day digital minimalism challenge",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 200,
+      "primary_trait": "digital_minimalism",
+      "secondary_traits": ["focus"],
+      "estimated_time": "72 hours",
+      "tasks": [
+        {
+          "id": "detox_preparation",
+          "title": "Purification Ritual Prep",
+          "description": "Prepare for extended digital break",
+          "type": "action",
+          "completion_criteria": "Set up offline activities, inform contacts, and create emergency protocols",
+          "xp_reward": 50
+        },
+        {
+          "id": "digital_fast",
+          "title": "The Great Silence",
+          "description": "Abstain from non-essential digital devices for 72 hours",
+          "type": "habit",
+          "completion_criteria": "Complete 3 days using only essential communication",
+          "xp_reward": 120
+        },
+        {
+          "id": "reintegration_plan",
+          "title": "Mindful Re-emergence",
+          "description": "Create plan for mindful return to digital tools",
+          "type": "creative",
+          "completion_criteria": "Write detailed plan for maintaining gains from detox",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 6,
+        "required_traits": {"digital_minimalism": 40},
+        "prerequisite_quests": ["social_sabbath"]
+      },
+      "hunter_notes": "The ultimate test of your digital discipline. Emerge from this retreat as a true master of your technology."
+    },
+    {
+      "id": "code_comprehension",
+      "title": "Code Cipher Decryption Challenge",
+      "description": "Learn to read and understand basic programming concepts",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 175,
+      "primary_trait": "learning_agility",
+      "secondary_traits": ["focus"],
+      "estimated_time": "4 hours",
+      "tasks": [
+        {
+          "id": "language_selection",
+          "title": "Sacred Language Choice",
+          "description": "Choose a programming language to study",
+          "type": "learning",
+          "completion_criteria": "Research and select one beginner-friendly language",
+          "xp_reward": 25
+        },
+        {
+          "id": "basic_concepts",
+          "title": "Fundamental Incantations",
+          "description": "Learn basic programming concepts",
+          "type": "learning",
+          "completion_criteria": "Understand variables, functions, and basic syntax",
+          "xp_reward": 75
+        },
+        {
+          "id": "code_reading",
+          "title": "Ancient Script Interpretation",
+          "description": "Successfully read and explain simple code examples",
+          "type": "learning",
+          "completion_criteria": "Explain what 5 different code snippets do in plain English",
+          "xp_reward": 75
+        }
+      ],
+      "unlock_conditions": {
+        "level": 7,
+        "required_traits": {"learning_agility": 30},
+        "prerequisite_quests": ["automation_apprentice"]
+      },
+      "hunter_notes": "Programming literacy is digital literacy. Your improving learning agility will unlock the language of machines."
+    },
+    {
+      "id": "attention_architect",
+      "title": "Attention Architecture Mastery",
+      "description": "Design and implement a comprehensive attention management system",
+      "category": "milestone",
+      "difficulty": "B",
+      "xp_reward": 300,
+      "primary_trait": "focus",
+      "secondary_traits": ["digital_minimalism"],
+      "estimated_time": "6 hours",
+      "tasks": [
+        {
+          "id": "attention_audit",
+          "title": "Cognitive Load Assessment",
+          "description": "Comprehensive analysis of attention drains and boosters",
+          "type": "action",
+          "completion_criteria": "Document all sources of distraction and focus enhancement",
+          "xp_reward": 80
+        },
+        {
+          "id": "system_design",
+          "title": "Sacred Architecture Planning",
+          "description": "Design personalized attention management system",
+          "type": "creative",
+          "completion_criteria": "Create detailed plan with tools, techniques, and schedules",
+          "xp_reward": 120
+        },
+        {
+          "id": "system_implementation",
+          "title": "Temple Construction",
+          "description": "Implement and test your attention system for 2 weeks",
+          "type": "habit",
+          "completion_criteria": "Follow system consistently for 14 days with daily tracking",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 10,
+        "required_traits": {"focus": 60, "digital_minimalism": 50},
+        "prerequisite_quests": ["cloud_organization", "digital_detox_retreat"]
+      },
+      "hunter_notes": "Your high focus abilities have prepared you for this. Create a system worthy of a Digital Sage."
+    },
+    {
+      "id": "digital_mentor",
+      "title": "Digital Wisdom Sharing Initiation",
+      "description": "Begin teaching digital wellness to others in your community",
+      "category": "milestone",
+      "difficulty": "A",
+      "xp_reward": 400,
+      "primary_trait": "digital_minimalism",
+      "secondary_traits": ["learning_agility", "focus"],
+      "estimated_time": "8 hours",
+      "tasks": [
+        {
+          "id": "curriculum_creation",
+          "title": "Wisdom Codex Compilation",
+          "description": "Create teaching materials for digital wellness",
+          "type": "creative",
+          "completion_criteria": "Develop comprehensive guide or presentation on digital wellness",
+          "xp_reward": 150
+        },
+        {
+          "id": "first_teaching",
+          "title": "Knowledge Transmission Ritual",
+          "description": "Teach or present to at least 5 people",
+          "type": "social",
+          "completion_criteria": "Successfully share digital wellness knowledge with 5+ people",
+          "xp_reward": 200
+        },
+        {
+          "id": "feedback_integration",
+          "title": "Wisdom Refinement",
+          "description": "Improve teaching based on feedback received",
+          "type": "learning",
+          "completion_criteria": "Gather feedback and update materials accordingly",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 15,
+        "required_traits": {"digital_minimalism": 70, "learning_agility": 40},
+        "prerequisite_quests": ["attention_architect", "code_comprehension"]
+      },
+      "hunter_notes": "The mark of true mastery is the ability to teach others. Share your digital wisdom and multiply its impact."
+    },
+    {
+      "id": "sage_ascension",
+      "title": "Digital Sage Ascension Protocol",
+      "description": "Complete your transformation into a true Digital Sage through mastery of all domains",
+      "category": "milestone",
+      "difficulty": "S",
+      "xp_reward": 1000,
+      "primary_trait": "focus",
+      "secondary_traits": ["digital_minimalism", "learning_agility"],
+      "estimated_time": "20 hours",
+      "tasks": [
+        {
+          "id": "mastery_demonstration",
+          "title": "Omniscience Exhibition",
+          "description": "Demonstrate mastery across all digital domains",
+          "type": "action",
+          "completion_criteria": "Complete advanced challenges in focus, minimalism, and learning",
+          "xp_reward": 300
+        },
+        {
+          "id": "innovation_creation",
+          "title": "Digital Artifact Forging",
+          "description": "Create an original digital tool or system",
+          "type": "creative",
+          "completion_criteria": "Build and deploy a useful digital tool or workflow system",
+          "xp_reward": 400
+        },
+        {
+          "id": "community_leadership",
+          "title": "Sage Council Formation",
+          "description": "Establish ongoing digital wellness community",
+          "type": "social",
+          "completion_criteria": "Create and maintain active community focused on digital wellness",
+          "xp_reward": 300
+        }
+      ],
+      "unlock_conditions": {
+        "level": 20,
+        "required_traits": {"focus": 90, "digital_minimalism": 90, "learning_agility": 70},
+        "prerequisite_quests": ["digital_mentor"]
+      },
+      "hunter_notes": "The final ascension awaits. Transform your mastery into wisdom that guides not just yourself, but the entire digital realm."
+    }
+  ],
+  [
+    {
+      "id": "mana_recharge_dawn",
+      "title": "Mana Recharge Dawn Protocol",
+      "description": "Establish a sacred morning ritual to restore your energy reserves and set intentions for the day ahead",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 30,
+      "primary_trait": "Energy",
+      "secondary_traits": ["Self-Mastery", "Emotional Resilience"],
+      "estimated_time": "15 minutes",
+      "tasks": [
+        {
+          "id": "wake_ritual",
+          "title": "Sacred Wake Sequence",
+          "description": "Upon waking, spend 5 minutes in bed doing gentle stretches and setting daily intentions",
+          "type": "habit",
+          "completion_criteria": "Complete stretches and write down 1 intention for the day",
+          "xp_reward": 10
+        },
+        {
+          "id": "hydration_boost",
+          "title": "Crystal Clear Elixir",
+          "description": "Drink a full glass of water mindfully, visualizing energy flowing through your body",
+          "type": "habit",
+          "completion_criteria": "Drink 16oz of water with mindful awareness",
+          "xp_reward": 10
+        },
+        {
+          "id": "sunlight_greeting",
+          "title": "Solar Energy Absorption",
+          "description": "Step outside or by a window for 5 minutes to absorb natural light",
+          "type": "action",
+          "completion_criteria": "Spend 5 minutes in natural light",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your high emotional resilience makes you naturally attuned to energy patterns. Use this strength to build consistent morning rituals that will gradually restore your vitality."
+    },
+    {
+      "id": "mind_garden_tending",
+      "title": "Mind Garden Daily Tending",
+      "description": "Cultivate mental clarity through mindful observation and thought pruning practices",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 35,
+      "primary_trait": "Emotional Resilience",
+      "secondary_traits": ["Self-Mastery"],
+      "estimated_time": "10 minutes",
+      "tasks": [
+        {
+          "id": "thought_observation",
+          "title": "Thought Stream Monitoring",
+          "description": "Spend 5 minutes observing your thoughts without judgment, like watching clouds pass",
+          "type": "learning",
+          "completion_criteria": "Complete 5-minute mindful observation session",
+          "xp_reward": 15
+        },
+        {
+          "id": "gratitude_seed",
+          "title": "Gratitude Seed Planting",
+          "description": "Identify and write down 3 things you're grateful for today",
+          "type": "habit",
+          "completion_criteria": "Write 3 specific gratitude statements",
+          "xp_reward": 10
+        },
+        {
+          "id": "intention_watering",
+          "title": "Intention Watering",
+          "description": "Set one positive intention for how you want to show up today",
+          "type": "action",
+          "completion_criteria": "Write and reflect on one daily intention",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your emotional resilience is already strong - this quest will help you channel that strength into daily mental clarity practices."
+    },
+    {
+      "id": "breath_harmony_cycle",
+      "title": "Breath Harmony Restoration Cycle",
+      "description": "Master the ancient art of conscious breathing to balance your inner energy systems",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 25,
+      "primary_trait": "Energy",
+      "secondary_traits": ["Emotional Resilience"],
+      "estimated_time": "10 minutes",
+      "tasks": [
+        {
+          "id": "box_breathing",
+          "title": "Four-Chamber Heart Breathing",
+          "description": "Practice box breathing: inhale 4, hold 4, exhale 4, hold 4, for 5 cycles",
+          "type": "habit",
+          "completion_criteria": "Complete 5 full box breathing cycles",
+          "xp_reward": 15
+        },
+        {
+          "id": "energy_scan",
+          "title": "Body Energy Scan",
+          "description": "While breathing, scan your body for areas of tension or low energy",
+          "type": "learning",
+          "completion_criteria": "Identify and acknowledge 2 body sensations",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "With your current energy levels, gentle breathwork is the perfect foundation. Start small and let your natural resilience guide the practice."
+    },
+    {
+      "id": "evening_sanctuary_ritual",
+      "title": "Evening Sanctuary Wind-Down Ritual",
+      "description": "Create a sacred transition from day to night, releasing stress and preparing for restorative sleep",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 40,
+      "primary_trait": "Emotional Resilience",
+      "secondary_traits": ["Energy", "Self-Mastery"],
+      "estimated_time": "20 minutes",
+      "tasks": [
+        {
+          "id": "day_release_ceremony",
+          "title": "Day Release Ceremony",
+          "description": "Write down 3 things from today you're ready to release, then symbolically let them go",
+          "type": "habit",
+          "completion_criteria": "Write 3 items and perform release visualization",
+          "xp_reward": 15
+        },
+        {
+          "id": "gratitude_meditation",
+          "title": "Heart Gratitude Meditation",
+          "description": "Spend 10 minutes in gratitude meditation, focusing on positive moments from the day",
+          "type": "learning",
+          "completion_criteria": "Complete 10-minute gratitude meditation",
+          "xp_reward": 15
+        },
+        {
+          "id": "sleep_preparation",
+          "title": "Dream Realm Preparation",
+          "description": "Prepare your sleep environment mindfully - dim lights, comfortable temperature, calming atmosphere",
+          "type": "action",
+          "completion_criteria": "Optimize sleep environment in 3 ways",
+          "xp_reward": 10
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your emotional resilience will help you process the day's experiences. Use this evening ritual to transform stress into wisdom."
+    },
+    {
+      "id": "micro_movement_flows",
+      "title": "Micro Movement Energy Flows",
+      "description": "Integrate gentle movement throughout your day to maintain energy circulation",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 35,
+      "primary_trait": "Energy",
+      "secondary_traits": ["Self-Mastery"],
+      "estimated_time": "15 minutes total",
+      "tasks": [
+        {
+          "id": "morning_flow",
+          "title": "Dawn Energy Activation",
+          "description": "5 minutes of gentle stretches or yoga movements",
+          "type": "action",
+          "completion_criteria": "Complete 5-minute gentle movement session",
+          "xp_reward": 10
+        },
+        {
+          "id": "midday_reset",
+          "title": "Solar Peak Energy Reset",
+          "description": "Take a 5-minute walking break or do desk stretches",
+          "type": "habit",
+          "completion_criteria": "Complete 5-minute midday movement break",
+          "xp_reward": 10
+        },
+        {
+          "id": "evening_flow",
+          "title": "Lunar Wind-Down Flow",
+          "description": "5 minutes of gentle, slow movements to prepare for rest",
+          "type": "action",
+          "completion_criteria": "Complete 5-minute evening gentle movement",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Small, consistent movements throughout the day will gradually build your energy reserves without overwhelming your system."
+    },
+    {
+      "id": "emotional_weather_mapping",
+      "title": "Weekly Emotional Weather Mapping",
+      "description": "Track and understand your emotional patterns to develop deeper self-awareness and resilience strategies",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 80,
+      "primary_trait": "Self-Mastery",
+      "secondary_traits": ["Emotional Resilience"],
+      "estimated_time": "45 minutes total",
+      "tasks": [
+        {
+          "id": "daily_emotion_check",
+          "title": "Daily Emotional Climate Reading",
+          "description": "Each day, spend 3 minutes identifying and rating your dominant emotions (1-10 scale)",
+          "type": "habit",
+          "completion_criteria": "Complete emotion tracking for 7 days",
+          "xp_reward": 30
+        },
+        {
+          "id": "pattern_analysis",
+          "title": "Weather Pattern Analysis",
+          "description": "At week's end, review your emotional weather patterns and identify triggers or trends",
+          "type": "learning",
+          "completion_criteria": "Write analysis of weekly emotional patterns",
+          "xp_reward": 25
+        },
+        {
+          "id": "resilience_strategy",
+          "title": "Storm Response Strategy Creation",
+          "description": "Develop 2 specific strategies for managing challenging emotional weather in the future",
+          "type": "creative",
+          "completion_criteria": "Write 2 personalized emotional resilience strategies",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your strong emotional resilience gives you excellent raw material for this quest. Use your natural abilities to develop even deeper self-understanding."
+    },
+    {
+      "id": "boundary_guardian_training",
+      "title": "Boundary Guardian Training Protocol",
+      "description": "Develop healthy boundaries to protect your energy and maintain inner peace",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 100,
+      "primary_trait": "Self-Mastery",
+      "secondary_traits": ["Emotional Resilience", "Energy"],
+      "estimated_time": "60 minutes total",
+      "tasks": [
+        {
+          "id": "boundary_assessment",
+          "title": "Current Boundary Audit",
+          "description": "Evaluate your current boundaries in 5 life areas: work, relationships, personal time, digital, physical",
+          "type": "learning",
+          "completion_criteria": "Complete boundary assessment for all 5 areas",
+          "xp_reward": 25
+        },
+        {
+          "id": "energy_drain_identification",
+          "title": "Energy Leak Detection",
+          "description": "Identify 3 situations or relationships that consistently drain your energy",
+          "type": "learning",
+          "completion_criteria": "List 3 energy drains with specific examples",
+          "xp_reward": 25
+        },
+        {
+          "id": "boundary_implementation",
+          "title": "Guardian Shield Activation",
+          "description": "Implement one new boundary this week and practice saying no or setting limits",
+          "type": "action",
+          "completion_criteria": "Successfully implement and maintain 1 new boundary for the week",
+          "xp_reward": 30
+        },
+        {
+          "id": "boundary_reflection",
+          "title": "Shield Effectiveness Review",
+          "description": "Reflect on how the new boundary affected your energy and well-being",
+          "type": "learning",
+          "completion_criteria": "Write reflection on boundary implementation results",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {"Self-Mastery": 25},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Building boundaries will help channel your emotional resilience more effectively while protecting the energy you're working to rebuild."
+    },
+    {
+      "id": "nature_connection_immersion",
+      "title": "Nature Connection Deep Immersion",
+      "description": "Reconnect with natural rhythms and draw healing energy from the earth",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 70,
+      "primary_trait": "Energy",
+      "secondary_traits": ["Emotional Resilience"],
+      "estimated_time": "90 minutes total",
+      "tasks": [
+        {
+          "id": "forest_bathing",
+          "title": "Forest Bathing Session",
+          "description": "Spend 30 minutes in nature (park, garden, forest) practicing mindful presence",
+          "type": "action",
+          "completion_criteria": "Complete 30-minute mindful nature immersion",
+          "xp_reward": 25
+        },
+        {
+          "id": "earth_grounding",
+          "title": "Earth Energy Grounding",
+          "description": "Spend 15 minutes with bare feet on natural ground (grass, sand, earth)",
+          "type": "action",
+          "completion_criteria": "Complete 15-minute barefoot grounding session",
+          "xp_reward": 20
+        },
+        {
+          "id": "nature_journaling",
+          "title": "Natural Wisdom Recording",
+          "description": "Journal about insights, feelings, or observations from your nature connection",
+          "type": "creative",
+          "completion_criteria": "Write at least 300 words about nature connection experience",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": ["breath_harmony_cycle"]
+      },
+      "hunter_notes": "Nature has a unique ability to restore energy naturally. Your emotional resilience will help you be fully present for this healing experience."
+    },
+    {
+      "id": "stress_alchemy_workshop",
+      "title": "Stress Alchemy Transformation Workshop",
+      "description": "Learn to transform stress and tension into wisdom and strength through mindful practices",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 95,
+      "primary_trait": "Emotional Resilience",
+      "secondary_traits": ["Self-Mastery", "Energy"],
+      "estimated_time": "75 minutes total",
+      "tasks": [
+        {
+          "id": "stress_mapping",
+          "title": "Stress Signature Mapping",
+          "description": "Identify your unique stress signals in body, mind, and emotions",
+          "type": "learning",
+          "completion_criteria": "Create detailed map of personal stress indicators",
+          "xp_reward": 25
+        },
+        {
+          "id": "transformation_techniques",
+          "title": "Alchemical Technique Mastery",
+          "description": "Practice 3 different stress transformation techniques (breathing, movement, mindfulness)",
+          "type": "action",
+          "completion_criteria": "Successfully practice all 3 techniques when stressed",
+          "xp_reward": 35
+        },
+        {
+          "id": "wisdom_extraction",
+          "title": "Stress Wisdom Extraction",
+          "description": "Reflect on what your stress is teaching you and how it can guide growth",
+          "type": "learning",
+          "completion_criteria": "Write insights about stress as teacher and guide",
+          "xp_reward": 20
+        },
+        {
+          "id": "resilience_strengthening",
+          "title": "Resilience Core Strengthening",
+          "description": "Develop a personal resilience mantra or affirmation based on your stress alchemy work",
+          "type": "creative",
+          "completion_criteria": "Create and practice personal resilience mantra",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"Emotional Resilience": 40},
+        "prerequisite_quests": ["emotional_weather_mapping"]
+      },
+      "hunter_notes": "Your high emotional resilience is perfect for this advanced transformation work. You're ready to turn stress into a tool for growth."
+    },
+    {
+      "id": "energy_ecosystem_restoration",
+      "title": "Personal Energy Ecosystem Restoration",
+      "description": "Conduct a comprehensive assessment and restoration of all factors affecting your energy levels",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 150,
+      "primary_trait": "Energy",
+      "secondary_traits": ["Self-Mastery", "Emotional Resilience"],
+      "estimated_time": "4 hours over 4 weeks",
+      "tasks": [
+        {
+          "id": "energy_audit",
+          "title": "Complete Energy System Audit",
+          "description": "Assess sleep, nutrition, movement, stress, relationships, and environment impact on energy",
+          "type": "learning",
+          "completion_criteria": "Complete comprehensive energy audit across all 6 areas",
+          "xp_reward": 40
+        },
+        {
+          "id": "restoration_plan",
+          "title": "Ecosystem Restoration Blueprint",
+          "description": "Create detailed plan to address top 3 energy drains identified in audit",
+          "type": "creative",
+          "completion_criteria": "Develop specific action plan for top 3 energy improvements",
+          "xp_reward": 35
+        },
+        {
+          "id": "implementation_week",
+          "title": "Restoration Implementation Sprint",
+          "description": "Implement restoration plan for one full week with daily tracking",
+          "type": "action",
+          "completion_criteria": "Successfully implement plan for 7 consecutive days",
+          "xp_reward": 40
+        },
+        {
+          "id": "ecosystem_evaluation",
+          "title": "Ecosystem Health Evaluation",
+          "description": "Evaluate changes in energy levels and overall well-being after implementation",
+          "type": "learning",
+          "completion_criteria": "Complete before/after energy assessment with insights",
+          "xp_reward": 35
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"Energy": 10},
+        "prerequisite_quests": ["micro_movement_flows", "nature_connection_immersion"]
+      },
+      "hunter_notes": "This quest will help you understand and systematically address the root causes of your low energy. Your resilience will carry you through the process."
+    },
+    {
+      "id": "inner_sanctuary_creation",
+      "title": "Inner Sanctuary Creation Ritual",
+      "description": "Design and establish a sacred inner space for deep peace, reflection, and spiritual renewal",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 200,
+      "primary_trait": "Self-Mastery",
+      "secondary_traits": ["Emotional Resilience", "Energy"],
+      "estimated_time": "5 hours over 4 weeks",
+      "tasks": [
+        {
+          "id": "sanctuary_visioning",
+          "title": "Sacred Space Visioning",
+          "description": "Through meditation and journaling, design your ideal inner sanctuary",
+          "type": "creative",
+          "completion_criteria": "Create detailed description and visualization of inner sanctuary",
+          "xp_reward": 50
+        },
+        {
+          "id": "physical_space_creation",
+          "title": "Physical Sanctuary Manifestation",
+          "description": "Create a physical space in your home that reflects your inner sanctuary",
+          "type": "action",
+          "completion_criteria": "Set up dedicated peaceful space with meaningful objects",
+          "xp_reward": 50
+        },
+        {
+          "id": "sanctuary_practices",
+          "title": "Sacred Practice Development",
+          "description": "Develop 3 regular practices to use in your sanctuary (meditation, journaling, prayer, etc.)",
+          "type": "learning",
+          "completion_criteria": "Establish and practice 3 sanctuary rituals",
+          "xp_reward": 50
+        },
+        {
+          "id": "deep_retreat",
+          "title": "Monthly Sanctuary Retreat",
+          "description": "Spend 2 hours in deep practice within your sanctuary space",
+          "type": "action",
+          "completion_criteria": "Complete 2-hour solo retreat in sanctuary",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"Self-Mastery": 25, "Emotional Resilience": 35},
+        "prerequisite_quests": ["boundary_guardian_training"]
+      },
+      "hunter_notes": "Your emotional resilience provides the foundation for deep inner work. This sanctuary will become a source of strength and renewal."
+    },
+    {
+      "id": "holistic_wellness_integration",
+      "title": "Holistic Wellness Integration Mastery",
+      "description": "Integrate all aspects of wellness into a sustainable, personalized lifestyle system",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 250,
+      "primary_trait": "Self-Mastery",
+      "secondary_traits": ["Energy", "Emotional Resilience"],
+      "estimated_time": "6 hours over 4 weeks",
+      "tasks": [
+        {
+          "id": "wellness_philosophy",
+          "title": "Personal Wellness Philosophy Creation",
+          "description": "Define your unique approach to wellness based on your values and discoveries",
+          "type": "creative",
+          "completion_criteria": "Write comprehensive personal wellness philosophy (500+ words)",
+          "xp_reward": 60
+        },
+        {
+          "id": "daily_rhythm_design",
+          "title": "Sacred Daily Rhythm Design",
+          "description": "Create sustainable daily rhythm incorporating all wellness elements",
+          "type": "learning",
+          "completion_criteria": "Design detailed daily schedule balancing all wellness areas",
+          "xp_reward": 50
+        },
+        {
+          "id": "weekly_wellness_cycles",
+          "title": "Weekly Wellness Cycle Implementation",
+          "description": "Implement weekly cycles that support long-term wellness sustainability",
+          "type": "action",
+          "completion_criteria": "Successfully maintain wellness rhythm for 3 consecutive weeks",
+          "xp_reward": 70
+        },
+        {
+          "id": "wellness_mentorship",
+          "title": "Wellness Guardian Mentorship",
+          "description": "Share your wellness journey and insights with someone who could benefit",
+          "type": "social",
+          "completion_criteria": "Mentor or support one person in their wellness journey",
+          "xp_reward": 70
+        }
+      ],
+      "unlock_conditions": {
+        "level": 4,
+        "required_traits": {"Self-Mastery": 35, "Energy": 25},
+        "prerequisite_quests": ["energy_ecosystem_restoration", "inner_sanctuary_creation"]
+      },
+      "hunter_notes": "You're ready to become a true Wellness Guardian - someone who not only maintains their own well-being but inspires others through their example."
+    },
+    {
+      "id": "shadow_integration_journey",
+      "title": "Shadow Integration Deep Journey",
+      "description": "Courageously explore and integrate your shadow aspects to achieve deeper wholeness and self-mastery",
+      "category": "milestone",
+      "difficulty": "B",
+      "xp_reward": 300,
+      "primary_trait": "Self-Mastery",
+      "secondary_traits": ["Emotional Resilience"],
+      "estimated_time": "8 hours over 6 weeks",
+      "tasks": [
+        {
+          "id": "shadow_recognition",
+          "title": "Shadow Aspect Recognition",
+          "description": "Identify recurring patterns, triggers, and rejected aspects of yourself",
+          "type": "learning",
+          "completion_criteria": "Document 5 shadow patterns with specific examples",
+          "xp_reward": 75
+        },
+        {
+          "id": "shadow_dialogue",
+          "title": "Shadow Self Dialogue Practice",
+          "description": "Engage in written dialogue with shadow aspects to understand their gifts",
+          "type": "creative",
+          "completion_criteria": "Complete 3 written shadow dialogue sessions",
+          "xp_reward": 75
+        },
+        {
+          "id": "integration_practices",
+          "title": "Shadow Integration Practices",
+          "description": "Practice accepting and integrating shadow aspects through daily awareness",
+          "type": "action",
+          "completion_criteria": "Practice shadow awareness and acceptance for 21 consecutive days",
+          "xp_reward": 100
+        },
+        {
+          "id": "wholeness_celebration",
+          "title": "Wholeness Celebration Ritual",
+          "description": "Create and perform a ritual celebrating your increased self-acceptance and wholeness",
+          "type": "creative",
+          "completion_criteria": "Design and perform personal wholeness celebration ritual",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 5,
+        "required_traits": {"Self-Mastery": 40, "Emotional Resilience": 45},
+        "prerequisite_quests": ["stress_alchemy_workshop", "inner_sanctuary_creation"]
+      },
+      "hunter_notes": "Your exceptional emotional resilience makes you ready for the deepest work. Shadow integration will unlock new levels of self-mastery and authenticity."
+    },
+    {
+      "id": "energy_mastery_awakening",
+      "title": "Energy Mastery Awakening Protocol",
+      "description": "Achieve mastery over your personal energy systems and learn to maintain vitality in all circumstances",
+      "category": "milestone",
+      "difficulty": "A",
+      "xp_reward": 400,
+      "primary_trait": "Energy",
+      "secondary_traits": ["Self-Mastery", "Emotional Resilience"],
+      "estimated_time": "10 hours over 8 weeks",
+      "tasks": [
+        {
+          "id": "energy_science_mastery",
+          "title": "Personal Energy Science Mastery",
+          "description": "Study and understand the science behind energy, sleep, nutrition, and vitality",
+          "type": "learning",
+          "completion_criteria": "Complete comprehensive study plan on energy science",
+          "xp_reward": 80
+        },
+        {
+          "id": "advanced_energy_practices",
+          "title": "Advanced Energy Cultivation Practices",
+          "description": "Master advanced techniques: breathwork, energy meditation, qigong, or similar practices",
+          "type": "action",
+          "completion_criteria": "Achieve proficiency in 2 advanced energy practices",
+          "xp_reward": 100
+        },
+        {
+          "id": "energy_troubleshooting",
+          "title": "Energy System Troubleshooting",
+          "description": "Develop ability to quickly identify and address energy drops or imbalances",
+          "type": "learning",
+          "completion_criteria": "Create personal energy troubleshooting guide and use successfully",
+          "xp_reward": 80
+        },
+        {
+          "id": "sustained_vitality",
+          "title": "Sustained Vitality Achievement",
+          "description": "Maintain high energy levels consistently for 4 consecutive weeks",
+          "type": "action",
+          "completion_criteria": "Rate energy 7+/10 for 28 consecutive days with documentation",
+          "xp_reward": 140
+        }
+      ],
+      "unlock_conditions": {
+        "level": 6,
+        "required_traits": {"Energy": 30, "Self-Mastery": 35},
+        "prerequisite_quests": ["energy_ecosystem_restoration", "holistic_wellness_integration"]
+      },
+      "hunter_notes": "This is your breakthrough quest for energy mastery. Your journey from low energy to vitality mastery will inspire others and prove what's possible with dedication."
+    },
+    {
+      "id": "wellness_guardian_ascension",
+      "title": "Wellness Guardian Ascension Trial",
+      "description": "The ultimate quest to become a true Wellness Guardian - master of inner peace, radiant vitality, and inspirational presence",
+      "category": "milestone",
+      "difficulty": "S",
+      "xp_reward": 500,
+      "primary_trait": "Self-Mastery",
+      "secondary_traits": ["Energy", "Emotional Resilience"],
+      "estimated_time": "15 hours over 12 weeks",
+      "tasks": [
+        {
+          "id": "guardian_wisdom_codex",
+          "title": "Guardian Wisdom Codex Creation",
+          "description": "Compile all your wellness wisdom into a comprehensive guide for others",
+          "type": "creative",
+          "completion_criteria": "Create detailed wellness guide (2000+ words) with personal insights",
+          "xp_reward": 100
+        },
+        {
+          "id": "master_level_practices",
+          "title": "Master Level Daily Practices",
+          "description": "Maintain advanced daily wellness practices for 60 consecutive days",
+          "type": "action",
+          "completion_criteria": "Complete advanced practice routine for 60 days with documentation",
+          "xp_reward": 150
+        },
+        {
+          "id": "wellness_leadership",
+          "title": "Wellness Community Leadership",
+          "description": "Lead or organize a wellness initiative in your community or online",
+          "type": "social",
+          "completion_criteria": "Successfully organize wellness event/group helping 5+ people",
+          "xp_reward": 125
+        },
+        {
+          "id": "guardian_transformation",
+          "title": "Guardian Transformation Demonstration",
+          "description": "Document your complete transformation journey from beginning to Wellness Guardian",
+          "type": "creative",
+          "completion_criteria": "Create transformation documentation (photos, metrics, reflection) showing journey",
+          "xp_reward": 125
+        }
+      ],
+      "unlock_conditions": {
+        "level": 8,
+        "required_traits": {"Self-Mastery": 50, "Energy": 40, "Emotional Resilience": 50},
+        "prerequisite_quests": ["shadow_integration_journey", "energy_mastery_awakening"]
+      },
+      "hunter_notes": "You stand at the threshold of becoming a true Wellness Guardian. Your transformation journey - from someone with low energy to a beacon of wellness - will inspire countless others. This is your legendary ascension."
+    }
+  ],
+  [
+    {
+      "id": "daily_spark_chamber",
+      "title": "Spark Chamber Ignition",
+      "description": "A daily ritual to ignite your creative fire through rapid idea generation and quick expression",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 50,
+      "primary_trait": "curiosity",
+      "secondary_traits": ["creativity", "self_expression"],
+      "estimated_time": "15 minutes",
+      "tasks": [
+        {
+          "id": "morning_spark",
+          "title": "Morning Creative Spark",
+          "description": "Set a 5-minute timer and rapidly write down every creative idea that comes to mind",
+          "type": "creative",
+          "completion_criteria": "Fill at least half a page with ideas",
+          "xp_reward": 20
+        },
+        {
+          "id": "express_one",
+          "title": "Express & Create",
+          "description": "Pick one idea and spend 10 minutes expressing it through any medium (sketch, write, build, etc.)",
+          "type": "creative",
+          "completion_criteria": "Create something tangible from your idea",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your curiosity is your superpower, Hunter. This daily ritual will transform your natural wonder into creative fuel. Start messy, stay curious!"
+    },
+    {
+      "id": "daily_wonder_walk",
+      "title": "Wonder Walker's Journey",
+      "description": "Transform ordinary moments into extraordinary inspiration through mindful exploration",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 45,
+      "primary_trait": "curiosity",
+      "secondary_traits": ["mindfulness", "observation"],
+      "estimated_time": "20 minutes",
+      "tasks": [
+        {
+          "id": "mindful_wander",
+          "title": "Curious Wandering",
+          "description": "Take a 15-minute walk and actively notice 5 things you've never observed before",
+          "type": "action",
+          "completion_criteria": "Document 5 new observations in words or sketches",
+          "xp_reward": 25
+        },
+        {
+          "id": "inspiration_capture",
+          "title": "Inspiration Harvest",
+          "description": "Find one thing that sparks a creative idea and capture it",
+          "type": "creative",
+          "completion_criteria": "Write or sketch the connection between what you saw and a creative possibility",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "The world is your creative laboratory. Your high curiosity will turn every walk into an adventure of discovery!"
+    },
+    {
+      "id": "daily_canvas_chaos",
+      "title": "Canvas of Chaos",
+      "description": "Embrace creative chaos through experimental expression without judgment",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 60,
+      "primary_trait": "self_expression",
+      "secondary_traits": ["creativity", "self_mastery"],
+      "estimated_time": "25 minutes",
+      "tasks": [
+        {
+          "id": "chaos_creation",
+          "title": "Chaos Creation Session",
+          "description": "Create something completely unplanned using any materials for 20 minutes - no rules, no judgment",
+          "type": "creative",
+          "completion_criteria": "Complete a 20-minute unstructured creative session",
+          "xp_reward": 35
+        },
+        {
+          "id": "chaos_reflection",
+          "title": "Chaos Reflection",
+          "description": "Spend 5 minutes writing about what you discovered in your creative chaos",
+          "type": "learning",
+          "completion_criteria": "Write 3 insights about your creative process",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your journey to self-mastery begins with embracing the beautiful mess of creation. Trust the process, not the outcome!"
+    },
+    {
+      "id": "daily_inkstorm_drill",
+      "title": "Inkstorm Imagination Drill",
+      "description": "Rapid-fire creative exercises to build your imagination muscles",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 55,
+      "primary_trait": "creativity",
+      "secondary_traits": ["curiosity", "self_expression"],
+      "estimated_time": "30 minutes",
+      "tasks": [
+        {
+          "id": "rapid_prompts",
+          "title": "Lightning Prompts",
+          "description": "Respond to 3 random creative prompts in 5 minutes each (draw, write, or build)",
+          "type": "creative",
+          "completion_criteria": "Complete 3 creative responses in 15 minutes total",
+          "xp_reward": 30
+        },
+        {
+          "id": "connection_game",
+          "title": "Impossible Connections",
+          "description": "Find creative connections between 3 completely unrelated objects",
+          "type": "creative",
+          "completion_criteria": "Create a story, drawing, or concept that connects all 3 objects",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Speed builds creative confidence! Your natural curiosity will make these rapid exercises feel like play."
+    },
+    {
+      "id": "daily_micro_adventure",
+      "title": "Micro-Adventure Protocol",
+      "description": "Transform your immediate environment into an adventure zone",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 40,
+      "primary_trait": "curiosity",
+      "secondary_traits": ["initiative", "exploration"],
+      "estimated_time": "20 minutes",
+      "tasks": [
+        {
+          "id": "environment_quest",
+          "title": "Environment Quest",
+          "description": "Create a mini-adventure in your current space - explore it like an alien visitor",
+          "type": "action",
+          "completion_criteria": "Discover and document 3 'alien observations' about familiar spaces",
+          "xp_reward": 20
+        },
+        {
+          "id": "adventure_story",
+          "title": "Adventure Chronicle",
+          "description": "Turn your micro-adventure into a creative story or visual narrative",
+          "type": "creative",
+          "completion_criteria": "Create a short story, comic, or photo series of your adventure",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Adventure is a mindset, not a location. Your curiosity will find wonder in the most ordinary places!"
+    },
+    {
+      "id": "weekly_artifact_genesis",
+      "title": "Artifact Genesis Protocol",
+      "description": "Create a meaningful creative artifact that represents your week's inspirations",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 120,
+      "primary_trait": "creativity",
+      "secondary_traits": ["self_mastery", "self_expression"],
+      "estimated_time": "2 hours over the week",
+      "tasks": [
+        {
+          "id": "inspiration_collection",
+          "title": "Inspiration Archaeology",
+          "description": "Gather and curate all the creative sparks from your daily quests this week",
+          "type": "learning",
+          "completion_criteria": "Create a collection of your week's best ideas and inspirations",
+          "xp_reward": 30
+        },
+        {
+          "id": "artifact_design",
+          "title": "Artifact Design Phase",
+          "description": "Design a creative project that synthesizes your week's inspirations",
+          "type": "creative",
+          "completion_criteria": "Create a detailed plan for your artifact",
+          "xp_reward": 40
+        },
+        {
+          "id": "artifact_creation",
+          "title": "Artifact Manifestation",
+          "description": "Bring your designed artifact into reality through focused creation time",
+          "type": "creative",
+          "completion_criteria": "Complete your planned creative artifact",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "This is where your scattered sparks become a focused flame. Your curiosity gathers, your creativity synthesizes!"
+    },
+    {
+      "id": "weekly_exploration_expedition",
+      "title": "Exploration Expedition Saga",
+      "description": "Embark on deliberate exploration to discover new creative territories",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 140,
+      "primary_trait": "curiosity",
+      "secondary_traits": ["initiative", "courage"],
+      "estimated_time": "3 hours over the week",
+      "tasks": [
+        {
+          "id": "territory_mapping",
+          "title": "Creative Territory Mapping",
+          "description": "Identify 3 creative domains you've never explored (art forms, techniques, subjects)",
+          "type": "learning",
+          "completion_criteria": "Research and create a 'map' of 3 unexplored creative territories",
+          "xp_reward": 40
+        },
+        {
+          "id": "expedition_launch",
+          "title": "Expedition Launch",
+          "description": "Spend focused time exploring each of your 3 chosen territories",
+          "type": "action",
+          "completion_criteria": "Try each new creative domain for at least 30 minutes",
+          "xp_reward": 60
+        },
+        {
+          "id": "discovery_journal",
+          "title": "Discovery Documentation",
+          "description": "Document your expeditions and rate each for future exploration",
+          "type": "learning",
+          "completion_criteria": "Create a detailed expedition journal with insights and next steps",
+          "xp_reward": 40
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {"curiosity": 30},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your curiosity is already strong - now let's channel it into brave exploration! Every new territory makes you a more versatile creator."
+    },
+    {
+      "id": "weekly_expression_storm",
+      "title": "Expression Storm Mastery",
+      "description": "Master multiple forms of creative expression through intensive practice",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 130,
+      "primary_trait": "self_expression",
+      "secondary_traits": ["creativity", "self_mastery"],
+      "estimated_time": "2.5 hours over the week",
+      "tasks": [
+        {
+          "id": "medium_rotation",
+          "title": "Multi-Medium Marathon",
+          "description": "Express the same core idea through 4 different creative mediums",
+          "type": "creative",
+          "completion_criteria": "Complete the same concept in writing, visual art, movement, and sound",
+          "xp_reward": 70
+        },
+        {
+          "id": "expression_analysis",
+          "title": "Expression Analysis",
+          "description": "Analyze how your expression changed across different mediums",
+          "type": "learning",
+          "completion_criteria": "Write insights about how medium affects expression",
+          "xp_reward": 30
+        },
+        {
+          "id": "fusion_creation",
+          "title": "Fusion Creation",
+          "description": "Create something new that combines elements from all 4 mediums",
+          "type": "creative",
+          "completion_criteria": "Complete a multimedia creative work",
+          "xp_reward": 30
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": ["weekly_artifact_genesis"]
+      },
+      "hunter_notes": "Building self-mastery means mastering your voice across all forms of expression. You're becoming a creative polyglot!"
+    },
+    {
+      "id": "weekly_initiative_ignition",
+      "title": "Initiative Ignition Chamber",
+      "description": "Break through creative paralysis by taking action before you feel ready",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 110,
+      "primary_trait": "initiative",
+      "secondary_traits": ["courage", "self_mastery"],
+      "estimated_time": "2 hours over the week",
+      "tasks": [
+        {
+          "id": "uncomfortable_start",
+          "title": "Uncomfortable Start Protocol",
+          "description": "Begin 3 creative projects you feel completely unprepared for",
+          "type": "action",
+          "completion_criteria": "Start 3 projects with just 15 minutes each, no preparation",
+          "xp_reward": 50
+        },
+        {
+          "id": "progress_push",
+          "title": "Progress Push",
+          "description": "Make measurable progress on each uncomfortable project",
+          "type": "action",
+          "completion_criteria": "Advance each project by at least one meaningful step",
+          "xp_reward": 40
+        },
+        {
+          "id": "initiative_reflection",
+          "title": "Initiative Reflection",
+          "description": "Reflect on what you learned about starting before feeling ready",
+          "type": "learning",
+          "completion_criteria": "Write about your experience with uncomfortable starting",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Initiative is your growth edge, Hunter. These quests will transform your relationship with starting. Action creates clarity!"
+    },
+    {
+      "id": "monthly_visionary_manifest",
+      "title": "Visionary Manifestation Ritual",
+      "description": "Channel your accumulated creative power into a significant vision",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 200,
+      "primary_trait": "creativity",
+      "secondary_traits": ["self_mastery", "vision"],
+      "estimated_time": "8 hours over the month",
+      "tasks": [
+        {
+          "id": "vision_crystallization",
+          "title": "Vision Crystallization",
+          "description": "Synthesize all your monthly creative work into a clear, compelling vision",
+          "type": "learning",
+          "completion_criteria": "Create a detailed vision document with visual and written elements",
+          "xp_reward": 60
+        },
+        {
+          "id": "manifestation_planning",
+          "title": "Manifestation Blueprint",
+          "description": "Create a detailed plan to bring your vision into reality",
+          "type": "action",
+          "completion_criteria": "Develop a step-by-step manifestation plan",
+          "xp_reward": 50
+        },
+        {
+          "id": "vision_execution",
+          "title": "Vision Execution Phase",
+          "description": "Execute your manifestation plan with dedicated creative sessions",
+          "type": "creative",
+          "completion_criteria": "Complete at least 70% of your manifestation plan",
+          "xp_reward": 90
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"creativity": 40, "self_mastery": 30},
+        "prerequisite_quests": ["weekly_artifact_genesis", "weekly_expression_storm"]
+      },
+      "hunter_notes": "This is where your Creative Visionary path truly begins. Your growing self-mastery will guide your powerful creativity toward meaningful manifestation."
+    },
+    {
+      "id": "monthly_creative_leadership",
+      "title": "Creative Leadership Ascension",
+      "description": "Step into creative leadership by sharing your vision and inspiring others",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 220,
+      "primary_trait": "initiative",
+      "secondary_traits": ["leadership", "self_expression"],
+      "estimated_time": "10 hours over the month",
+      "tasks": [
+        {
+          "id": "leadership_project",
+          "title": "Creative Leadership Project",
+          "description": "Initiate and lead a creative project that involves or inspires others",
+          "type": "social",
+          "completion_criteria": "Successfully launch and lead a creative collaboration or community project",
+          "xp_reward": 100
+        },
+        {
+          "id": "knowledge_sharing",
+          "title": "Creative Knowledge Transmission",
+          "description": "Share your creative insights through teaching, mentoring, or content creation",
+          "type": "social",
+          "completion_criteria": "Create and share educational content about your creative process",
+          "xp_reward": 70
+        },
+        {
+          "id": "leadership_reflection",
+          "title": "Leadership Impact Assessment",
+          "description": "Reflect on your leadership impact and plan for expanded influence",
+          "type": "learning",
+          "completion_criteria": "Complete a comprehensive leadership impact analysis",
+          "xp_reward": 50
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"initiative": 35, "self_mastery": 40},
+        "prerequisite_quests": ["weekly_initiative_ignition"]
+      },
+      "hunter_notes": "Your initiative may be developing, but leadership will accelerate its growth. You're ready to guide others through the creative journey!"
+    },
+    {
+      "id": "monthly_mastery_integration",
+      "title": "Creative Mastery Integration",
+      "description": "Integrate all aspects of your creative development into a cohesive mastery system",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 240,
+      "primary_trait": "self_mastery",
+      "secondary_traits": ["creativity", "wisdom"],
+      "estimated_time": "12 hours over the month",
+      "tasks": [
+        {
+          "id": "mastery_assessment",
+          "title": "Creative Mastery Audit",
+          "description": "Comprehensively assess your creative growth across all dimensions",
+          "type": "learning",
+          "completion_criteria": "Complete detailed self-assessment of creative abilities and growth areas",
+          "xp_reward": 60
+        },
+        {
+          "id": "system_creation",
+          "title": "Personal Creative System Design",
+          "description": "Design a personalized creative practice system based on your insights",
+          "type": "learning",
+          "completion_criteria": "Create a comprehensive creative practice system tailored to your strengths",
+          "xp_reward": 80
+        },
+        {
+          "id": "system_implementation",
+          "title": "System Implementation Trial",
+          "description": "Test and refine your creative system through consistent practice",
+          "type": "habit",
+          "completion_criteria": "Successfully implement your system for 2 weeks with daily practice",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"self_mastery": 45, "creativity": 50},
+        "prerequisite_quests": ["monthly_visionary_manifest"]
+      },
+      "hunter_notes": "Self-mastery is your foundation for everything else. This quest will transform you from a creative person into a Creative Visionary with systems and wisdom."
+    },
+    {
+      "id": "milestone_innovation_catalyst",
+      "title": "Innovation Catalyst Transformation",
+      "description": "Become a force of creative innovation by developing breakthrough thinking patterns",
+      "category": "milestone",
+      "difficulty": "B",
+      "xp_reward": 300,
+      "primary_trait": "innovation",
+      "secondary_traits": ["curiosity", "breakthrough_thinking"],
+      "estimated_time": "15 hours over 6 weeks",
+      "tasks": [
+        {
+          "id": "pattern_breaking",
+          "title": "Pattern Breaking Protocol",
+          "description": "Systematically identify and break limiting creative patterns in your work",
+          "type": "learning",
+          "completion_criteria": "Document and break 5 major creative limitation patterns",
+          "xp_reward": 80
+        },
+        {
+          "id": "innovation_methodology",
+          "title": "Personal Innovation Methodology",
+          "description": "Develop your unique approach to generating breakthrough ideas",
+          "type": "creative",
+          "completion_criteria": "Create and test your personal innovation methodology with 3 breakthrough projects",
+          "xp_reward": 120
+        },
+        {
+          "id": "catalyst_demonstration",
+          "title": "Innovation Catalyst Demonstration",
+          "description": "Demonstrate your innovation catalyst abilities by creating something genuinely new",
+          "type": "creative",
+          "completion_criteria": "Complete an innovative project that breaks new ground in your field",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 4,
+        "required_traits": {"curiosity": 60, "creativity": 55},
+        "prerequisite_quests": ["monthly_creative_leadership"]
+      },
+      "hunter_notes": "Your curiosity has always been exceptional - now it's time to weaponize it for breakthrough innovation. You're becoming a creative force of nature!"
+    },
+    {
+      "id": "milestone_expression_master",
+      "title": "Master of Infinite Expression",
+      "description": "Achieve mastery over the full spectrum of creative expression and communication",
+      "category": "milestone",
+      "difficulty": "A",
+      "xp_reward": 350,
+      "primary_trait": "self_expression",
+      "secondary_traits": ["mastery", "communication"],
+      "estimated_time": "20 hours over 8 weeks",
+      "tasks": [
+        {
+          "id": "expression_mastery",
+          "title": "Multi-Dimensional Expression Mastery",
+          "description": "Achieve advanced proficiency in 5 different creative expression forms",
+          "type": "creative",
+          "completion_criteria": "Demonstrate advanced skill in 5 distinct creative mediums with portfolio pieces",
+          "xp_reward": 120
+        },
+        {
+          "id": "communication_transcendence",
+          "title": "Communication Transcendence",
+          "description": "Develop the ability to communicate any idea through any medium",
+          "type": "creative",
+          "completion_criteria": "Successfully communicate 3 complex concepts through radically different mediums",
+          "xp_reward": 100
+        },
+        {
+          "id": "master_demonstration",
+          "title": "Expression Master Demonstration",
+          "description": "Create a masterwork that showcases your complete expressive range",
+          "type": "creative",
+          "completion_criteria": "Complete a multimedia masterwork that integrates all your expressive abilities",
+          "xp_reward": 130
+        }
+      ],
+      "unlock_conditions": {
+        "level": 5,
+        "required_traits": {"self_expression": 70, "self_mastery": 60},
+        "prerequisite_quests": ["monthly_mastery_integration"]
+      },
+      "hunter_notes": "You're ascending to true mastery. Your growing self-mastery now supports unlimited creative expression. The world becomes your canvas!"
+    },
+    {
+      "id": "legendary_mythmaker_ascent",
+      "title": "Mythmaker's Ascent to Legendary Status",
+      "description": "Transcend individual creativity to become a creator of cultural narratives and mythic visions",
+      "category": "milestone",
+      "difficulty": "S",
+      "xp_reward": 500,
+      "primary_trait": "visionary_impact",
+      "secondary_traits": ["cultural_influence", "mythic_thinking"],
+      "estimated_time": "30 hours over 3 months",
+      "tasks": [
+        {
+          "id": "mythic_vision",
+          "title": "Mythic Vision Creation",
+          "description": "Develop a powerful creative vision that has the potential to influence culture",
+          "type": "creative",
+          "completion_criteria": "Create a comprehensive mythic vision with cultural significance",
+          "xp_reward": 150
+        },
+        {
+          "id": "narrative_architecture",
+          "title": "Cultural Narrative Architecture",
+          "description": "Build the structural foundation for your mythic vision to spread and influence",
+          "type": "action",
+          "completion_criteria": "Develop systems, stories, and strategies for cultural transmission of your vision",
+          "xp_reward": 180
+        },
+        {
+          "id": "legendary_manifestation",
+          "title": "Legendary Vision Manifestation",
+          "description": "Bring your mythic vision into reality through a legendary creative achievement",
+          "type": "creative",
+          "completion_criteria": "Complete and launch a legendary creative work that embodies your mythic vision",
+          "xp_reward": 170
+        }
+      ],
+      "unlock_conditions": {
+        "level": 7,
+        "required_traits": {"creativity": 80, "self_mastery": 75, "initiative": 60},
+        "prerequisite_quests": ["milestone_innovation_catalyst", "milestone_expression_master"]
+      },
+      "hunter_notes": "This is your legendary quest, Hunter. You've transformed from curious explorer to Creative Visionary to Mythmaker. Your creations will outlive you and inspire generations. The world awaits your mythic contribution!"
+    }
+  ],
+  [
+    {
+      "id": "daily_command_presence",
+      "title": "Commander's Morning Decree",
+      "description": "Establish your leadership presence by making one decisive decision each day and communicating it clearly to others",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 50,
+      "primary_trait": "confidence",
+      "secondary_traits": ["initiative", "communication"],
+      "estimated_time": "15 minutes",
+      "tasks": [
+        {
+          "id": "morning_decision",
+          "title": "Make One Clear Decision",
+          "description": "Identify one situation requiring a decision and make it confidently within 5 minutes",
+          "type": "action",
+          "completion_criteria": "Decision made and communicated to at least one person",
+          "xp_reward": 25
+        },
+        {
+          "id": "decision_journal",
+          "title": "Log Your Leadership Choice",
+          "description": "Write down what you decided, why, and how it felt to be decisive",
+          "type": "habit",
+          "completion_criteria": "Journal entry completed with decision details",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your confidence is already strong - use it to build the habit of decisive leadership. Small daily decisions will forge your sovereign mindset."
+    },
+    {
+      "id": "daily_initiative_spark",
+      "title": "Pathfinder's First Step",
+      "description": "Take initiative on one task or opportunity without being asked, building your proactive leadership muscle",
+      "category": "daily",
+      "difficulty": "E",
+      "xp_reward": 45,
+      "primary_trait": "initiative",
+      "secondary_traits": ["confidence", "execution"],
+      "estimated_time": "20 minutes",
+      "tasks": [
+        {
+          "id": "proactive_action",
+          "title": "Lead Without Being Asked",
+          "description": "Identify one task, problem, or opportunity and take action on it proactively",
+          "type": "action",
+          "completion_criteria": "Action taken on something you initiated yourself",
+          "xp_reward": 30
+        },
+        {
+          "id": "initiative_reflection",
+          "title": "Document Your Leadership Move",
+          "description": "Record what you initiated and how it felt to lead from the front",
+          "type": "habit",
+          "completion_criteria": "Written reflection on proactive action taken",
+          "xp_reward": 15
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Initiative is your growth edge - every small proactive step builds your leadership foundation. Don't wait for permission to lead."
+    },
+    {
+      "id": "daily_influence_voice",
+      "title": "Herald's Morning Voice",
+      "description": "Practice using your voice to influence and guide others through one meaningful interaction daily",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 60,
+      "primary_trait": "social_courage",
+      "secondary_traits": ["confidence", "communication"],
+      "estimated_time": "25 minutes",
+      "tasks": [
+        {
+          "id": "speak_with_purpose",
+          "title": "Voice One Leadership Thought",
+          "description": "Share one idea, suggestion, or guidance with someone in person or via call",
+          "type": "social",
+          "completion_criteria": "Spoke up with leadership intent to influence positive change",
+          "xp_reward": 40
+        },
+        {
+          "id": "voice_impact_check",
+          "title": "Assess Your Influence",
+          "description": "Note how your words were received and what leadership impact you created",
+          "type": "learning",
+          "completion_criteria": "Reflection written on influence and reception",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your social courage needs strengthening, but your confidence will carry you. Start small - one meaningful voice per day builds sovereign presence."
+    },
+    {
+      "id": "daily_decision_throne",
+      "title": "Sovereign's Decision Throne",
+      "description": "Claim your leadership authority by making three quick decisions with confidence and owning the outcomes",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 55,
+      "primary_trait": "confidence",
+      "secondary_traits": ["initiative", "accountability"],
+      "estimated_time": "30 minutes",
+      "tasks": [
+        {
+          "id": "triple_decisions",
+          "title": "Make Three Swift Choices",
+          "description": "Make three decisions quickly and confidently - no second-guessing allowed",
+          "type": "action",
+          "completion_criteria": "Three decisions made within 30 minutes total",
+          "xp_reward": 35
+        },
+        {
+          "id": "ownership_commitment",
+          "title": "Own Your Choices",
+          "description": "Publicly acknowledge your decisions and commit to their outcomes",
+          "type": "social",
+          "completion_criteria": "Communicated ownership of decisions to others",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "Your high confidence is your throne room - use it to build decisiveness. Leaders are defined by their decisions, not their hesitations."
+    },
+    {
+      "id": "daily_guild_guidance",
+      "title": "Guild Master's Daily Guidance",
+      "description": "Provide helpful guidance or mentorship to one person, practicing your role as a leader who elevates others",
+      "category": "daily",
+      "difficulty": "D",
+      "xp_reward": 65,
+      "primary_trait": "leadership",
+      "secondary_traits": ["social_courage", "empathy"],
+      "estimated_time": "35 minutes",
+      "tasks": [
+        {
+          "id": "mentor_moment",
+          "title": "Guide Someone Forward",
+          "description": "Offer genuine help, advice, or support to help someone improve or solve a problem",
+          "type": "social",
+          "completion_criteria": "Provided meaningful guidance to another person",
+          "xp_reward": 45
+        },
+        {
+          "id": "leadership_reflection",
+          "title": "Reflect on Leadership Impact",
+          "description": "Consider how your guidance affected them and what you learned about leading others",
+          "type": "learning",
+          "completion_criteria": "Written reflection on mentorship experience",
+          "xp_reward": 20
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {},
+        "prerequisite_quests": []
+      },
+      "hunter_notes": "True sovereignty comes from lifting others up. Your confidence can inspire others - practice being the leader people want to follow."
+    },
+    {
+      "id": "weekly_strategic_command",
+      "title": "Strategic Command Protocol",
+      "description": "Plan and execute a week-long project or initiative that requires coordination and leadership of multiple moving parts",
+      "category": "weekly",
+      "difficulty": "D",
+      "xp_reward": 150,
+      "primary_trait": "initiative",
+      "secondary_traits": ["planning", "execution"],
+      "estimated_time": "2 hours across the week",
+      "tasks": [
+        {
+          "id": "project_blueprint",
+          "title": "Create Strategic Plan",
+          "description": "Design a clear plan for a project you will lead, including timeline and key milestones",
+          "type": "learning",
+          "completion_criteria": "Written project plan with clear steps and timeline",
+          "xp_reward": 50
+        },
+        {
+          "id": "execute_leadership",
+          "title": "Lead Project Execution",
+          "description": "Take charge of implementing your plan, coordinating resources and making adjustments as needed",
+          "type": "action",
+          "completion_criteria": "Project executed with clear leadership demonstrated",
+          "xp_reward": 75
+        },
+        {
+          "id": "command_review",
+          "title": "Strategic Debrief",
+          "description": "Analyze what worked, what didn't, and how your leadership evolved during execution",
+          "type": "learning",
+          "completion_criteria": "Comprehensive review of leadership performance",
+          "xp_reward": 25
+        }
+      ],
+      "unlock_conditions": {
+        "level": 1,
+        "required_traits": {"initiative": 25},
+        "prerequisite_quests": ["daily_initiative_spark"]
+      },
+      "hunter_notes": "This quest will forge your initiative into true command presence. Leading a project from conception to completion is how sovereigns are made."
+    },
+    {
+      "id": "weekly_influence_expansion",
+      "title": "Circle of Influence Expansion",
+      "description": "Systematically expand your leadership influence by connecting with new people and building your network",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 175,
+      "primary_trait": "social_courage",
+      "secondary_traits": ["networking", "communication"],
+      "estimated_time": "3 hours across the week",
+      "tasks": [
+        {
+          "id": "new_connections",
+          "title": "Forge Five New Connections",
+          "description": "Reach out and meaningfully connect with five new people in your field or area of interest",
+          "type": "social",
+          "completion_criteria": "Five genuine conversations with new contacts",
+          "xp_reward": 75
+        },
+        {
+          "id": "value_sharing",
+          "title": "Share Leadership Value",
+          "description": "Offer something valuable (insight, help, resource) to each new connection",
+          "type": "social",
+          "completion_criteria": "Provided value to all five new connections",
+          "xp_reward": 60
+        },
+        {
+          "id": "influence_mapping",
+          "title": "Map Your Growing Influence",
+          "description": "Document your expanding network and identify opportunities for future leadership",
+          "type": "learning",
+          "completion_criteria": "Network map created showing influence expansion",
+          "xp_reward": 40
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"social_courage": 20},
+        "prerequisite_quests": ["daily_influence_voice"]
+      },
+      "hunter_notes": "Your social courage needs building, but this quest will transform it into true influence. Leaders are connected leaders - expand your realm."
+    },
+    {
+      "id": "weekly_decision_mastery",
+      "title": "Throne of Decisions Trial",
+      "description": "Face complex decisions requiring leadership courage, making tough choices and standing by them under pressure",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 180,
+      "primary_trait": "confidence",
+      "secondary_traits": ["decision_making", "resilience"],
+      "estimated_time": "2.5 hours across the week",
+      "tasks": [
+        {
+          "id": "complex_decisions",
+          "title": "Navigate Three Complex Choices",
+          "description": "Identify and decisively handle three difficult decisions that impact others",
+          "type": "action",
+          "completion_criteria": "Three complex decisions made with clear reasoning",
+          "xp_reward": 80
+        },
+        {
+          "id": "decision_defense",
+          "title": "Defend Your Choices",
+          "description": "Explain and defend your decisions when questioned or challenged",
+          "type": "social",
+          "completion_criteria": "Successfully defended decisions with confidence",
+          "xp_reward": 60
+        },
+        {
+          "id": "leadership_courage",
+          "title": "Document Decision Courage",
+          "description": "Reflect on how you showed leadership courage in making unpopular but right decisions",
+          "type": "learning",
+          "completion_criteria": "Written analysis of decision-making courage",
+          "xp_reward": 40
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"confidence": 40},
+        "prerequisite_quests": ["daily_decision_throne"]
+      },
+      "hunter_notes": "Your confidence is your greatest weapon - wield it to make the hard decisions others avoid. True sovereignty requires decision courage."
+    },
+    {
+      "id": "weekly_team_command",
+      "title": "Squadron Leader's First Command",
+      "description": "Take direct leadership of a team or group for a specific objective, practicing hands-on people leadership",
+      "category": "weekly",
+      "difficulty": "C",
+      "xp_reward": 200,
+      "primary_trait": "leadership",
+      "secondary_traits": ["team_management", "motivation"],
+      "estimated_time": "4 hours across the week",
+      "tasks": [
+        {
+          "id": "team_assembly",
+          "title": "Assemble Your Squad",
+          "description": "Recruit or organize a team of 3-5 people for a specific project or goal",
+          "type": "social",
+          "completion_criteria": "Team of 3-5 people committed to your leadership",
+          "xp_reward": 70
+        },
+        {
+          "id": "leadership_execution",
+          "title": "Lead Team to Success",
+          "description": "Guide your team through planning, execution, and completion of your shared objective",
+          "type": "action",
+          "completion_criteria": "Team objective achieved under your leadership",
+          "xp_reward": 90
+        },
+        {
+          "id": "team_feedback",
+          "title": "Gather Leadership Feedback",
+          "description": "Ask your team for honest feedback on your leadership and areas for improvement",
+          "type": "learning",
+          "completion_criteria": "Feedback collected from all team members",
+          "xp_reward": 40
+        }
+      ],
+      "unlock_conditions": {
+        "level": 2,
+        "required_traits": {"leadership": 30},
+        "prerequisite_quests": ["daily_guild_guidance"]
+      },
+      "hunter_notes": "Direct leadership is the crucible where sovereigns are forged. Your confidence will serve you well - trust it and lead with authority."
+    },
+    {
+      "id": "monthly_influence_empire",
+      "title": "Empire of Influence Construction",
+      "description": "Build a lasting system or community where your leadership creates ongoing value and impact for others",
+      "category": "monthly",
+      "difficulty": "C",
+      "xp_reward": 300,
+      "primary_trait": "leadership",
+      "secondary_traits": ["system_building", "community"],
+      "estimated_time": "8 hours across the month",
+      "tasks": [
+        {
+          "id": "influence_system",
+          "title": "Design Influence Architecture",
+          "description": "Create a system, group, or platform where you can consistently provide leadership value",
+          "type": "creative",
+          "completion_criteria": "System or community structure established",
+          "xp_reward": 100
+        },
+        {
+          "id": "community_building",
+          "title": "Gather Your Following",
+          "description": "Attract and organize people around your leadership vision or value proposition",
+          "type": "social",
+          "completion_criteria": "Active community of 10+ people engaged with your leadership",
+          "xp_reward": 120
+        },
+        {
+          "id": "sustainable_impact",
+          "title": "Create Lasting Impact",
+          "description": "Establish processes that continue providing value even when you're not actively involved",
+          "type": "action",
+          "completion_criteria": "Self-sustaining system creating ongoing leadership impact",
+          "xp_reward": 80
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"leadership": 40, "social_courage": 25},
+        "prerequisite_quests": ["weekly_influence_expansion", "weekly_team_command"]
+      },
+      "hunter_notes": "True sovereigns build systems that outlast them. Your growing skills are ready for empire-building - create something that serves many."
+    },
+    {
+      "id": "monthly_crisis_command",
+      "title": "Crisis Command Crucible",
+      "description": "Demonstrate leadership under pressure by taking charge during a challenging situation or emergency",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 350,
+      "primary_trait": "confidence",
+      "secondary_traits": ["crisis_management", "quick_thinking"],
+      "estimated_time": "6 hours across the month",
+      "tasks": [
+        {
+          "id": "crisis_identification",
+          "title": "Identify Crisis Opportunity",
+          "description": "Find a challenging situation where leadership is needed and volunteer to take charge",
+          "type": "action",
+          "completion_criteria": "Crisis situation identified and leadership role claimed",
+          "xp_reward": 100
+        },
+        {
+          "id": "crisis_leadership",
+          "title": "Lead Through the Storm",
+          "description": "Take decisive action, make tough calls, and guide others through the difficult situation",
+          "type": "action",
+          "completion_criteria": "Crisis successfully managed with clear leadership demonstrated",
+          "xp_reward": 150
+        },
+        {
+          "id": "crisis_mastery",
+          "title": "Extract Leadership Wisdom",
+          "description": "Analyze your crisis leadership performance and document key insights for future challenges",
+          "type": "learning",
+          "completion_criteria": "Comprehensive crisis leadership analysis completed",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 3,
+        "required_traits": {"confidence": 50, "initiative": 35},
+        "prerequisite_quests": ["weekly_decision_mastery", "weekly_strategic_command"]
+      },
+      "hunter_notes": "Crisis reveals true leaders. Your high confidence is perfectly suited for this crucible - embrace the challenge and show your sovereign nature."
+    },
+    {
+      "id": "monthly_legacy_foundation",
+      "title": "Legacy Foundation Protocol",
+      "description": "Begin building something significant that will represent your leadership legacy and long-term impact",
+      "category": "monthly",
+      "difficulty": "B",
+      "xp_reward": 375,
+      "primary_trait": "initiative",
+      "secondary_traits": ["vision", "legacy_building"],
+      "estimated_time": "10 hours across the month",
+      "tasks": [
+        {
+          "id": "legacy_vision",
+          "title": "Craft Your Legacy Vision",
+          "description": "Define what lasting impact you want to have and create a concrete plan to achieve it",
+          "type": "learning",
+          "completion_criteria": "Detailed legacy vision and implementation plan created",
+          "xp_reward": 125
+        },
+        {
+          "id": "foundation_building",
+          "title": "Lay the Foundation",
+          "description": "Take the first major steps toward building your leadership legacy",
+          "type": "action",
+          "completion_criteria": "Significant progress made on legacy foundation",
+          "xp_reward": 150
+        },
+        {
+          "id": "legacy_momentum",
+          "title": "Create Sustainable Momentum",
+          "description": "Establish systems and processes that will continue building your legacy over time",
+          "type": "creative",
+          "completion_criteria": "Self-sustaining momentum created for legacy building",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 4,
+        "required_traits": {"initiative": 40, "leadership": 45},
+        "prerequisite_quests": ["monthly_influence_empire"]
+      },
+      "hunter_notes": "Sovereigns are remembered by what they build. Your initiative is strong enough now to create something lasting - begin your legacy."
+    },
+    {
+      "id": "milestone_sovereign_ascension",
+      "title": "Sovereign's Ascension Trial",
+      "description": "Demonstrate mastery across all leadership dimensions by taking on a highly visible, high-stakes leadership challenge",
+      "category": "milestone",
+      "difficulty": "B",
+      "xp_reward": 500,
+      "primary_trait": "leadership",
+      "secondary_traits": ["confidence", "initiative", "social_courage"],
+      "estimated_time": "15 hours over 2-3 weeks",
+      "tasks": [
+        {
+          "id": "high_stakes_challenge",
+          "title": "Accept the Ultimate Challenge",
+          "description": "Take on a leadership role in a high-visibility, high-impact situation with significant stakes",
+          "type": "action",
+          "completion_criteria": "High-stakes leadership challenge accepted and announced publicly",
+          "xp_reward": 150
+        },
+        {
+          "id": "sovereign_execution",
+          "title": "Execute with Sovereign Mastery",
+          "description": "Demonstrate all aspects of leadership mastery while navigating the challenge",
+          "type": "action",
+          "completion_criteria": "Challenge completed successfully with exceptional leadership shown",
+          "xp_reward": 250
+        },
+        {
+          "id": "ascension_recognition",
+          "title": "Claim Your Recognition",
+          "description": "Document and share your leadership achievement, establishing your reputation as a true leader",
+          "type": "social",
+          "completion_criteria": "Leadership achievement documented and recognition claimed",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 5,
+        "required_traits": {"confidence": 60, "initiative": 45, "social_courage": 30},
+        "prerequisite_quests": ["monthly_crisis_command", "monthly_legacy_foundation"]
+      },
+      "hunter_notes": "This is your moment to prove your sovereignty. All your training has led here - step into the spotlight and show the world your leadership mastery."
+    },
+    {
+      "id": "milestone_influence_mastery",
+      "title": "Master of Influence Coronation",
+      "description": "Achieve recognition as a thought leader or authority figure in your chosen domain through sustained influence and impact",
+      "category": "milestone",
+      "difficulty": "A",
+      "xp_reward": 600,
+      "primary_trait": "social_courage",
+      "secondary_traits": ["influence", "authority"],
+      "estimated_time": "20 hours over 1 month",
+      "tasks": [
+        {
+          "id": "authority_platform",
+          "title": "Build Your Authority Platform",
+          "description": "Create or claim a platform where you can demonstrate thought leadership and influence others",
+          "type": "creative",
+          "completion_criteria": "Authority platform established with growing audience",
+          "xp_reward": 200
+        },
+        {
+          "id": "influence_campaign",
+          "title": "Launch Influence Campaign",
+          "description": "Execute a sustained campaign to establish yourself as an authority in your domain",
+          "type": "action",
+          "completion_criteria": "Influence campaign completed with measurable impact",
+          "xp_reward": 250
+        },
+        {
+          "id": "mastery_recognition",
+          "title": "Achieve Influence Mastery",
+          "description": "Gain formal or informal recognition as a leader and influencer in your field",
+          "type": "social",
+          "completion_criteria": "Clear recognition achieved as an authority figure",
+          "xp_reward": 150
+        }
+      ],
+      "unlock_conditions": {
+        "level": 6,
+        "required_traits": {"social_courage": 40, "leadership": 55, "confidence": 65},
+        "prerequisite_quests": ["milestone_sovereign_ascension"]
+      },
+      "hunter_notes": "Your social courage has grown tremendously - now use it to claim your place among the true influencers. Masters are made, not born."
+    },
+    {
+      "id": "legendary_crownless_king",
+      "title": "Crownless King Ascension",
+      "description": "Achieve the ultimate leadership mastery by becoming someone others naturally follow without formal authority - true sovereign power",
+      "category": "milestone",
+      "difficulty": "S",
+      "xp_reward": 1000,
+      "primary_trait": "leadership",
+      "secondary_traits": ["influence", "legacy", "mastery"],
+      "estimated_time": "30+ hours over 2 months",
+      "tasks": [
+        {
+          "id": "natural_following",
+          "title": "Build Natural Following",
+          "description": "Develop such strong leadership presence that people naturally seek your guidance and follow your lead",
+          "type": "social",
+          "completion_criteria": "Demonstrated natural following of 50+ people who seek your leadership",
+          "xp_reward": 300
+        },
+        {
+          "id": "sovereign_impact",
+          "title": "Create Sovereign-Level Impact",
+          "description": "Launch an initiative that creates significant positive change affecting hundreds or thousands",
+          "type": "action",
+          "completion_criteria": "Major initiative launched with documented large-scale impact",
+          "xp_reward": 400
+        },
+        {
+          "id": "leadership_mastery",
+          "title": "Demonstrate Complete Mastery",
+          "description": "Show mastery across all leadership dimensions while maintaining humility and service to others",
+          "type": "learning",
+          "completion_criteria": "Complete leadership mastery demonstrated and documented",
+          "xp_reward": 200
+        },
+        {
+          "id": "crownless_recognition",
+          "title": "Claim the Crownless Crown",
+          "description": "Achieve recognition as a leader who needs no title or formal authority to command respect and following",
+          "type": "social",
+          "completion_criteria": "Recognized as a natural leader without formal authority",
+          "xp_reward": 100
+        }
+      ],
+      "unlock_conditions": {
+        "level": 8,
+        "required_traits": {"leadership": 70, "confidence": 75, "social_courage": 50, "initiative": 60},
+        "prerequisite_quests": ["milestone_influence_mastery"]
+      },
+      "hunter_notes": "This is the ultimate test of sovereignty - to lead without a crown, to command without authority, to serve while ruling. You have the potential for true greatness."
+    }
+  ]
+]

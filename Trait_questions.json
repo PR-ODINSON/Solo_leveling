@@ -1150,5 +1150,837 @@
       "reverse_scoring": true,
       "difficulty": "Easy",
       "category": "behavior"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I complete my most important tasks before allowing myself leisure activities.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I frequently abandon goals when progress becomes slow or difficult.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I can stick to a budget or spending plan even when tempted by impulse purchases.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I make excuses to skip workouts or other planned self-improvement activities.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "physical"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I honor my word to others even when circumstances make it inconvenient.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I can maintain focus on long-term projects that take months or years to complete.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I struggle to say no to activities that don't align with my priorities.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I track my progress on goals and adjust my approach based on the data.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I often choose comfort over growth when faced with challenging decisions.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Discipline",
+      "question_text": "I can work on tasks I dislike without complaining or seeking sympathy.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I can remember and follow multi-step instructions without writing them down.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I jump between browser tabs or apps constantly while trying to work.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I can maintain concentration during repetitive or monotonous tasks.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "My mind races with random thoughts when I try to meditate or be still.",
+      "trait_weight": 0.9,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I can listen actively to others without mentally preparing my response.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I get restless and fidgety when required to sit still for extended periods.",
+      "trait_weight": 0.8,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "physical"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I can shift my attention deliberately between different tasks as needed.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I find myself daydreaming during important conversations or presentations.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "social"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I can work productively even when I'm not in my ideal environment.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Focus",
+      "question_text": "I notice immediately when my attention starts to drift from the task at hand.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I can sustain physical activity for long periods without feeling depleted.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "physical"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I hit an energy wall in the afternoon and struggle to be productive.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "physical"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I wake up naturally without needing multiple alarms or external pressure.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I feel mentally foggy and unclear for much of the day.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I can handle back-to-back meetings or social interactions without burnout.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I need significant downtime to recover after challenging or stressful days.",
+      "trait_weight": 0.9,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I maintain enthusiasm for projects even when the initial excitement fades.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I feel energized by challenging problems rather than drained by them.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I postpone important tasks because I don't have the energy to tackle them.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Energy",
+      "question_text": "I can maintain high performance levels even during busy or demanding periods.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I celebrate my accomplishments without downplaying their significance.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I compare myself negatively to others and feel inadequate as a result.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I can negotiate for what I want without feeling guilty or aggressive.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I hesitate to apply for opportunities because I assume I'm not qualified.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I can receive compliments gracefully without deflecting or minimizing them.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I assume others are judging me harshly in social or professional situations.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I can ask for help or support when I need it without feeling weak.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I can make decisions quickly when I have sufficient information.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I overthink simple decisions and seek excessive input from others.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Confidence",
+      "question_text": "I feel comfortable expressing my personality authentically in any setting.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I ask follow-up questions to deepen my understanding of complex topics.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I accept simple explanations without digging deeper into the underlying principles.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I enjoy solving puzzles and brain teasers in my spare time.",
+      "trait_weight": 0.9,
+      "reverse_scoring": false,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I avoid topics that seem too complex or intellectually demanding.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I seek out diverse perspectives before forming strong opinions on important issues.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I dismiss ideas that conflict with my existing beliefs without serious consideration.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I notice interesting details in my environment that others often miss.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I research topics thoroughly before engaging in discussions about them.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I rely on others to explain things rather than investigating them myself.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Curiosity",
+      "question_text": "I can find something interesting to learn about in almost any situation or topic.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I create solutions to problems I encounter rather than waiting for someone else to fix them.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I complain about problems but rarely take action to address them myself.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I reach out to people who could help me achieve my goals.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I wait for opportunities to come to me rather than actively seeking them out.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I organize events, projects, or gatherings that bring value to others.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I prefer being a participant rather than taking leadership roles.",
+      "trait_weight": 0.9,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "social"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I anticipate future needs and prepare for them in advance.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I take calculated risks to pursue meaningful opportunities.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I need external motivation or deadlines to start working on important projects.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Initiative",
+      "question_text": "I document and share knowledge that could benefit others in my field or community.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I can recognize when my emotions are influencing my judgment and adjust accordingly.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I make important decisions when I'm angry, stressed, or emotionally triggered.",
+      "trait_weight": 1.2,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I have developed healthy rituals and practices that keep me centered.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I escape into distractions rather than facing difficult emotions or situations.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I can pause and choose my response rather than reacting automatically.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I justify behaviors that I know conflict with my stated values or goals.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I can sit with discomfort or uncertainty without immediately seeking relief.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I take time for regular self-reflection and personal inventory.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I repeat the same mistakes because I don't learn from my experiences.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Self-Mastery",
+      "question_text": "I can forgive myself for mistakes without dwelling on guilt or shame.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I can stay optimistic even when facing multiple challenges simultaneously.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "Small setbacks can ruin my mood for hours or days.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I can separate my self-worth from my performance or achievements.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I become overwhelmed when multiple people need my attention at the same time.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I can reframe negative situations to find potential benefits or learning opportunities.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I take things personally even when they're not meant to be personal attacks.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I can maintain my emotional stability even in chaotic or unpredictable environments.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I have a strong support network that I can rely on during difficult times.",
+      "trait_weight": 1.0,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I isolate myself from others when I'm struggling emotionally.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Emotional Resilience",
+      "question_text": "I can process and release negative emotions rather than carrying them for long periods.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I show up with the same level of professionalism regardless of my personal circumstances.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "My friends and colleagues never know which version of me they'll encounter.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I complete projects at a steady pace rather than in bursts of activity.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I work intensely for short periods then lose momentum for weeks.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I maintain the same ethical standards even when no one is watching.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I adjust my values or principles depending on the situation or social pressure.",
+      "trait_weight": 1.2,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I can be relied upon to deliver what I promise, when I promise it.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I keep the same sleep schedule even on weekends and holidays.",
+      "trait_weight": 0.9,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I abandon routines easily when my schedule gets disrupted.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "routine"
+    },
+    {
+      "trait_name": "Consistency",
+      "question_text": "I maintain consistent quality in my work even under tight deadlines.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I can identify the key principles behind successful strategies and apply them to new situations.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I get frustrated when I can't master new skills immediately.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I actively seek out challenging situations that will stretch my capabilities.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I stick with familiar approaches even when they're not producing good results.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I can learn effectively from observing others without needing direct instruction.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I need someone to show me exactly how to do things before I can attempt them.",
+      "trait_weight": 0.9,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "behavior"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I can synthesize information from multiple sources to create new insights.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I enjoy being a beginner and embrace the awkwardness of learning new skills.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "mindset"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I feel embarrassed when I make mistakes while learning in front of others.",
+      "trait_weight": 1.0,
+      "reverse_scoring": true,
+      "difficulty": "Easy",
+      "category": "emotion"
+    },
+    {
+      "trait_name": "Learning Agility",
+      "question_text": "I can quickly adjust my communication style to match different audiences.",
+      "trait_weight": 1.1,
+      "reverse_scoring": false,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Social Courage",
+      "question_text": "I can deliver bad news or disappointing information in a direct but compassionate way.",
+      "trait_weight": 1.3,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Social Courage",
+      "question_text": "I avoid bringing up important but sensitive topics to keep the peace.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "social"
+    },
+    {
+      "trait_name": "Social Courage",
+      "question_text": "I can ask for what I need without feeling guilty or apologetic.",
+      "trait_weight": 1.2,
+      "reverse_scoring": false,
+      "difficulty": "Hard",
+      "category": "social"
+    },
+    {
+      "trait_name": "Social Courage",
+      "question_text": "I go along with group decisions even when I strongly disagree with them.",
+      "trait_weight": 1.1,
+      "reverse_scoring": true,
+      "difficulty": "Medium",
+      "category": "social"
     }
-]
+  ]

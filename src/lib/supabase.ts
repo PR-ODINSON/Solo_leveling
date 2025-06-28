@@ -27,7 +27,39 @@ export interface Stat {
   updated_at: string
 }
 
+// Updated Quest interface to match new database structure
 export interface Quest {
+  id: string
+  title: string
+  description: string
+  category: 'daily' | 'weekly' | 'monthly' | 'milestone'
+  difficulty: 'E' | 'D' | 'C' | 'B' | 'A' | 'S'
+  xp_reward: number
+  primary_trait: string
+  secondary_traits: string[]
+  estimated_time: string
+  unlock_level: number
+  required_traits: Record<string, number> | null
+  prerequisite_quests: string[]
+  hunter_notes: string
+  created_at?: string
+  updated_at?: string
+}
+
+// New Task interface for the tasks table
+export interface Task {
+  id: string
+  quest_id: string
+  title: string
+  description: string
+  type: 'habit' | 'action' | 'learning' | 'social' | 'creative'
+  completion_criteria: string
+  xp_reward: number
+  created_at?: string
+}
+
+// Legacy interfaces for backward compatibility
+export interface LegacyQuest {
   id: string
   user_id: string
   title: string
@@ -55,6 +87,18 @@ export interface Streak {
   user_id: string
   current_streak: number
   last_completed_date: string
+  created_at: string
+  updated_at: string
+}
+
+// User profile interface for storing assessment results and goals
+export interface UserProfile {
+  id: string
+  user_id: string
+  selected_goal: string
+  trait_scores: Record<string, number>
+  current_level: number
+  total_xp: number
   created_at: string
   updated_at: string
 } 

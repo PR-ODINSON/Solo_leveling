@@ -128,33 +128,64 @@ const AssessmentPage = () => {
     return currentBatch.every(q => answers[q.id] !== undefined);
   };
 
+  const isAssessmentComplete = () => {
+    return allQuestions.every(q => answers[q.id] !== undefined);
+  };
+
+  const getTotalAnsweredQuestions = () => {
+    return Object.keys(answers).length;
+  };
+
   const handleNext = () => {
     if (currentBatchIndex < totalBatches - 1) {
       setCurrentBatchIndex(prev => prev + 1);
     } else {
       // Assessment complete - prepare data for results
-      const traitScores: Record<string, { total: number; count: number }> = {};
+      console.log('Assessment completed! Processing results...');
+      console.log('Total questions answered:', Object.keys(answers).length);
+      console.log('All questions:', allQuestions.length);
       
-      // Calculate scores per trait
+      // Group questions by trait and collect their IDs
+      const questionSets: Array<{
+        traitName: string;
+        questionIds: string[];
+      }> = [];
+      
+      const traitGroups: Record<string, string[]> = {};
+      
+      // Group question IDs by trait
       allQuestions.forEach(question => {
-        const score = answers[question.id] || 0;
-        if (!traitScores[question.trait_name]) {
-          traitScores[question.trait_name] = { total: 0, count: 0 };
+        if (!traitGroups[question.trait_name]) {
+          traitGroups[question.trait_name] = [];
         }
-        traitScores[question.trait_name].total += score;
-        traitScores[question.trait_name].count += 1;
+        traitGroups[question.trait_name].push(question.id);
+      });
+      
+      // Convert to the format expected by results page
+      Object.entries(traitGroups).forEach(([traitName, questionIds]) => {
+        questionSets.push({
+          traitName,
+          questionIds
+        });
       });
 
       const assessmentData = {
         answers,
-        traitScores,
+        questionSets,
         totalQuestions: allQuestions.length,
         completedAt: new Date().toISOString()
       };
       
+      console.log('Saving assessment data:', assessmentData);
+      
       // Store in localStorage for results page
       localStorage.setItem('assessmentResults', JSON.stringify(assessmentData));
-      router.push('/onboarding/results');
+      
+      // Small delay to ensure data is saved
+      setTimeout(() => {
+        console.log('Redirecting to results...');
+        router.push('/onboarding/results');
+      }, 100);
     }
   };
 
@@ -370,17 +401,17 @@ const AssessmentPage = () => {
           <div className="flex justify-between items-center mb-3">
             <div className="text-sm text-gray-400">
               <span className="font-mono">Step {currentBatchIndex + 1} of {totalBatches}</span>
-              <span className="ml-2 text-xs">({allQuestions.length} total questions)</span>
+              <span className="ml-2 text-xs">({getTotalAnsweredQuestions()}/{allQuestions.length} questions answered)</span>
             </div>
             <div className="text-sm text-cyan-400 font-mono font-bold">
-              {Math.round(getProgressPercentage())}%
+              {Math.round((getTotalAnsweredQuestions() / allQuestions.length) * 100)}%
             </div>
           </div>
           <div className="w-full bg-gray-800 rounded-full h-4 overflow-hidden shadow-inner">
             <motion.div
               className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full shadow-lg"
               initial={{ width: 0 }}
-              animate={{ width: `${getProgressPercentage()}%` }}
+              animate={{ width: `${(getTotalAnsweredQuestions() / allQuestions.length) * 100}%` }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
             />
           </div>

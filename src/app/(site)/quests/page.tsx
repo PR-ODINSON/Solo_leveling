@@ -23,6 +23,8 @@ import {
   Heart
 } from 'lucide-react'
 import { useQuestsStore, useUIStore } from '../../../lib/store'
+import { getQuestsGroupedByCategory, getAllCategoriesForGoal, QuestWithTasks } from '../../../lib/questService'
+import { EnhancedQuestCard } from '../../../components/EnhancedQuestCard'
 
 // Mock data for demo since auth is disabled
 const mockQuests = [
@@ -33,7 +35,8 @@ const mockQuests = [
   { id: '5', title: 'Network with 3 New People', category: 'Social', stat_target: 'Charisma', xp_reward: 45, due_date: new Date(Date.now() - 172800000).toISOString(), completed: false, missed: true }
 ]
 
-const questCategories = ['All', 'Academic', 'Physical', 'Emotional', 'Social']
+// Dynamic quest categories will be loaded from database
+// const questCategories = ['All', 'Academic', 'Physical', 'Emotional', 'Social']
 const statIcons = {
   Intelligence: Brain,
   Strength: Dumbbell,
@@ -95,16 +98,21 @@ const FailureEffect = ({ position, onComplete }: { position: { x: number, y: num
 
 export default function QuestsPage() {
   const [quests, setQuests] = useState(mockQuests)
+  const [dynamicQuests, setDynamicQuests] = useState<QuestWithTasks[]>([])
+  const [questsLoading, setQuestsLoading] = useState(true)
   const [filter, setFilter] = useState('All')
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [floatingEffects, setFloatingEffects] = useState<Array<{ id: number, type: 'xp' | 'failure', xp?: number, position: { x: number, y: number } }>>([])
+  const [availableCategories, setAvailableCategories] = useState<string[]>(['All'])
 
-  const activeQuests = quests.filter(q => !q.completed && !q.missed)
-  const completedQuests = quests.filter(q => q.completed)
-  const missedQuests = quests.filter(q => q.missed)
+  // Use dynamic quests if available, otherwise fall back to mock quests
+  const currentQuests = dynamicQuests.length > 0 ? dynamicQuests : quests
+  const activeQuests = currentQuests.filter((q: any) => !q.completed && !q.missed)
+  const completedQuests = currentQuests.filter((q: any) => q.completed)
+  const missedQuests = currentQuests.filter((q: any) => q.missed)
   const weeklyStreak = Math.floor(completedQuests.length / 7 * 5) // Mock calculation
 
-  const filteredQuests = filter === 'All' ? quests : quests.filter(q => q.category === filter)
+  const filteredQuests = filter === 'All' ? currentQuests : currentQuests.filter((q: any) => q.category === filter)
 
   const completeQuest = (questId: string, event: React.MouseEvent) => {
     const quest = quests.find(q => q.id === questId)
@@ -145,6 +153,40 @@ export default function QuestsPage() {
   const removeEffect = (id: number) => {
     setFloatingEffects(prev => prev.filter(effect => effect.id !== id))
   }
+
+  // Load dynamic quests from database
+  useEffect(() => {
+    const loadQuests = async () => {
+      try {
+        const hunterGoalData = localStorage.getItem('hunterGoal');
+        
+        if (hunterGoalData) {
+          const { selectedGoal } = JSON.parse(hunterGoalData);
+          
+          // Load all quests grouped by category
+          const groupedQuests = await getQuestsGroupedByCategory(selectedGoal.id);
+          
+          // Flatten the grouped quests
+          const allQuests = Object.values(groupedQuests).flat();
+          setDynamicQuests(allQuests);
+          
+          // Get available categories
+          const categories = await getAllCategoriesForGoal(selectedGoal.id);
+          setAvailableCategories(['All', ...categories]);
+          
+          console.log('Loaded dynamic quests:', allQuests);
+        } else {
+          console.log('No hunter goal found, using mock quests');
+        }
+      } catch (error) {
+        console.error('Error loading dynamic quests:', error);
+      } finally {
+        setQuestsLoading(false);
+      }
+    };
+
+    loadQuests();
+  }, []);
 
   return (
     <>
@@ -236,7 +278,7 @@ export default function QuestsPage() {
           transition={{ delay: 0.4 }}
         >
           <div className="flex flex-wrap gap-3">
-            {questCategories.map((category, index) => (
+                          {availableCategories.map((category: string, index: number) => (
               <motion.button
                 key={category}
                 onClick={() => setFilter(category)}
@@ -344,9 +386,32 @@ export default function QuestsPage() {
                 Active Missions
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {activeQuests.filter(q => filter === 'All' || q.category === filter).map((quest, index) => (
-                  <QuestCardComponent key={quest.id} quest={quest} index={index} onComplete={completeQuest} onMiss={missQuest} />
-                ))}
+                {activeQuests.filter((q: any) => filter === 'All' || q.category === filter).map((quest: any, index: number) => {
+                  // Check if this is a dynamic quest with tasks or a mock quest
+                  if ('tasks' in quest && 'difficulty' in quest) {
+                    // Dynamic quest from database
+                    return (
+                      <EnhancedQuestCard 
+                        key={quest.id} 
+                        quest={quest} 
+                        index={index} 
+                        onComplete={completeQuest}
+                        onMiss={missQuest}
+                      />
+                    );
+                  } else {
+                    // Mock quest - use original component
+                    return (
+                      <QuestCardComponent 
+                        key={quest.id} 
+                        quest={quest} 
+                        index={index} 
+                        onComplete={completeQuest} 
+                        onMiss={missQuest} 
+                      />
+                    );
+                  }
+                })}
               </div>
             </motion.div>
           )}
@@ -673,7 +738,7 @@ const CreateQuestModalComponent = ({ isVisible, onClose, onSubmit }: {
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                       className="w-full px-4 py-3 bg-white/5 backdrop-blur-sm border border-blue-400/30 rounded-xl text-white focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all duration-300"
                     >
-                      {questCategories.slice(1).map(category => (
+                      {['daily', 'weekly', 'monthly', 'milestone'].map((category: string) => (
                         <option key={category} value={category} className="bg-slate-800">{category}</option>
                       ))}
                     </select>

@@ -263,13 +263,23 @@ const ResultsPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <Link href="/dashboard">
+          <Link href="/onboarding/goals">
             <motion.button
               className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-full text-xl font-bold hover:from-cyan-400 hover:to-purple-500 transition-all duration-300 shadow-2xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Enter Dashboard
+              🎯 Choose Your Path
+            </motion.button>
+          </Link>
+          
+          <Link href="/dashboard">
+            <motion.button
+              className="px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full text-lg font-bold hover:from-gray-500 hover:to-gray-600 transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Skip to Dashboard
             </motion.button>
           </Link>
           
@@ -278,7 +288,7 @@ const ResultsPage = () => {
               localStorage.removeItem('assessmentResults');
               router.push('/onboarding/assessment');
             }}
-            className="px-8 py-4 bg-gradient-to-r from-gray-600 to-gray-700 rounded-full text-lg font-bold hover:from-gray-500 hover:to-gray-600 transition-all duration-300"
+            className="px-6 py-3 bg-gradient-to-r from-orange-600 to-red-600 rounded-full text-sm font-bold hover:from-orange-500 hover:to-red-500 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -300,6 +310,6 @@ const ResultsPage = () => {
       </div>
     </div>
   );
-};
+  };
 
 export default ResultsPage; 

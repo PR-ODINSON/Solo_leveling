@@ -40,6 +40,9 @@ import {
   getHunterRank,
   getQuestDifficulty 
 } from '../../../lib/utils'
+import { generateQuestsForHunter, Quest, TraitScores, Goal } from '../../../lib/questGenerator'
+import { getQuestsGroupedByCategory, getRecommendedQuests, QuestWithTasks } from '../../../lib/questService'
+import { EnhancedQuestCard } from '../../../components/EnhancedQuestCard'
 
 // Mock data with Solo Leveling theme
 const mockStats = [
@@ -211,159 +214,7 @@ const RPGUserProfile = () => {
   )
 }
 
-// Enhanced Quest Card Component
-const EnhancedQuestCard = ({ quest, onComplete }: { quest: any, onComplete: (questId: string, event: React.MouseEvent) => void }) => {
-  const [isCompleting, setIsCompleting] = useState(false)
-  const difficulty = getQuestDifficulty(quest.xp_reward)
-  
-  const rarityStyles = {
-    Common: { 
-      border: 'border-gray-400/30', 
-      bg: 'bg-slate-800/10', 
-      glow: 'hover:shadow-gray-500/30',
-      text: 'text-gray-300'
-    },
-    Rare: { 
-      border: 'border-blue-400/50', 
-      bg: 'bg-blue-900/10', 
-      glow: 'hover:shadow-blue-500/40',
-      text: 'text-blue-300'
-    },
-    Epic: { 
-      border: 'border-purple-400/50', 
-      bg: 'bg-purple-900/10', 
-      glow: 'hover:shadow-purple-500/40',
-      text: 'text-purple-300'
-    },
-    Legendary: { 
-      border: 'border-yellow-400/50', 
-      bg: 'bg-yellow-900/10', 
-      glow: 'hover:shadow-yellow-500/40',
-      text: 'text-yellow-300'
-    }
-  }
-
-  const rarity = quest.rarity || 'Common'
-  const style = rarityStyles[rarity as keyof typeof rarityStyles]
-
-  const handleComplete = async (e: React.MouseEvent) => {
-    setIsCompleting(true)
-    await new Promise(resolve => setTimeout(resolve, 500)) // Simulate completion
-    onComplete(quest.id, e)
-    setIsCompleting(false)
-  }
-
-  return (
-    <motion.div
-      className={`solo-panel p-5 ${style.border} ${style.bg} cursor-pointer group relative overflow-hidden`}
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      whileHover={{ 
-        scale: 1.03, 
-        y: -4,
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)'
-      }}
-      transition={{ duration: 0.3 }}
-    >
-      {/* Rarity Glow Border */}
-      <motion.div
-        className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${style.glow}`}
-        style={{
-          boxShadow: `0 0 30px ${rarity === 'Legendary' ? '#fbbf24' : rarity === 'Epic' ? '#8b5cf6' : rarity === 'Rare' ? '#3b82f6' : '#6b7280'}40`
-        }}
-      />
-
-      {/* Quest Icon */}
-      <div className="flex items-start gap-4">
-        <motion.div
-          className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${style.bg} border ${style.border}`}
-          whileHover={{ rotate: 360 }}
-          transition={{ duration: 0.6 }}
-        >
-          {quest.icon}
-        </motion.div>
-
-        <div className="flex-1">
-          {/* Quest Header */}
-          <div className="flex items-center gap-2 mb-2">
-            <span className={`text-xs px-3 py-1 rounded-full bg-black/40 ${style.text} ui-font font-semibold`}>
-              {rarity}
-            </span>
-            <span className={`text-xs ${difficulty.color} ui-font font-medium`}>
-              {difficulty.difficulty}
-            </span>
-            <span className="text-xs text-blue-300/60 ui-font">{quest.category}</span>
-          </div>
-
-          <h4 className="text-lg font-bold text-blue-100 mb-2 ui-font group-hover:text-white transition-colors">
-            {quest.title}
-          </h4>
-
-          {/* Quest Details */}
-          <div className="flex items-center justify-between text-sm">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1">
-                <Shield size={14} className="text-blue-400" />
-                <span className="text-blue-300/70 ui-font">{quest.stat_target}</span>
-              </div>
-              <motion.div 
-                className="flex items-center gap-1"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Zap size={14} className="text-yellow-400" />
-                <span className="text-yellow-400 font-bold ui-font">+{quest.xp_reward} XP</span>
-              </motion.div>
-            </div>
-
-            <motion.button
-              onClick={handleComplete}
-              className={`px-4 py-2 rounded-lg font-semibold ui-font transition-all duration-300 ${
-                isCompleting 
-                  ? 'bg-yellow-500/20 text-yellow-400 scale-95' 
-                  : 'bg-green-500/20 text-green-400 hover:bg-green-500/30 hover:scale-105'
-              }`}
-              whileTap={{ scale: 0.95 }}
-              disabled={isCompleting}
-            >
-              {isCompleting ? (
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                >
-                  ⚡
-                </motion.div>
-              ) : (
-                'Complete'
-              )}
-            </motion.button>
-          </div>
-        </div>
-      </div>
-
-      {/* Completion Animation */}
-      {isCompleting && (
-        <motion.div
-          className="absolute inset-0 bg-green-500/20 rounded-2xl flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <motion.div
-            className="text-4xl"
-            animate={{ 
-              scale: [1, 1.5, 1],
-              rotate: [0, 360, 0]
-            }}
-            transition={{ duration: 0.5 }}
-          >
-            ✨
-          </motion.div>
-        </motion.div>
-      )}
-    </motion.div>
-  )
-}
+// Enhanced Quest Card Component removed - now using imported component
 
 // Floating XP Badge Component
 const FloatingXPBadge = ({ xp, position, onComplete }: { xp: number, position: { x: number, y: number }, onComplete: () => void }) => {
@@ -676,6 +527,9 @@ export default function DashboardPage() {
   })
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [xpCounter, setXpCounter] = useState(0)
+  const [dynamicQuests, setDynamicQuests] = useState<QuestWithTasks[]>([])
+  const [questsLoading, setQuestsLoading] = useState(true)
+  const [hunterGoal, setHunterGoal] = useState<Goal | null>(null)
 
   const playSound = (type: 'xp' | 'levelup') => {
     if (!soundEnabled) return
@@ -726,6 +580,55 @@ export default function DashboardPage() {
   }
 
   const toggleSound = () => setSoundEnabled(!soundEnabled)
+
+  // Load dynamic quests from database
+  useEffect(() => {
+    const loadQuests = async () => {
+      try {
+        // Check if we have hunter goal data
+        const hunterGoalData = localStorage.getItem('hunterGoal');
+        const questGenerationData = localStorage.getItem('questGenerationData');
+        
+        if (hunterGoalData) {
+          const { selectedGoal } = JSON.parse(hunterGoalData);
+          setHunterGoal(selectedGoal);
+          
+          // Get trait scores for recommendations
+          let traitScores = {};
+          let hunterLevel = 1;
+          
+          if (questGenerationData) {
+            const data = JSON.parse(questGenerationData);
+            traitScores = data.traitScores || {};
+            hunterLevel = data.hunterLevel || 1;
+          }
+          
+          // Load recommended quests from database based on goal
+          const recommendedQuests = await getRecommendedQuests(
+            selectedGoal.id,
+            traitScores,
+            hunterLevel,
+            8 // Get more quests for variety
+          );
+          
+          setDynamicQuests(recommendedQuests);
+          console.log('Loaded dynamic quests from database:', recommendedQuests);
+        } else {
+          // No goal selected - show empty state
+          console.log('No hunter goal found, showing empty state');
+          setDynamicQuests([]);
+        }
+      } catch (error) {
+        console.error('Error loading dynamic quests:', error);
+        // Fallback to mock quests on error
+        setDynamicQuests([]);
+      } finally {
+        setQuestsLoading(false);
+      }
+    };
+
+    loadQuests();
+  }, []);
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -798,27 +701,103 @@ export default function DashboardPage() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6 }}
       >
-        <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
-          <motion.span
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            🗡️
-          </motion.span>
-          Active Quests
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {mockQuests.slice(0, 4).map((quest, index) => (
-            <motion.div
-              key={quest.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 * index }}
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-4xl font-bold fantasy-font text-blue-100 flex items-center gap-3">
+            <motion.span
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
             >
-              <EnhancedQuestCard quest={quest} onComplete={completeQuest} />
-            </motion.div>
-          ))}
+              🗡️
+            </motion.span>
+            {hunterGoal ? `${hunterGoal.name} Quests` : 'Active Quests'}
+          </h2>
+          {hunterGoal && (
+            <div className="text-sm text-blue-300/70 bg-blue-900/20 px-3 py-1 rounded-full border border-blue-500/30">
+              Goal: {hunterGoal.name}
+            </div>
+          )}
         </div>
+
+        {questsLoading ? (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="solo-panel p-6 animate-pulse">
+                <div className="h-4 bg-blue-400/20 rounded mb-3"></div>
+                <div className="h-3 bg-blue-400/10 rounded mb-2"></div>
+                <div className="h-3 bg-blue-400/10 rounded w-3/4"></div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {dynamicQuests.length > 0 ? (
+              // Render dynamic quests from database
+              dynamicQuests.slice(0, 4).map((quest, index) => (
+                <motion.div
+                  key={quest.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <EnhancedQuestCard quest={quest} index={index} onComplete={completeQuest} />
+                </motion.div>
+              ))
+            ) : (
+              // Render mock quests as fallback (convert to new format)
+              mockQuests.slice(0, 4).map((quest, index) => {
+                const convertedQuest: QuestWithTasks = {
+                  id: quest.id,
+                  title: quest.title,
+                  description: `Complete this ${quest.category.toLowerCase()} quest to gain ${quest.xp_reward} XP`,
+                  category: quest.category.toLowerCase() as 'daily' | 'weekly' | 'monthly' | 'milestone',
+                  difficulty: quest.rarity === 'Legendary' ? 'S' : quest.rarity === 'Epic' ? 'A' : quest.rarity === 'Rare' ? 'B' : 'C',
+                  xp_reward: quest.xp_reward,
+                  primary_trait: quest.stat_target.toLowerCase().replace(' ', '_'),
+                  secondary_traits: [],
+                  estimated_time: '30 minutes',
+                  unlock_level: 1,
+                  required_traits: null,
+                  prerequisite_quests: [],
+                  hunter_notes: `A ${quest.rarity.toLowerCase()} quest focusing on ${quest.stat_target} development.`,
+                  tasks: []
+                };
+                
+                return (
+                  <motion.div
+                    key={quest.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 * index }}
+                  >
+                    <EnhancedQuestCard quest={convertedQuest} index={index} onComplete={completeQuest} />
+                  </motion.div>
+                );
+              })
+            )}
+          </div>
+        )}
+
+        {dynamicQuests.length === 0 && !questsLoading && (
+          <motion.div
+            className="solo-panel p-8 text-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            <div className="text-6xl mb-4">🎯</div>
+            <h3 className="text-xl font-bold text-blue-100 mb-2">Complete Your Assessment First</h3>
+            <p className="text-blue-300/70 mb-4">
+              Take the Hunter Assessment and choose your goal to unlock personalized quests!
+            </p>
+            <motion.button
+              onClick={() => window.location.href = '/onboarding/assessment'}
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl hover:from-blue-400 hover:to-purple-500 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Start Assessment
+            </motion.button>
+          </motion.div>
+        )}
       </motion.div>
 
       {/* Floating XP Badges */}

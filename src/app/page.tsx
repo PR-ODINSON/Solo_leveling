@@ -133,6 +133,7 @@ export default function LandingPage() {
   const { scrollYProgress } = useScroll()
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
 
   const features = [
     {
@@ -187,6 +188,14 @@ export default function LandingPage() {
     return () => clearInterval(timer);
   }, []);
 
+  const handleGateEntry = () => {
+    setIsTransitioning(true);
+    // Add a dramatic pause before navigation
+    setTimeout(() => {
+      window.location.href = '/onboarding/assessment';
+    }, 2000);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Particle Background */}
@@ -237,10 +246,13 @@ export default function LandingPage() {
           >
             <div className="bg-black/60 backdrop-blur-lg border border-cyan-500/30 rounded-2xl p-8 max-w-3xl mx-auto shadow-2xl shadow-cyan-500/20">
               <div className="text-cyan-400 text-xl mb-4">
-                <TypeWriter text="SYSTEM INITIALIZATION COMPLETE..." delay={80} />
+                <TypeWriter text="HUNTER ASSOCIATION SYSTEM ONLINE..." delay={80} />
               </div>
-              <div className="text-purple-400 text-lg">
-                <TypeWriter text="Welcome to the Hunter Association, Prithvi." delay={60} />
+              <div className="text-purple-400 text-lg mb-3">
+                <TypeWriter text="Welcome, potential hunter." delay={60} />
+              </div>
+              <div className="text-yellow-400 text-base">
+                <TypeWriter text="Assessment protocol required for gate access authorization." delay={50} />
               </div>
               
               {/* Loading Bar */}
@@ -255,35 +267,98 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
+          {/* Assessment Notice */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.5, duration: 0.8 }}
+            className="mb-8"
+          >
+            <div className="bg-black/40 backdrop-blur-lg border border-yellow-500/30 rounded-2xl p-6 max-w-2xl mx-auto shadow-2xl shadow-yellow-500/10">
+              <div className="flex items-center justify-center mb-4">
+                <motion.div
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                  className="text-4xl mr-3"
+                >
+                  ⚠️
+                </motion.div>
+                <h3 className="text-xl font-bold text-yellow-400">HUNTER ASSESSMENT REQUIRED</h3>
+              </div>
+              <p className="text-gray-300 text-center leading-relaxed">
+                Before entering the gate, all potential hunters must undergo the{' '}
+                <span className="text-cyan-400 font-semibold">Hunter Awakening Assessment</span> to determine their 
+                innate abilities and rank classification.
+              </p>
+            </div>
+          </motion.div>
+
           {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3, duration: 0.8 }}
+            transition={{ delay: 3.5, duration: 0.8 }}
           >
-            <Link href="/login">
               <motion.button
-                className="relative group px-16 py-6 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-2xl font-bold overflow-hidden"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                onClick={handleGateEntry}
+                disabled={isTransitioning}
+                className="relative group px-16 py-6 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-2xl font-bold overflow-hidden shadow-2xl shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={!isTransitioning ? { scale: 1.05 } : {}}
+                whileTap={!isTransitioning ? { scale: 0.95 } : {}}
               >
-                <span className="relative z-10">ENTER THE GATE</span>
+                <span className="relative z-10 flex items-center gap-3">
+                  <motion.span
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                  >
+                    🌀
+                  </motion.span>
+                  ENTER THE GATE
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    ⚡
+                  </motion.span>
+                </span>
+                
+                {/* Hover Gradient */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600"
                   initial={{ x: "100%" }}
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
+                
+                {/* Pulsing Glow */}
                 <motion.div
-                  className="absolute inset-0 bg-white/20"
+                  className="absolute inset-0 bg-white/20 rounded-full"
                   animate={{ 
                     opacity: [0, 0.3, 0],
-                    scale: [1, 1.2, 1]
+                    scale: [1, 1.1, 1]
                   }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
+                
+                {/* Border Animation */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-cyan-400/50"
+                  animate={{ 
+                    borderColor: ['rgba(6, 182, 212, 0.5)', 'rgba(147, 51, 234, 0.5)', 'rgba(6, 182, 212, 0.5)']
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                                 />
               </motion.button>
-            </Link>
+            
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 4, duration: 0.8 }}
+              className="text-gray-400 mt-4 text-sm"
+            >
+              Begin your hunter awakening assessment
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -484,13 +559,13 @@ export default function LandingPage() {
               their reality into an epic adventure
             </p>
             
-            <Link href="/login">
+            <Link href="/onboarding/assessment">
               <motion.button
                 className="relative group px-20 py-8 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-3xl font-bold overflow-hidden shadow-2xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">ASCEND NOW</span>
+                <span className="relative z-10">BEGIN ASSESSMENT</span>
                 <motion.div
                   className="absolute inset-0 bg-white/20"
                   animate={{ 
@@ -570,6 +645,67 @@ export default function LandingPage() {
           </div>
       </div>
       </footer>
+
+      {/* Gate Transition Overlay */}
+      <AnimatePresence>
+        {isTransitioning && (
+          <motion.div
+            className="fixed inset-0 z-[100] bg-black flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="text-center">
+              <motion.div
+                className="text-8xl mb-8"
+                animate={{ 
+                  rotate: [0, 360],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                🌀
+              </motion.div>
+              
+              <motion.h2
+                className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-4"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
+                ACCESSING HUNTER GATE
+              </motion.h2>
+              
+              <motion.p
+                className="text-xl text-gray-400 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+              >
+                Initiating Hunter Assessment Protocol...
+              </motion.p>
+              
+              <motion.div
+                className="w-64 h-2 bg-gray-800 rounded-full mx-auto overflow-hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+              >
+                <motion.div
+                  className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: "100%" }}
+                  transition={{ delay: 1.2, duration: 1.5, ease: "easeInOut" }}
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 } 
