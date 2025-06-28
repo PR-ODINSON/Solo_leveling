@@ -328,32 +328,86 @@ const AssessmentPage = () => {
               </div>
             </div>
             
-            {/* Selected state effects */}
-            {currentScore === score.value && (
-              <>
-                <motion.div
-                  className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${score.color} opacity-30 blur-xl`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 0.3, scale: 1.2 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <motion.div
-                  className="absolute inset-0 rounded-2xl border-2 border-white/50"
-                  initial={{ scale: 1 }}
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                {/* Sparkle effect */}
-                <motion.div
-                  className="absolute -top-2 -right-2 text-yellow-300"
-                  initial={{ scale: 0, rotate: 0 }}
-                  animate={{ scale: 1, rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  ✨
-                </motion.div>
-              </>
-            )}
+                         {/* Selected state effects */}
+             {currentScore === score.value && (
+               <>
+                 {/* Inner glow */}
+                 <motion.div
+                   className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${score.color} opacity-30 blur-xl`}
+                   initial={{ opacity: 0, scale: 0.8 }}
+                   animate={{ opacity: 0.3, scale: 1.2 }}
+                   transition={{ duration: 0.5 }}
+                 />
+                 
+                 {/* Magic pulse rings */}
+                 <motion.div
+                   className="absolute inset-0 rounded-2xl border-2 border-white/60"
+                   initial={{ scale: 1, opacity: 1 }}
+                   animate={{ 
+                     scale: [1, 1.3, 1], 
+                     opacity: [0.8, 0.2, 0.8] 
+                   }}
+                   transition={{ 
+                     duration: 2, 
+                     repeat: Infinity, 
+                     ease: "easeInOut" 
+                   }}
+                 />
+                 <motion.div
+                   className={`absolute inset-0 rounded-2xl border-2 border-gradient-to-r ${score.color.replace('to-', 'via-')} border-opacity-60`}
+                   initial={{ scale: 1, opacity: 1 }}
+                   animate={{ 
+                     scale: [1, 1.5, 1], 
+                     opacity: [0.6, 0, 0.6] 
+                   }}
+                   transition={{ 
+                     duration: 2.5, 
+                     repeat: Infinity, 
+                     ease: "easeInOut",
+                     delay: 0.3
+                   }}
+                 />
+                 <motion.div
+                   className="absolute inset-0 rounded-2xl border border-cyan-400/40"
+                   initial={{ scale: 1, opacity: 1 }}
+                   animate={{ 
+                     scale: [1, 1.8, 1], 
+                     opacity: [0.4, 0, 0.4] 
+                   }}
+                   transition={{ 
+                     duration: 3, 
+                     repeat: Infinity, 
+                     ease: "easeInOut",
+                     delay: 0.6
+                   }}
+                 />
+                 
+                 {/* Sparkle effects */}
+                 <motion.div
+                   className="absolute -top-2 -right-2 text-yellow-300"
+                   initial={{ scale: 0, rotate: 0 }}
+                   animate={{ scale: 1, rotate: 360 }}
+                   transition={{ duration: 0.5 }}
+                 >
+                   ✨
+                 </motion.div>
+                 <motion.div
+                   className="absolute -bottom-1 -left-1 text-purple-300"
+                   initial={{ scale: 0, rotate: 0 }}
+                   animate={{ 
+                     scale: [0, 1, 0], 
+                     rotate: [0, 180, 360] 
+                   }}
+                   transition={{ 
+                     duration: 2, 
+                     repeat: Infinity,
+                     delay: 0.8 
+                   }}
+                 >
+                   ⭐
+                 </motion.div>
+               </>
+             )}
           </motion.button>
         ))}
       </div>
@@ -740,28 +794,74 @@ const AssessmentPage = () => {
           </motion.button>
         </motion.div>
 
-        {/* Helper Text */}
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
-          <p className="text-gray-400 text-sm mb-3">
-            Rate each statement based on how accurately it describes you
-          </p>
-          <div className="flex justify-center space-x-6 text-xs text-gray-500">
-            <span className="flex items-center space-x-1">
-              <span>❌</span>
-              <span>Strongly Disagree</span>
-            </span>
-            <span>•</span>
-            <span className="flex items-center space-x-1">
-              <span>⭐</span>
-              <span>Strongly Agree</span>
-            </span>
-          </div>
-        </motion.div>
+                 {/* RPG Helper Text */}
+         <motion.div
+           className="text-center mt-12"
+           initial={{ opacity: 0 }}
+           animate={{ opacity: 1 }}
+           transition={{ delay: 1, duration: 0.8 }}
+         >
+           <motion.div
+             className="relative mb-6"
+             animate={{ 
+               textShadow: [
+                 "0 0 20px rgba(168, 85, 247, 0.4)",
+                 "0 0 30px rgba(168, 85, 247, 0.6)",
+                 "0 0 20px rgba(168, 85, 247, 0.4)"
+               ]
+             }}
+             transition={{ duration: 3, repeat: Infinity }}
+           >
+             <p className="text-purple-300 text-lg font-semibold mb-2 tracking-wide">
+               🔮 Your answers shape your destiny. Choose wisely. 🔮
+             </p>
+             <motion.div
+               className="w-64 h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent mx-auto"
+               animate={{ opacity: [0.3, 0.8, 0.3] }}
+               transition={{ duration: 2, repeat: Infinity }}
+             />
+           </motion.div>
+           
+           <p className="text-gray-400 text-sm mb-4 italic">
+             "Channel your inner truth through the mystical evaluation scales"
+           </p>
+           
+           <div className="flex justify-center space-x-8 text-xs text-gray-500">
+             <motion.span 
+               className="flex items-center space-x-2 bg-red-900/20 px-3 py-1 rounded-full border border-red-500/30"
+               whileHover={{ scale: 1.05, backgroundColor: "rgba(127, 29, 29, 0.3)" }}
+             >
+               <span className="text-red-400">❌</span>
+               <span>Reject</span>
+             </motion.span>
+             
+             <motion.span 
+               className="flex items-center space-x-1 text-gray-400"
+               animate={{ opacity: [0.5, 1, 0.5] }}
+               transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+             >
+               <span>⚔️</span>
+               <span>to</span>
+               <span>⚔️</span>
+             </motion.span>
+             
+             <motion.span 
+               className="flex items-center space-x-2 bg-purple-900/20 px-3 py-1 rounded-full border border-purple-500/30"
+               whileHover={{ scale: 1.05, backgroundColor: "rgba(88, 28, 135, 0.3)" }}
+             >
+               <span className="text-purple-400">⭐</span>
+               <span>Embrace</span>
+             </motion.span>
+           </div>
+           
+           <motion.p 
+             className="text-xs text-cyan-400/60 mt-4 font-mono"
+             animate={{ opacity: [0.4, 0.8, 0.4] }}
+             transition={{ duration: 4, repeat: Infinity }}
+           >
+             ✨ Ancient wisdom flows through honest reflection ✨
+           </motion.p>
+         </motion.div>
       </div>
     </div>
   );
