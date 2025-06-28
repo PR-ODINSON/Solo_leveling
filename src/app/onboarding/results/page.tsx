@@ -327,60 +327,258 @@ const ResultsPage = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 py-8">
-        {/* Epic Hero Section */}
+        {/* Epic Hero Section with Enhanced Rank Reveal */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
+          {/* System Scanning Narrative */}
           <motion.div
-            className="text-8xl mb-6"
-            animate={{ 
-              rotateY: [0, 10, 0, -10, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ duration: 6, repeat: Infinity }}
-          >
-            🧬
-          </motion.div>
-          
-          <motion.h1 
-            className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-400 bg-clip-text text-transparent mb-6"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
+            className="mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            Ascension Complete
-          </motion.h1>
-          
-          <motion.div
-            className={`inline-block px-8 py-4 rounded-3xl bg-gradient-to-r ${currentRank.color} bg-opacity-20 backdrop-blur-xl border border-white/20 ${currentRank.glow} mb-6`}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-          >
-            <h2 className={`text-4xl md:text-5xl font-bold ${currentRank.textColor} mb-2`}>
-              You Are: {currentRank.title}
-            </h2>
-            <p className="text-xl text-gray-300">{currentRank.subtitle}</p>
+            <motion.p 
+              className="text-2xl md:text-3xl text-cyan-400 font-mono mb-4"
+              animate={{ 
+                textShadow: [
+                  "0 0 10px rgba(34, 211, 238, 0.5)",
+                  "0 0 20px rgba(34, 211, 238, 0.8)",
+                  "0 0 10px rgba(34, 211, 238, 0.5)"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              [ SYSTEM SCANNING COMPLETE ]
+            </motion.p>
+            <motion.p 
+              className="text-lg md:text-xl text-gray-300 italic"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              "The System has analyzed your essence and determined your classification..."
+            </motion.p>
           </motion.div>
-          
-          <motion.p 
-            className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+
+          {/* Dramatic Rank Reveal */}
+          <motion.div
+            className="relative mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            transition={{ delay: 1.5 }}
           >
-            Based on your mystical assessment, this is your current potential...
-          </motion.p>
+            {/* Pulsing background energy */}
+            <motion.div
+              className={`absolute inset-0 rounded-full bg-gradient-to-r ${currentRank.color} opacity-20 blur-3xl`}
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [0.2, 0.4, 0.2]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            
+            {/* Main rank emblem */}
+            <motion.div
+              className="relative z-10"
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ 
+                type: "spring",
+                stiffness: 200,
+                damping: 15,
+                delay: 2
+              }}
+            >
+              {/* Outer ring */}
+              <motion.div
+                className={`w-80 h-80 mx-auto rounded-full bg-gradient-to-r ${currentRank.color} p-2 ${currentRank.glow} relative`}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                {/* Inner ring */}
+                <div className="w-full h-full rounded-full bg-black/80 backdrop-blur-xl border-4 border-white/20 flex flex-col items-center justify-center relative overflow-hidden">
+                  {/* Animated background pattern */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                    animate={{ x: [-300, 300] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  
+                  {/* Rank letter/symbol */}
+                  <motion.div
+                    className={`text-8xl md:text-9xl font-bold ${currentRank.textColor} mb-4`}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 300,
+                      delay: 2.5 
+                    }}
+                  >
+                    {currentRank.title.charAt(0)}
+                  </motion.div>
+                  
+                  {/* Class indicator */}
+                  <motion.div
+                    className="text-2xl font-bold text-white"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 3 }}
+                  >
+                    CLASS
+                  </motion.div>
+                </div>
+                
+                {/* Orbiting particles */}
+                {[...Array(8)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    className="absolute w-4 h-4 bg-white rounded-full"
+                    style={{
+                      top: "50%",
+                      left: "50%",
+                      transformOrigin: "0 0"
+                    }}
+                    animate={{
+                      rotate: 360,
+                      x: Math.cos((i * Math.PI * 2) / 8) * 150,
+                      y: Math.sin((i * Math.PI * 2) / 8) * 150,
+                    }}
+                    transition={{
+                      duration: 4 + i * 0.2,
+                      repeat: Infinity,
+                      ease: "linear",
+                      delay: 2.5
+                    }}
+                  />
+                ))}
+              </motion.div>
+            </motion.div>
+          </motion.div>
+
+          {/* Rank Title Reveal */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 3.5, duration: 1 }}
+          >
+            <motion.h1 
+              className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-400 bg-clip-text text-transparent mb-4"
+              animate={{
+                textShadow: [
+                  "0 0 30px rgba(168, 85, 247, 0.5)",
+                  "0 0 60px rgba(168, 85, 247, 0.8)",
+                  "0 0 30px rgba(168, 85, 247, 0.5)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              🧬 You Are:
+            </motion.h1>
+            
+            <motion.div
+              className={`inline-block px-12 py-6 rounded-3xl bg-gradient-to-r ${currentRank.color} bg-opacity-30 backdrop-blur-xl border-2 border-white/30 ${currentRank.glow} relative overflow-hidden`}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 4, type: "spring", stiffness: 200 }}
+            >
+              {/* Animated background shimmer */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                animate={{ x: [-400, 400] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              
+              <motion.h2 
+                className={`relative text-4xl md:text-6xl font-bold ${currentRank.textColor} mb-3`}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 4.2, type: "spring", stiffness: 300 }}
+              >
+                {currentRank.title}
+              </motion.h2>
+              
+              <motion.p 
+                className="relative text-xl md:text-2xl text-gray-200 font-semibold"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 4.5 }}
+              >
+                {currentRank.subtitle}
+              </motion.p>
+              
+              {/* Power level indicator */}
+              <motion.div
+                className="relative mt-4 flex items-center justify-center space-x-3"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 4.8 }}
+              >
+                <span className="text-gray-300">Power Level:</span>
+                <span className={`text-2xl font-bold ${currentRank.textColor}`}>
+                  {averageScore.toFixed(1)}/10
+                </span>
+                <motion.span
+                  className="text-yellow-400"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                >
+                  ⚡
+                </motion.span>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+          
+          {/* System Status */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 5 }}
+          >
+            <motion.p 
+              className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-4"
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              "These are your starting stats. Your journey to ascension begins now..."
+            </motion.p>
+            
+            <motion.div
+              className="flex justify-center items-center space-x-4 text-sm text-cyan-400 font-mono"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 5.5 }}
+            >
+              <span>[ STATUS: AWAKENED ]</span>
+              <motion.span
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1, repeat: Infinity }}
+              >
+                •
+              </motion.span>
+              <span>[ CLASSIFICATION: COMPLETE ]</span>
+            </motion.div>
+          </motion.div>
           
           <motion.div
-            className="w-48 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto mt-6 rounded-full"
+            className="w-64 h-1 bg-gradient-to-r from-purple-400 via-cyan-400 to-pink-400 mx-auto rounded-full relative overflow-hidden"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
-            transition={{ duration: 1.5, delay: 1.5 }}
-          />
+            transition={{ duration: 2, delay: 6 }}
+          >
+            {/* Animated glow effect */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent"
+              animate={{ x: [-100, 300] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
         </motion.div>
 
         {/* Radar Chart Section */}
