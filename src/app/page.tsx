@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { ScrollReveal, ParallaxScroll, useSmoothScrollContext } from '../components/SmoothScrollProvider'
 import { useAuthStore } from '../lib/store'
 import AuthForm from '../components/AuthForm'
+import { ChevronDown } from 'lucide-react'
 
 // Particle Canvas Component
 const ParticleCanvas = () => {
@@ -28,22 +29,27 @@ const ParticleCanvas = () => {
       vy: number;
       size: number;
       opacity: number;
-      color: string;
     }> = [];
 
-    const colors = ['#00f5ff', '#8a2be2', '#ff1493', '#00ff00', '#ffd700'];
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
 
-    // Create particles
-    for (let i = 0; i < 100; i++) {
-      particles.push({
+    const createParticle = () => {
+      return {
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.5 + 0.2,
-        color: colors[Math.floor(Math.random() * colors.length)]
-      });
+        size: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.5 + 0.2
+      };
+    };
+
+    // Initialize particles
+    for (let i = 0; i < 100; i++) {
+      particles.push(createParticle());
     }
 
     const animate = () => {
@@ -58,47 +64,47 @@ const ParticleCanvas = () => {
 
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.globalAlpha = particle.opacity;
+        ctx.fillStyle = `rgba(6, 182, 212, ${particle.opacity})`;
         ctx.fill();
 
-        // Draw connections
-        particles.slice(index + 1).forEach(otherParticle => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
+        // Connect nearby particles
+        for (let j = index + 1; j < particles.length; j++) {
+          const dx = particles[j].x - particle.x;
+          const dy = particles[j].y - particle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < 100) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = particle.color;
-            ctx.globalAlpha = (100 - distance) / 100 * 0.2;
-            ctx.lineWidth = 0.5;
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(6, 182, 212, ${0.1 * (1 - distance / 100)})`;
             ctx.stroke();
           }
-        });
+        }
       });
 
       requestAnimationFrame(animate);
     };
 
-    animate();
-
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      resizeCanvas();
     };
 
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    resizeCanvas();
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
     <canvas
       ref={canvasRef}
+      id="particle-canvas"
       className="fixed inset-0 pointer-events-none z-0"
-      style={{ background: 'radial-gradient(ellipse at center, rgba(138, 43, 226, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%)' }}
+      style={{ background: 'transparent' }}
     />
   );
 };
@@ -118,18 +124,7 @@ const TypeWriter = ({ text, delay = 100 }: { text: string; delay?: number }) => 
     }
   }, [currentIndex, text, delay]);
 
-  return (
-    <span className="font-mono">
-      {displayText}
-      <motion.span
-        animate={{ opacity: [0, 1, 0] }}
-        transition={{ duration: 1, repeat: Infinity }}
-        className="text-cyan-400"
-      >
-        |
-      </motion.span>
-    </span>
-  );
+  return <span>{displayText}</span>;
 };
 
 export default function LandingPage() {
@@ -152,42 +147,53 @@ export default function LandingPage() {
 
   const features = [
     {
-      icon: '⚔️',
-      title: 'Quest System',
-      description: 'Embark on daily missions and epic challenges',
-      glow: 'shadow-cyan-500/50'
+      icon: '🎯',
+      title: 'Personalized Quests',
+      desc: 'AI-generated missions based on your goals and personality'
     },
     {
       icon: '📊',
       title: 'Hunter Stats',
-      description: 'Level up your real-world attributes',
-      glow: 'shadow-purple-500/50'
+      desc: 'Track Intelligence, Strength, Dexterity, and more'
     },
     {
       icon: '🏆',
-      title: 'Guild Rewards',
-      description: 'Unlock exclusive perks and achievements',
-      glow: 'shadow-yellow-500/50'
-    },
-    {
-      icon: '🎒',
-      title: 'Arsenal Vault',
-      description: 'Collect legendary items and badges',
-      glow: 'shadow-green-500/50'
-    },
-    {
-      icon: '🌟',
       title: 'Rank System',
-      description: 'Ascend from E-Rank to S-Rank Hunter',
-      glow: 'shadow-pink-500/50'
+      desc: 'Progress from E-Class to S-Class Hunter'
+    },
+    {
+      icon: '⚡',
+      title: 'Real-time XP',
+      desc: 'Gain experience points for completing real-world tasks'
+    },
+    {
+      icon: '🎮',
+      title: 'Gamified Life',
+      desc: 'Turn your daily routine into an epic adventure'
+    },
+    {
+      icon: '📈',
+      title: 'Progress Tracking',
+      desc: 'Detailed analytics and achievement system'
     }
   ]
 
   const screenshots = [
-    { title: 'Hunter Dashboard', desc: 'Track your progression', bg: 'from-blue-600 to-cyan-600' },
-    { title: 'Quest Interface', desc: 'Accept and complete missions', bg: 'from-purple-600 to-pink-600' },
-    { title: 'Inventory System', desc: 'Manage your artifacts', bg: 'from-green-600 to-emerald-600' },
-    { title: 'Reward Center', desc: 'Claim your victories', bg: 'from-yellow-600 to-orange-600' }
+    {
+      title: 'Hunter Dashboard',
+      desc: 'Track your stats and progress',
+      image: '/api/placeholder/600/400'
+    },
+    {
+      title: 'Quest System',
+      desc: 'Complete missions and level up',
+      image: '/api/placeholder/600/400'
+    },
+    {
+      title: 'Rank Progression',
+      desc: 'Climb from E-Class to S-Class',
+      image: '/api/placeholder/600/400'
+    }
   ]
 
   const steps = [
@@ -205,9 +211,9 @@ export default function LandingPage() {
 
   const handleGateEntry = () => {
     setIsTransitioning(true);
-    // Add a dramatic pause before navigation
+    // Navigate to auth page instead of directly to assessment
     setTimeout(() => {
-      window.location.href = '/onboarding/assessment';
+      window.location.href = '/auth';
     }, 2000);
   };
 
@@ -333,7 +339,7 @@ export default function LandingPage() {
                   >
                     🌀
                   </motion.span>
-                  ENTER THE GATE
+                  {isTransitioning ? 'ACCESSING GATE...' : 'ENTER THE GATE'}
                   <motion.span
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -367,7 +373,7 @@ export default function LandingPage() {
                     borderColor: ['rgba(6, 182, 212, 0.5)', 'rgba(147, 51, 234, 0.5)', 'rgba(6, 182, 212, 0.5)']
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
-                                 />
+                />
               </motion.button>
             
             {/* Subtitle */}
@@ -377,7 +383,7 @@ export default function LandingPage() {
               transition={{ delay: 4, duration: 0.8 }}
               className="text-gray-400 mt-4 text-sm"
             >
-              Begin your hunter awakening assessment
+              Begin your hunter awakening journey
             </motion.p>
             
             {/* Scroll Down Indicator */}
@@ -400,7 +406,7 @@ export default function LandingPage() {
                 >
                   <motion.div
                     className="w-1 h-3 bg-gray-400 group-hover:bg-cyan-400 rounded-full mt-2"
-                    animate={{ y: [0, 6, 0] }}
+                    animate={{ y: [0, 12, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
                 </motion.div>
@@ -412,66 +418,39 @@ export default function LandingPage() {
 
       {/* Features Panel */}
       <section id="features" className="relative py-32 px-4 z-20">
-        <ParallaxScroll speed={0.3}>
-          <div className="max-w-7xl mx-auto">
-            <ScrollReveal direction="up" delay={0.2}>
-              <div className="text-center mb-20">
-                <h2 className="text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-6">
-                  HUNTER ABILITIES
-                </h2>
-                <p className="text-xl text-gray-400">Unlock your true potential in the real world</p>
-              </div>
-            </ScrollReveal>
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-6">
+              HUNTER ABILITIES
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Unlock your potential with our advanced hunter management system
+            </p>
+          </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-              {features.map((feature, index) => (
-                <ScrollReveal 
-                  key={feature.title}
-                  direction="up" 
-                  delay={index * 0.1}
-                  duration={0.8}
-                >
-                  <motion.div
-                    whileHover={{ 
-                      y: -20, 
-                      rotateY: 5,
-                      transition: { duration: 0.3 }
-                    }}
-                    className="relative group perspective-1000"
-                  >
-                    <div className={`bg-black/40 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 h-full hover:border-cyan-500/70 transition-all duration-500 shadow-2xl ${feature.glow} hover:shadow-2xl`}>
-                      <div className="text-7xl mb-6 text-center">
-                        {feature.icon}
-                      </div>
-                      <h3 className="text-xl font-bold mb-4 text-center text-white">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gray-400 text-center text-sm leading-relaxed">
-                        {feature.description}
-                      </p>
-                      
-                      {/* Glow Effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100"
-                        transition={{ duration: 0.3 }}
-                      />
-                      
-                      {/* Animated Border */}
-                      <motion.div
-                        className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100"
-                        style={{ 
-                          background: 'linear-gradient(45deg, transparent, transparent), linear-gradient(45deg, #00f5ff, #8a2be2)',
-                          backgroundClip: 'padding-box, border-box',
-                        }}
-                        transition={{ duration: 0.3 }}
-                      />
-                    </div>
-                  </motion.div>
-                </ScrollReveal>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-black/40 backdrop-blur-lg border border-cyan-500/20 rounded-2xl p-8 hover:border-cyan-500/40 transition-all duration-300 group"
+              >
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold text-cyan-400 mb-3">{feature.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{feature.desc}</p>
+              </motion.div>
+            ))}
           </div>
-        </ParallaxScroll>
+        </div>
       </section>
 
       {/* Screenshot Carousel */}
@@ -496,7 +475,7 @@ export default function LandingPage() {
                 transition={{ duration: 0.8, ease: "easeInOut" }}
                 className={`absolute inset-0 bg-gradient-to-br ${screenshots[currentSlide].bg} flex items-center justify-center`}
               >
-      <div className="text-center">
+                <div className="text-center">
                   <div className="text-8xl mb-4">🎮</div>
                   <h3 className="text-3xl font-bold mb-2">{screenshots[currentSlide].title}</h3>
                   <p className="text-xl opacity-80">{screenshots[currentSlide].desc}</p>
@@ -535,51 +514,51 @@ export default function LandingPage() {
               </div>
             </ScrollReveal>
 
-          <div className="relative">
-            {/* Connecting Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 to-purple-500 opacity-30" />
-            
-            {steps.map((step, index) => (
-              <ScrollReveal 
-                key={step.number}
-                direction={index % 2 === 0 ? "left" : "right"}
-                delay={index * 0.3}
-                duration={0.8}
-              >
-                <div className={`relative flex items-center mb-20 ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                }`}>
-                  {/* Step Number */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
-                    <motion.div
-                      className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl"
-                      whileHover={{ scale: 1.1, rotate: 360 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      {step.number}
-                    </motion.div>
+            <div className="relative">
+              {/* Connecting Line */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 to-purple-500 opacity-30" />
+              
+              {steps.map((step, index) => (
+                <ScrollReveal 
+                  key={step.number}
+                  direction={index % 2 === 0 ? "left" : "right"}
+                  delay={index * 0.3}
+                  duration={0.8}
+                >
+                  <div className={`relative flex items-center mb-20 ${
+                    index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                  }`}>
+                    {/* Step Number */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+                      <motion.div
+                        className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl"
+                        whileHover={{ scale: 1.1, rotate: 360 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        {step.number}
+                      </motion.div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'}`}>
+                      <motion.div
+                        className="bg-black/60 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 shadow-2xl"
+                        whileHover={{ scale: 1.05, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-300 text-lg leading-relaxed">
+                          {step.desc}
+                        </p>
+                      </motion.div>
+                    </div>
                   </div>
-                  
-                  {/* Content */}
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'}`}>
-                    <motion.div
-                      className="bg-black/60 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 shadow-2xl"
-                      whileHover={{ scale: 1.05, y: -10 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                        {step.title}
-                      </h3>
-                      <p className="text-gray-300 text-lg leading-relaxed">
-                        {step.desc}
-                      </p>
-                    </motion.div>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
-        </div>
         </ParallaxScroll>
       </section>
 
@@ -684,7 +663,7 @@ export default function LandingPage() {
               Inspired by Solo Leveling • Hunter Association © 2024
             </p>
           </div>
-      </div>
+        </div>
       </footer>
 
       {/* Gate Transition Overlay */}
