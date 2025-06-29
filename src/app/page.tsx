@@ -182,17 +182,20 @@ export default function LandingPage() {
     {
       title: 'Hunter Dashboard',
       desc: 'Track your stats and progress',
-      image: '/api/placeholder/600/400'
+      image: '/api/placeholder/600/400',
+      bg: 'from-cyan-900/40 to-blue-900/40'
     },
     {
       title: 'Quest System',
       desc: 'Complete missions and level up',
-      image: '/api/placeholder/600/400'
+      image: '/api/placeholder/600/400',
+      bg: 'from-purple-900/40 to-pink-900/40'
     },
     {
       title: 'Rank Progression',
       desc: 'Climb from E-Class to S-Class',
-      image: '/api/placeholder/600/400'
+      image: '/api/placeholder/600/400',
+      bg: 'from-green-900/40 to-emerald-900/40'
     }
   ]
 
