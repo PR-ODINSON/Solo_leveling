@@ -3,6 +3,9 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
+import { ScrollReveal, ParallaxScroll, useSmoothScrollContext } from '../components/SmoothScrollProvider'
+import { useAuthStore } from '../lib/store'
+import AuthForm from '../components/AuthForm'
 
 // Particle Canvas Component
 const ParticleCanvas = () => {
@@ -134,6 +137,18 @@ export default function LandingPage() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const { user, loading } = useAuthStore()
+  
+  // Smooth scroll function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
 
   const features = [
     {
@@ -195,6 +210,11 @@ export default function LandingPage() {
       window.location.href = '/onboarding/assessment';
     }, 2000);
   };
+
+  // Show auth form if user is not authenticated
+  if (!loading && !user) {
+    return <AuthForm />
+  }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
@@ -359,89 +379,112 @@ export default function LandingPage() {
             >
               Begin your hunter awakening assessment
             </motion.p>
+            
+            {/* Scroll Down Indicator */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 5, duration: 1 }}
+              className="mt-16"
+            >
+              <motion.button
+                onClick={() => scrollToSection('features')}
+                className="flex flex-col items-center text-gray-400 hover:text-cyan-400 transition-colors group"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <span className="text-sm mb-2 group-hover:text-cyan-400">Learn More</span>
+                <motion.div
+                  className="w-6 h-10 border-2 border-gray-400 group-hover:border-cyan-400 rounded-full flex justify-center"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <motion.div
+                    className="w-1 h-3 bg-gray-400 group-hover:bg-cyan-400 rounded-full mt-2"
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  />
+                </motion.div>
+              </motion.button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Features Panel */}
-      <section className="relative py-32 px-4 z-20">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-6">
-              HUNTER ABILITIES
-            </h2>
-            <p className="text-xl text-gray-400">Unlock your true potential in the real world</p>
-          </motion.div>
+      <section id="features" className="relative py-32 px-4 z-20">
+        <ParallaxScroll speed={0.3}>
+          <div className="max-w-7xl mx-auto">
+            <ScrollReveal direction="up" delay={0.2}>
+              <div className="text-center mb-20">
+                <h2 className="text-6xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent mb-6">
+                  HUNTER ABILITIES
+                </h2>
+                <p className="text-xl text-gray-400">Unlock your true potential in the real world</p>
+              </div>
+            </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 100, rotateX: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ 
-                  y: -20, 
-                  rotateY: 5,
-                  transition: { duration: 0.3 }
-                }}
-                className="relative group perspective-1000"
-              >
-                <div className={`bg-black/40 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 h-full hover:border-cyan-500/70 transition-all duration-500 shadow-2xl ${feature.glow} hover:shadow-2xl`}>
-                  <div className="text-7xl mb-6 text-center">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-bold mb-4 text-center text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 text-center text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                  
-                  {/* Glow Effect */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+              {features.map((feature, index) => (
+                <ScrollReveal 
+                  key={feature.title}
+                  direction="up" 
+                  delay={index * 0.1}
+                  duration={0.8}
+                >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100"
-                    transition={{ duration: 0.3 }}
-                  />
-                  
-                  {/* Animated Border */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100"
-                    style={{ 
-                      background: 'linear-gradient(45deg, transparent, transparent), linear-gradient(45deg, #00f5ff, #8a2be2)',
-                      backgroundClip: 'padding-box, border-box',
+                    whileHover={{ 
+                      y: -20, 
+                      rotateY: 5,
+                      transition: { duration: 0.3 }
                     }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </div>
-              </motion.div>
-            ))}
+                    className="relative group perspective-1000"
+                  >
+                    <div className={`bg-black/40 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 h-full hover:border-cyan-500/70 transition-all duration-500 shadow-2xl ${feature.glow} hover:shadow-2xl`}>
+                      <div className="text-7xl mb-6 text-center">
+                        {feature.icon}
+                      </div>
+                      <h3 className="text-xl font-bold mb-4 text-center text-white">
+                        {feature.title}
+                      </h3>
+                      <p className="text-gray-400 text-center text-sm leading-relaxed">
+                        {feature.description}
+                      </p>
+                      
+                      {/* Glow Effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100"
+                        transition={{ duration: 0.3 }}
+                      />
+                      
+                      {/* Animated Border */}
+                      <motion.div
+                        className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 to-purple-500 opacity-0 group-hover:opacity-100"
+                        style={{ 
+                          background: 'linear-gradient(45deg, transparent, transparent), linear-gradient(45deg, #00f5ff, #8a2be2)',
+                          backgroundClip: 'padding-box, border-box',
+                        }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </div>
+                  </motion.div>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
-        </div>
+        </ParallaxScroll>
       </section>
 
       {/* Screenshot Carousel */}
-      <section className="relative py-32 px-4 z-20 bg-black/30">
+      <section id="interface" className="relative py-32 px-4 z-20 bg-black/30">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-6xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent mb-6">
-              HUNTER INTERFACE
-            </h2>
-            <p className="text-xl text-gray-400">Experience the next-generation RPG system</p>
-          </motion.div>
+          <ScrollReveal direction="up" delay={0.2}>
+            <div className="text-center mb-20">
+              <h2 className="text-6xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent mb-6">
+                HUNTER INTERFACE
+              </h2>
+              <p className="text-xl text-gray-400">Experience the next-generation RPG system</p>
+            </div>
+          </ScrollReveal>
 
           <div className="relative h-96 rounded-3xl overflow-hidden bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-xl border border-gray-700/50">
             <AnimatePresence mode="wait">
@@ -480,66 +523,64 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works */}
-      <section className="relative py-32 px-4 z-20">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-6xl font-bold bg-gradient-to-r from-green-400 to-cyan-500 bg-clip-text text-transparent mb-6">
-              HUNTER'S PATH
-            </h2>
-            <p className="text-xl text-gray-400">Your journey from E-Rank to S-Rank Hunter</p>
-          </motion.div>
+      <section id="path" className="relative py-32 px-4 z-20">
+        <ParallaxScroll speed={0.2}>
+          <div className="max-w-5xl mx-auto">
+            <ScrollReveal direction="up" delay={0.2}>
+              <div className="text-center mb-20">
+                <h2 className="text-6xl font-bold bg-gradient-to-r from-green-400 to-cyan-500 bg-clip-text text-transparent mb-6">
+                  HUNTER'S PATH
+                </h2>
+                <p className="text-xl text-gray-400">Your journey from E-Rank to S-Rank Hunter</p>
+              </div>
+            </ScrollReveal>
 
           <div className="relative">
             {/* Connecting Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-cyan-500 to-purple-500 opacity-30" />
             
             {steps.map((step, index) => (
-              <motion.div
+              <ScrollReveal 
                 key={step.number}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.3 }}
-                viewport={{ once: true }}
-                className={`relative flex items-center mb-20 ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                }`}
+                direction={index % 2 === 0 ? "left" : "right"}
+                delay={index * 0.3}
+                duration={0.8}
               >
-                {/* Step Number */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
-                  <motion.div
-                    className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl"
-                    whileHover={{ scale: 1.1, rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {step.number}
-                  </motion.div>
+                <div className={`relative flex items-center mb-20 ${
+                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                }`}>
+                  {/* Step Number */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 z-10">
+                    <motion.div
+                      className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl"
+                      whileHover={{ scale: 1.1, rotate: 360 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      {step.number}
+                    </motion.div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'}`}>
+                    <motion.div
+                      className="bg-black/60 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 shadow-2xl"
+                      whileHover={{ scale: 1.05, y: -10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-300 text-lg leading-relaxed">
+                        {step.desc}
+                      </p>
+                    </motion.div>
+                  </div>
                 </div>
-                
-                {/* Content */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'}`}>
-                  <motion.div
-                    className="bg-black/60 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 shadow-2xl"
-                    whileHover={{ scale: 1.05, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-300 text-lg leading-relaxed">
-                      {step.desc}
-                    </p>
-                  </motion.div>
-                </div>
-              </motion.div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
+        </ParallaxScroll>
       </section>
 
       {/* Final CTA */}

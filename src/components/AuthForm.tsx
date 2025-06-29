@@ -17,10 +17,22 @@ export default function AuthForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (isLogin) {
-      await signIn(email, password)
-    } else {
-      await signUp(email, password, username)
+    try {
+      let success = false
+      
+      if (isLogin) {
+        success = await signIn(email, password)
+      } else {
+        success = await signUp(email, password, username, username)
+      }
+      
+      // If successful and not login, the user will be redirected to onboarding
+      // If successful and login, check if they've completed onboarding
+      if (success && isLogin) {
+        // The auth store will handle the redirect logic
+      }
+    } catch (error) {
+      console.error('Auth error:', error)
     }
   }
 

@@ -30,7 +30,7 @@ import {
   Activity
 } from 'lucide-react'
 
-import { useStatsStore, useQuestsStore, useUIStore } from '../../../lib/store'
+import { useStatsStore, useQuestsStore, useUIStore, useAuthStore } from '../../../lib/store'
 import { 
   STAT_ICONS, 
   STAT_DESCRIPTIONS, 
@@ -43,36 +43,112 @@ import {
 import { generateQuestsForHunter, Quest, TraitScores, Goal } from '../../../lib/questGenerator'
 import { getQuestsGroupedByCategory, getRecommendedQuests, QuestWithTasks } from '../../../lib/questService'
 import { EnhancedQuestCard } from '../../../components/EnhancedQuestCard'
+import { ScrollReveal } from '../../../components/SmoothScrollProvider'
 
-// Mock data with Solo Leveling theme
-const mockStats = [
-  { id: '1', stat_name: 'Intelligence', xp: 450, level: 4, icon: '🧠', color: 'from-blue-500 to-cyan-400' },
-  { id: '2', stat_name: 'Strength', xp: 520, level: 5, icon: '⚔️', color: 'from-red-500 to-orange-400' },
-  { id: '3', stat_name: 'Dexterity', xp: 380, level: 3, icon: '🏹', color: 'from-green-500 to-emerald-400' },
-  { id: '4', stat_name: 'Wisdom', xp: 610, level: 6, icon: '🔮', color: 'from-purple-500 to-indigo-400' },
-  { id: '5', stat_name: 'Charisma', xp: 290, level: 2, icon: '👑', color: 'from-yellow-500 to-amber-400' },
-  { id: '6', stat_name: 'Discipline', xp: 480, level: 4, icon: '🛡️', color: 'from-gray-500 to-slate-400' }
-]
+// Assessment results interface
+interface AssessmentResults {
+  answers: Record<string, number>;
+  questionSets: Array<{
+    traitName: string;
+    questionIds: string[];
+  }>;
+}
 
-const mockQuests = [
-  { id: '1', title: 'Complete Morning Training Routine', stat_target: 'Strength', xp_reward: 50, rarity: 'Common', category: 'Daily', icon: '🗡️', due_date: new Date().toISOString(), completed: false },
-  { id: '2', title: 'Study Advanced Magic Theory', stat_target: 'Intelligence', xp_reward: 75, rarity: 'Rare', category: 'Weekly', icon: '📜', due_date: new Date().toISOString(), completed: false },
-  { id: '3', title: 'Clear B-Rank Dungeon', stat_target: 'Dexterity', xp_reward: 120, rarity: 'Epic', category: 'Boss Fight', icon: '💎', due_date: new Date().toISOString(), completed: false },
-  { id: '4', title: 'Defeat Shadow Monarch', stat_target: 'Wisdom', xp_reward: 250, rarity: 'Legendary', category: 'Boss Fight', icon: '👑', due_date: new Date().toISOString(), completed: false }
-]
+interface TraitScore {
+  traitName: string;
+  score: number;
+  maxScore: number;
+  percentage: number;
+  normalizedScore: number;
+  feedback: string;
+}
 
-
+// Rank system from results page
+const RANK_SYSTEM = {
+  'S-Class': { 
+    threshold: 9.0, 
+    title: 'S-Class Shadow Monarch', 
+    subtitle: 'Supreme Dominion',
+    color: 'from-red-500 via-orange-500 to-yellow-500',
+    textColor: 'text-red-400',
+    glow: 'shadow-red-500/50',
+    description: 'You have transcended mortal limits. Reality bends to your will, and legends speak of your power.',
+    badge: '👑'
+  },
+  'A-Class': { 
+    threshold: 8.0, 
+    title: 'A-Class Elite Hunter', 
+    subtitle: 'Master of Domains',
+    color: 'from-yellow-400 via-amber-500 to-orange-500',
+    textColor: 'text-yellow-400',
+    glow: 'shadow-yellow-500/50',
+    description: 'You stand among the elite. Your mastery inspires others and shapes the world around you.',
+    badge: '⚡'
+  },
+  'B-Class': { 
+    threshold: 6.5, 
+    title: 'B-Class Advanced Hunter', 
+    subtitle: 'Rising Force',
+    color: 'from-blue-400 via-cyan-500 to-teal-500',
+    textColor: 'text-blue-400',
+    glow: 'shadow-blue-500/50',
+    description: 'Your abilities have grown formidable. You tackle challenges that would overwhelm most others.',
+    badge: '💎'
+  },
+  'C-Class': { 
+    threshold: 5.0, 
+    title: 'C-Class Hunter', 
+    subtitle: 'Steady Ascension',
+    color: 'from-green-400 via-emerald-500 to-teal-500',
+    textColor: 'text-green-400',
+    glow: 'shadow-green-500/50',
+    description: 'You have found your footing and are making consistent progress. Your potential is becoming clear.',
+    badge: '🌟'
+  },
+  'D-Class': { 
+    threshold: 3.5, 
+    title: 'D-Class Initiate', 
+    subtitle: 'Emerging Potential',
+    color: 'from-purple-400 via-violet-500 to-indigo-500',
+    textColor: 'text-purple-400',
+    glow: 'shadow-purple-500/50',
+    description: 'Your journey is just beginning, with untapped potential waiting to emerge. Great power often starts small.',
+    badge: '🔮'
+  },
+  'E-Class': { 
+    threshold: 0, 
+    title: 'E-Class Awakening', 
+    subtitle: 'Hidden Power',
+    color: 'from-slate-400 via-gray-500 to-slate-600',
+    textColor: 'text-slate-400',
+    glow: 'shadow-slate-500/50',
+    description: 'Every legend starts somewhere. Your awakening has just begun, and hidden power lies dormant within.',
+    badge: '⚡'
+  }
+};
 
 // Enhanced RPG User Profile Component
-const RPGUserProfile = () => {
-  const powerLevel = calculatePowerLevel(mockStats)
-  const hunterRank = getHunterRank(powerLevel)
-  const totalXP = mockStats.reduce((sum, stat) => sum + stat.xp, 0)
-  const avgLevel = Math.floor(mockStats.reduce((sum, stat) => sum + stat.level, 0) / mockStats.length)
+const RPGUserProfile = ({ userStats, traitScores, hunterRank }: { 
+  userStats: any[], 
+  traitScores: TraitScore[], 
+  hunterRank: any 
+}) => {
+  const { user } = useAuthStore()
+  const powerLevel = userStats.length > 0 ? calculatePowerLevel(userStats) : 0
+  const totalXP = userStats.reduce((sum, stat) => sum + stat.xp, 0)
+  const avgLevel = userStats.length > 0 ? Math.floor(userStats.reduce((sum, stat) => sum + stat.level, 0) / userStats.length) : 1
   
   // Calculate overall progress to next tier
   const currentTierXP = totalXP % 1000
   const nextTierProgress = (currentTierXP / 1000) * 100
+
+  // Get user display name
+  const getUserDisplayName = () => {
+    if (user?.user_metadata?.display_name) return user.user_metadata.display_name
+    if (user?.user_metadata?.username) return user.user_metadata.username
+    if (user?.email) return user.email.split('@')[0]
+    return 'Hunter'
+  }
 
   return (
     <motion.div
@@ -138,14 +214,14 @@ const RPGUserProfile = () => {
         {/* Profile Info */}
         <div className="flex-1">
           <div className="flex items-center gap-4 mb-4">
-            <h2 className="text-3xl font-bold text-blue-100 fantasy-font">Hunter: Prithvi</h2>
+            <h2 className="text-3xl font-bold text-blue-100 fantasy-font">Hunter: {getUserDisplayName()}</h2>
             <motion.span 
-              className={`text-xl ${hunterRank.color} ui-font font-bold flex items-center gap-2`}
+              className={`text-xl ${hunterRank.textColor} ui-font font-bold flex items-center gap-2`}
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <span className="text-2xl">{hunterRank.icon}</span>
-              {hunterRank.rank}
+              <span className="text-2xl">{hunterRank.badge}</span>
+              {hunterRank.title}
             </motion.span>
           </div>
           
@@ -200,14 +276,30 @@ const RPGUserProfile = () => {
                 transition={{ duration: 2, ease: "easeOut" }}
               />
               
-              {/* Shimmer effect */}
+              {/* Sparkling effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                animate={{ x: [-100, 200] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 left-0 h-full w-2 bg-white/60 rounded-full blur-sm"
+                animate={{
+                  x: [`0%`, `${nextTierProgress}%`],
+                  opacity: [0, 1, 0]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
           </div>
+
+          {/* Trait Summary */}
+          {traitScores.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-2">
+              <p className="text-xs text-blue-300/70 ui-font w-full mb-1">Top Traits:</p>
+              {traitScores.slice(0, 3).map((trait, index) => (
+                <div key={trait.traitName} className="text-xs bg-blue-900/30 px-2 py-1 rounded-full border border-blue-500/30">
+                  <span className="text-blue-200">{trait.traitName}</span>
+                  <span className="text-blue-400 ml-1">{trait.normalizedScore}/10</span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </motion.div>
@@ -519,6 +611,10 @@ const SystemTooltip = ({ soundEnabled, toggleSound }: { soundEnabled: boolean, t
 }
 
 export default function DashboardPage() {
+  const { user, loading: authLoading } = useAuthStore()
+  const { stats, loading: statsLoading, fetchStats } = useStatsStore()
+  const { userQuests, loading: questsLoading, fetchUserQuests } = useQuestsStore()
+  
   const [floatingXP, setFloatingXP] = useState<Array<{ id: number, xp: number, position: { x: number, y: number } }>>([])
   const [levelUpModal, setLevelUpModal] = useState<{ visible: boolean, statName: string, newLevel: number }>({
     visible: false,
@@ -528,16 +624,19 @@ export default function DashboardPage() {
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [xpCounter, setXpCounter] = useState(0)
   const [dynamicQuests, setDynamicQuests] = useState<QuestWithTasks[]>([])
-  const [questsLoading, setQuestsLoading] = useState(true)
   const [hunterGoal, setHunterGoal] = useState<Goal | null>(null)
+  const [traitScores, setTraitScores] = useState<TraitScore[]>([])
+  const [hunterRank, setHunterRank] = useState<any>(RANK_SYSTEM['E-Class'])
+  const [assessmentResults, setAssessmentResults] = useState<AssessmentResults | null>(null)
 
   const playSound = (type: 'xp' | 'levelup') => {
     if (!soundEnabled) return
     console.log(`Playing ${type} sound`)
   }
 
-  const completeQuest = (questId: string, event: React.MouseEvent) => {
-    const quest = mockQuests.find(q => q.id === questId)
+  const completeQuest = async (questId: string, event: React.MouseEvent) => {
+    // Try to find quest in dynamic quests first
+    const quest = dynamicQuests.find((q: any) => q.id === questId)
     if (!quest) return
 
     const rect = (event.target as HTMLElement).getBoundingClientRect()
@@ -549,30 +648,39 @@ export default function DashboardPage() {
     // Add floating XP
     const newXpId = xpCounter + 1
     setXpCounter(newXpId)
-    setFloatingXP(prev => [...prev, { id: newXpId, xp: quest.xp_reward, position }])
+    setFloatingXP(prev => [...prev, { id: newXpId, xp: quest.xp_reward || 50, position }])
 
     playSound('xp')
 
-    // Check for level up
-    const targetStat = mockStats.find(s => s.stat_name === quest.stat_target)
-    if (targetStat) {
-      const newXp = targetStat.xp + quest.xp_reward
-      const newLevel = Math.floor(newXp / 100)
-      const currentLevel = Math.floor(targetStat.xp / 100)
+    // Complete quest in store (this will also update stats)
+    try {
+      await useQuestsStore.getState().completeQuest(questId)
       
-      if (newLevel > currentLevel) {
-        setTimeout(() => {
-          setLevelUpModal({
-            visible: true,
-            statName: quest.stat_target,
-            newLevel: newLevel
-          })
-          playSound('levelup')
-        }, 1500)
+      // Check for level up
+      const targetStatName = quest.primary_trait || 'Intelligence'
+      const targetStat = stats.find(s => s.stat_name.toLowerCase() === targetStatName.toLowerCase())
+      if (targetStat) {
+        const xpReward = quest.xp_reward || 50
+        const newXp = targetStat.xp + xpReward
+        const newLevel = calculateLevel(newXp)
+        const currentLevel = calculateLevel(targetStat.xp)
+        
+        if (newLevel > currentLevel) {
+          setTimeout(() => {
+            setLevelUpModal({
+              visible: true,
+              statName: targetStat.stat_name,
+              newLevel: newLevel
+            })
+            playSound('levelup')
+          }, 1500)
+        }
       }
-    }
 
-    console.log(`Completed quest: ${quest.title} (+${quest.xp_reward} XP)`)
+      console.log(`Completed quest: ${quest.title} (+${quest.xp_reward || 50} XP)`)
+    } catch (error) {
+      console.error('Error completing quest:', error)
+    }
   }
 
   const removeFloatingXP = (id: number) => {
@@ -580,6 +688,59 @@ export default function DashboardPage() {
   }
 
   const toggleSound = () => setSoundEnabled(!soundEnabled)
+
+  // Initialize user data
+  useEffect(() => {
+    if (user && !authLoading) {
+      // Initialize stats if user is logged in
+      fetchStats()
+      fetchUserQuests()
+    }
+  }, [user, authLoading, fetchStats, fetchUserQuests])
+
+  // Load assessment results and calculate hunter rank
+  useEffect(() => {
+    const loadAssessmentData = () => {
+      try {
+        const storedResults = localStorage.getItem('assessmentResults');
+        if (storedResults) {
+          const parsedResults: AssessmentResults = JSON.parse(storedResults);
+          setAssessmentResults(parsedResults);
+
+          // Calculate trait scores
+          const scores: TraitScore[] = parsedResults.questionSets.map(set => {
+            const traitAnswers = set.questionIds.map(id => parsedResults.answers[id] || 0);
+            const totalScore = traitAnswers.reduce((sum, score) => sum + score, 0);
+            const maxPossibleScore = set.questionIds.length * 5;
+            const percentage = (totalScore / maxPossibleScore) * 100;
+            const normalizedScore = (totalScore / maxPossibleScore) * 10;
+
+            return {
+              traitName: set.traitName,
+              score: totalScore,
+              maxScore: maxPossibleScore,
+              percentage: Math.round(percentage),
+              normalizedScore: Math.round(normalizedScore * 10) / 10,
+              feedback: '' // We don't need feedback on dashboard
+            };
+          });
+
+          setTraitScores(scores.sort((a, b) => b.normalizedScore - a.normalizedScore));
+
+          // Calculate hunter rank
+          const avgScore = scores.reduce((sum, trait) => sum + trait.normalizedScore, 0) / scores.length;
+          const rank = Object.entries(RANK_SYSTEM)
+            .find(([_, rankData]) => avgScore >= rankData.threshold)?.[1] || RANK_SYSTEM['E-Class'];
+          
+          setHunterRank(rank);
+        }
+      } catch (error) {
+        console.error('Error loading assessment results:', error);
+      }
+    };
+
+    loadAssessmentData();
+  }, []);
 
   // Load dynamic quests from database
   useEffect(() => {
@@ -620,10 +781,8 @@ export default function DashboardPage() {
         }
       } catch (error) {
         console.error('Error loading dynamic quests:', error);
-        // Fallback to mock quests on error
+        // Fallback to empty state on error
         setDynamicQuests([]);
-      } finally {
-        setQuestsLoading(false);
       }
     };
 
@@ -642,8 +801,56 @@ export default function DashboardPage() {
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [])
 
+  // Show loading state while auth is loading
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <motion.div
+            className="text-6xl mb-6"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          >
+            ⚡
+          </motion.div>
+          <h1 className="text-2xl font-bold text-blue-100 mb-2">Loading Hunter Data...</h1>
+          <p className="text-blue-300/70">Initializing your command center...</p>
+        </motion.div>
+      </div>
+    )
+  }
+
+  // Redirect to auth if not logged in
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <motion.div
+          className="text-center solo-panel p-8"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+        >
+          <div className="text-6xl mb-4">🔒</div>
+          <h1 className="text-2xl font-bold text-blue-100 mb-4">Access Restricted</h1>
+          <p className="text-blue-300/70 mb-6">Please sign in to access your Hunter Command Center</p>
+          <motion.button
+            onClick={() => window.location.href = '/'}
+            className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl hover:from-blue-400 hover:to-purple-500 transition-all"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Sign In
+          </motion.button>
+        </motion.div>
+      </div>
+    )
+  }
+
   return (
-    <>
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white p-6">
       {/* System Controls */}
       <SystemTooltip soundEnabled={soundEnabled} toggleSound={toggleSound} />
       
@@ -663,45 +870,52 @@ export default function DashboardPage() {
       </motion.div>
 
       {/* RPG User Profile */}
-      <RPGUserProfile />
+      <ScrollReveal direction="up" delay={0.2}>
+        <RPGUserProfile userStats={stats} traitScores={traitScores} hunterRank={hunterRank} />
+      </ScrollReveal>
 
       {/* Stats Grid */}
-      <motion.div
-        className="mb-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-      >
-        <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
-          <motion.span
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          >
-            ⚡
-          </motion.span>
-          Power Statistics
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockStats.map((stat, index) => (
-            <motion.div
-              key={stat.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * index }}
+      <ScrollReveal direction="up" delay={0.4}>
+        <div className="mb-8">
+          <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
+            <motion.span
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
             >
-              <EnhancedStatCard stat={stat} />
-            </motion.div>
-          ))}
+              ⚡
+            </motion.span>
+            Power Statistics
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {statsLoading ? (
+              // Loading skeleton
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="solo-panel p-6 animate-pulse">
+                  <div className="h-4 bg-blue-400/20 rounded mb-3"></div>
+                  <div className="h-8 bg-blue-400/10 rounded mb-2"></div>
+                  <div className="h-3 bg-blue-400/10 rounded w-3/4"></div>
+                </div>
+              ))
+            ) : (
+              stats.map((stat, index) => (
+                <motion.div
+                  key={stat.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <EnhancedStatCard stat={stat} />
+                </motion.div>
+              ))
+            )}
+          </div>
         </div>
-      </motion.div>
+      </ScrollReveal>
 
       {/* Active Quests */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6 }}
-      >
-        <div className="flex items-center justify-between mb-6">
+      <ScrollReveal direction="up" delay={0.6}>
+        <div>
+          <div className="flex items-center justify-between mb-6">
           <h2 className="text-4xl font-bold fantasy-font text-blue-100 flex items-center gap-3">
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
@@ -743,36 +957,18 @@ export default function DashboardPage() {
                 </motion.div>
               ))
             ) : (
-              // Render mock quests as fallback (convert to new format)
-              mockQuests.slice(0, 4).map((quest, index) => {
-                const convertedQuest: QuestWithTasks = {
-                  id: quest.id,
-                  title: quest.title,
-                  description: `Complete this ${quest.category.toLowerCase()} quest to gain ${quest.xp_reward} XP`,
-                  category: quest.category.toLowerCase() as 'daily' | 'weekly' | 'monthly' | 'milestone',
-                  difficulty: quest.rarity === 'Legendary' ? 'S' : quest.rarity === 'Epic' ? 'A' : quest.rarity === 'Rare' ? 'B' : 'C',
-                  xp_reward: quest.xp_reward,
-                  primary_trait: quest.stat_target.toLowerCase().replace(' ', '_'),
-                  secondary_traits: [],
-                  estimated_time: '30 minutes',
-                  unlock_level: 1,
-                  required_traits: null,
-                  prerequisite_quests: [],
-                  hunter_notes: `A ${quest.rarity.toLowerCase()} quest focusing on ${quest.stat_target} development.`,
-                  tasks: []
-                };
-                
-                return (
-                  <motion.div
-                    key={quest.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 * index }}
-                  >
-                    <EnhancedQuestCard quest={convertedQuest} index={index} onComplete={completeQuest} />
-                  </motion.div>
-                );
-              })
+              // Show message when no quests available
+              <motion.div
+                className="solo-panel p-8 text-center col-span-full"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                <div className="text-6xl mb-4">⚔️</div>
+                <h3 className="text-xl font-bold text-blue-100 mb-2">No Active Quests</h3>
+                <p className="text-blue-300/70">
+                  Complete your assessment to unlock personalized quests!
+                </p>
+              </motion.div>
             )}
           </div>
         )}
@@ -798,7 +994,8 @@ export default function DashboardPage() {
             </motion.button>
           </motion.div>
         )}
-      </motion.div>
+        </div>
+      </ScrollReveal>
 
       {/* Floating XP Badges */}
       <AnimatePresence>
@@ -819,6 +1016,6 @@ export default function DashboardPage() {
         newLevel={levelUpModal.newLevel}
         onClose={() => setLevelUpModal({ visible: false, statName: '', newLevel: 0 })}
       />
-    </>
+    </div>
   )
 }

@@ -8,7 +8,6 @@ import { STAT_NAMES, LEGACY_QUEST_CATEGORIES } from '@/lib/utils'
 
 export default function CreateQuestModal() {
   const { showCreateQuestModal, setShowCreateQuestModal } = useUIStore()
-  const { createQuest } = useQuestsStore()
   
   const [formData, setFormData] = useState({
     title: '',
@@ -22,33 +21,9 @@ export default function CreateQuestModal() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!formData.title.trim() || !formData.due_date) return
-
-    setLoading(true)
-    try {
-      await createQuest({
-        title: formData.title.trim(),
-        category: formData.category,
-        stat_target: formData.stat_target,
-        xp_reward: formData.xp_reward,
-        due_date: new Date(formData.due_date).toISOString(),
-        completed: false
-      })
-      
-      // Reset form and close modal
-      setFormData({
-        title: '',
-        category: 'Academic',
-        stat_target: 'Intelligence',
-        xp_reward: 25,
-        due_date: ''
-      })
-      setShowCreateQuestModal(false)
-    } catch (error) {
-      console.error('Error creating quest:', error)
-    } finally {
-      setLoading(false)
-    }
+    // For now, just show a message that this feature is coming soon
+    alert('Quest creation feature is coming soon! Complete your assessment to get personalized quests.')
+    setShowCreateQuestModal(false)
   }
 
   const handleClose = () => {

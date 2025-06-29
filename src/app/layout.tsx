@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import AuthWrapper from '../components/AuthWrapper'
+import SmoothScrollProvider from '../components/SmoothScrollProvider'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthWrapper>
-          {children}
-        </AuthWrapper>
+        <SmoothScrollProvider>
+          <AuthWrapper>
+            {children}
+          </AuthWrapper>
+        </SmoothScrollProvider>
         <Toaster 
           position="top-right"
           toastOptions={{

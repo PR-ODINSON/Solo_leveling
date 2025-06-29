@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
+import { ScrollReveal } from '../../../components/SmoothScrollProvider';
 
 interface TraitQuestion {
   id: string;

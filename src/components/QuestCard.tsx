@@ -11,7 +11,7 @@ interface QuestCardProps {
 }
 
 export default function QuestCard({ quest }: QuestCardProps) {
-  const { completeQuest, deleteQuest } = useQuestsStore()
+  const { completeQuest } = useQuestsStore()
   
   const daysUntilDue = getDaysUntilDue(quest.due_date)
   const isOverdue = isQuestOverdue(quest.due_date)
@@ -45,9 +45,8 @@ export default function QuestCard({ quest }: QuestCardProps) {
   }
 
   const handleDelete = async () => {
-    if (confirm('Are you sure you want to delete this quest?')) {
-      await deleteQuest(quest.id)
-    }
+    // Delete functionality coming soon
+    alert('Quest deletion feature is coming soon!')
   }
 
   return (
