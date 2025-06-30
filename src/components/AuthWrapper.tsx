@@ -49,15 +49,8 @@ export default function AuthWrapper({
     if (user) {
       const completedOnboarding = hasCompletedOnboarding()
       
-      // If user is authenticated but on the landing page, redirect appropriately
-      if (pathname === '/') {
-        if (completedOnboarding) {
-          router.push('/dashboard')
-        } else {
-          router.push('/onboarding/assessment')
-        }
-        return
-      }
+      // Let the landing page handle its own routing for authenticated users
+      // Don't auto-redirect from root path - let the page component decide
 
       // If user hasn't completed onboarding
       if (!completedOnboarding) {

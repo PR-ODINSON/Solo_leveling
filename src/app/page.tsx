@@ -132,7 +132,7 @@ export default function LandingPage() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
-  const { user, loading } = useAuthStore()
+  const { user, loading, hasCompletedOnboarding } = useAuthStore()
   
   // Smooth scroll function
   const scrollToSection = (sectionId: string) => {
@@ -212,16 +212,28 @@ export default function LandingPage() {
     return () => clearInterval(timer);
   }, []);
 
+  const [showAuthForm, setShowAuthForm] = useState(false);
+
   const handleGateEntry = () => {
-    setIsTransitioning(true);
-    // Navigate to auth page instead of directly to assessment
-    setTimeout(() => {
-      window.location.href = '/auth';
-    }, 2000);
+    if (!user) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setShowAuthForm(true);
+        setIsTransitioning(false);
+      }, 2000);
+    } else {
+      // User is already authenticated, redirect to appropriate page
+      const completedOnboarding = hasCompletedOnboarding();
+      if (completedOnboarding) {
+        window.location.href = '/dashboard';
+      } else {
+        window.location.href = '/onboarding/assessment';
+      }
+    }
   };
 
-  // Show auth form if user is not authenticated
-  if (!loading && !user) {
+  // Show auth form if user clicked the gate entry button
+  if (showAuthForm && !user) {
     return <AuthForm />
   }
 
