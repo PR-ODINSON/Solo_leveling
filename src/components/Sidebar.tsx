@@ -81,9 +81,10 @@ export default function Sidebar() {
       {/* Mobile Menu Button */}
       <motion.button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 p-3 solo-panel text-blue-400 hover:text-blue-300 transition-colors"
+        className="md:hidden fixed top-4 left-4 z-50 p-3 solo-panel text-blue-400 hover:text-blue-300 transition-colors min-h-[48px] min-w-[48px] flex items-center justify-center touch-manipulation"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        aria-label={isMobileOpen ? "Close menu" : "Open menu"}
       >
         <AnimatePresence mode="wait">
           {isMobileOpen ? (
@@ -115,14 +116,17 @@ export default function Sidebar() {
         <motion.div
           className={`fixed left-0 top-0 h-full z-40 flex flex-col ${
             isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
-          } ${isCollapsed ? 'md:w-20' : 'w-64'} transition-transform duration-300`}
+          } ${isCollapsed ? 'md:w-20' : 'w-64 sm:w-72'} transition-transform duration-300 overflow-y-auto`}
           initial={false}
-          animate={{ width: isCollapsed ? 80 : 256 }}
+          animate={{ 
+            width: window.innerWidth >= 768 ? (isCollapsed ? 80 : 256) : (window.innerWidth >= 640 ? 288 : 256)
+          }}
           style={{
-            background: 'linear-gradient(180deg, rgba(15, 15, 35, 0.95) 0%, rgba(26, 26, 46, 0.9) 50%, rgba(22, 33, 62, 0.95) 100%)',
-            backdropFilter: 'blur(20px)',
+            background: 'linear-gradient(180deg, rgba(15, 15, 35, 0.98) 0%, rgba(26, 26, 46, 0.95) 50%, rgba(22, 33, 62, 0.98) 100%)',
+            backdropFilter: 'blur(25px)',
             borderRight: '2px solid rgba(59, 130, 246, 0.3)',
-            boxShadow: '8px 0 32px rgba(0, 0, 0, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.1)'
+            boxShadow: '8px 0 32px rgba(0, 0, 0, 0.4), inset 1px 0 0 rgba(255, 255, 255, 0.1)',
+            maxHeight: '100vh'
           }}
         >
           {/* Animated Right Border */}
@@ -246,7 +250,7 @@ export default function Sidebar() {
                   <Link href={item.href}>
                     <motion.div
                       className={`
-                        relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group
+                        relative flex items-center gap-3 px-4 py-4 sm:py-3 rounded-xl transition-all duration-300 group min-h-[48px] touch-manipulation
                         ${isActive 
                           ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/50 text-blue-100' 
                           : 'text-blue-300/70 hover:text-blue-100 hover:bg-blue-500/10'

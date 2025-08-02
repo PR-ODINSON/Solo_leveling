@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Eye, EyeOff, Mail, Lock, User, Zap, Shield, Sparkles, AlertCircle, ArrowLeft } from 'lucide-react'
 import { useAuthStore } from '../../lib/store'
 import { useRouter } from 'next/navigation'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true)
@@ -50,18 +51,31 @@ export default function AuthPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
+    console.log('=== FORM SUBMIT STARTED ===')
+    console.log('Form data:', { 
+      isLogin, 
+      email: email || 'EMPTY', 
+      username: username || 'EMPTY', 
+      password: password ? '***' : 'EMPTY',
+      loading,
+      configError
+    })
+    
     if (configError) {
       console.error('Cannot submit form due to configuration error:', configError)
+      toast.error('Configuration error: ' + configError)
       return
     }
-    
-    console.log('Form submitted:', { isLogin, email, username, password: '***' })
     
     try {
       let success = false
       
       if (isLogin) {
         console.log('Attempting sign in...')
+        if (!email || !password) {
+          toast.error('Email and password are required for login')
+          return
+        }
         success = await signIn(email, password)
       } else {
         console.log('Attempting sign up...', { email, username })
@@ -69,11 +83,18 @@ export default function AuthPage() {
         // Validate required fields for signup
         if (!email || !password) {
           console.error('Email and password are required')
+          toast.error('Email and password are required')
           return
         }
         
         if (!username || username.trim() === '') {
           console.error('Username is required for signup')
+          toast.error('Username is required for signup')
+          return
+        }
+        
+        if (password.length < 6) {
+          toast.error('Password must be at least 6 characters long')
           return
         }
         
@@ -92,10 +113,15 @@ export default function AuthPage() {
             router.push('/onboarding/assessment')
           }
         }, 2000)
+      } else {
+        toast.error('Authentication failed. Please check your credentials and try again.')
       }
     } catch (error) {
       console.error('Auth error:', error)
+      toast.error('Authentication error: ' + (error as any).message)
     }
+    
+    console.log('=== FORM SUBMIT ENDED ===')
   }
 
   const handleToggle = () => {
@@ -106,6 +132,16 @@ export default function AuthPage() {
     setPassword('')
     setUsername('')
   }
+
+  // Debug log for button state
+  console.log('Auth page render:', { 
+    isLogin, 
+    loading, 
+    configError,
+    hasEmail: !!email,
+    hasPassword: !!password,
+    hasUsername: !!username
+  })
 
   const handleBackToHome = () => {
     router.push('/')
@@ -210,6 +246,16 @@ export default function AuthPage() {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      <Toaster 
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: '#1f2937',
+            color: '#f3f4f6',
+            border: '1px solid #374151'
+          }
+        }}
+      />
       {/* Animated Background */}
       <div className="fixed inset-0 bg-gradient-to-br from-purple-900/20 via-black/50 to-cyan-900/20" />
       
@@ -331,7 +377,11 @@ export default function AuthPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5" />
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-purple-500" />
             
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+            <form 
+              onSubmit={handleSubmit} 
+              className="space-y-6 relative z-10"
+              noValidate
+            >
               {/* Username field (only for signup) */}
               <AnimatePresence>
                 {!isLogin && (
@@ -403,20 +453,18 @@ export default function AuthPage() {
               </div>
 
               {/* Submit button */}
-              <motion.button
+              <button
                 type="submit"
                 disabled={loading}
-                className="w-full relative group py-4 text-lg font-semibold flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-lg overflow-hidden shadow-lg shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={!loading ? { scale: 1.02 } : {}}
-                whileTap={!loading ? { scale: 0.98 } : {}}
+                className={`w-full relative py-4 text-lg font-semibold flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-lg shadow-lg shadow-cyan-500/25 transition-all duration-300 ${
+                  loading 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'hover:from-cyan-500 hover:to-purple-500 hover:scale-[1.02] active:scale-[0.98]'
+                }`}
               >
                 {loading ? (
                   <>
-                    <motion.div
-                      className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    />
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     <span>Initializing...</span>
                   </>
                 ) : (
@@ -425,25 +473,7 @@ export default function AuthPage() {
                     <span>{isLogin ? 'Access System' : 'Register as Hunter'}</span>
                   </>
                 )}
-                
-                {/* Hover Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                
-                {/* Pulsing Glow */}
-                <motion.div
-                  className="absolute inset-0 bg-white/10 rounded-lg"
-                  animate={{ 
-                    opacity: [0, 0.2, 0],
-                    scale: [1, 1.05, 1]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </motion.button>
+              </button>
             </form>
 
             {/* Toggle between login/signup */}
@@ -457,11 +487,36 @@ export default function AuthPage() {
                 {isLogin ? "New to the Hunter Association?" : "Already have an account?"}
               </p>
               <button
+                type="button"
                 onClick={handleToggle}
                 className="text-cyan-400 hover:text-cyan-300 transition-colors font-medium text-lg hover:underline"
               >
                 {isLogin ? 'Register as Hunter' : 'Access Existing Account'}
               </button>
+              
+              {/* Debug section */}
+              {process.env.NODE_ENV === 'development' && (
+                <div className="mt-4 p-3 bg-gray-800/50 rounded-lg text-xs text-gray-400">
+                  <div>Mode: {isLogin ? 'Login' : 'Register'}</div>
+                  <div>Loading: {loading ? 'Yes' : 'No'}</div>
+                  <div>Config Error: {configError ? 'Yes' : 'No'}</div>
+                  <div>Email: {email ? 'Set' : 'Empty'}</div>
+                  <div>Password: {password ? 'Set' : 'Empty'}</div>
+                  <div>Username: {username ? 'Set' : 'Empty'}</div>
+                  
+                  <button
+                    type="button"
+                    onClick={() => {
+                      console.log('Test form submission')
+                      const fakeEvent = { preventDefault: () => {} } as React.FormEvent
+                      handleSubmit(fakeEvent)
+                    }}
+                    className="mt-2 px-3 py-1 bg-red-600 text-white rounded text-xs"
+                  >
+                    Test Submit
+                  </button>
+                </div>
+              )}
             </motion.div>
 
             {/* System status indicator */}

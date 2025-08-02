@@ -33,6 +33,15 @@ const difficultyColors = {
   'S': 'from-yellow-500 to-orange-500'
 }
 
+const difficultyGlow = {
+  'E': 'shadow-gray-500/50',
+  'D': 'shadow-green-500/50',
+  'C': 'shadow-blue-500/50', 
+  'B': 'shadow-purple-500/50',
+  'A': 'shadow-red-500/50',
+  'S': 'shadow-yellow-500/50'
+}
+
 const categoryColors = {
   'daily': 'from-emerald-500 to-teal-500',
   'weekly': 'from-blue-500 to-indigo-500',
@@ -115,37 +124,120 @@ export const EnhancedQuestCard: React.FC<EnhancedQuestCardProps> = ({
         {/* Category & Difficulty Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className={`px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${categoryColor} text-white shadow-lg uppercase tracking-wide`}>
+            <motion.div 
+              className={`px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${categoryColor} text-white shadow-lg uppercase tracking-wide`}
+              whileHover={{ scale: 1.05 }}
+            >
               {quest.category}
-            </div>
-            <div className={`px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${difficultyColor} text-white shadow-lg flex items-center gap-1`}>
-              <Star size={12} />
-              {quest.difficulty} - {difficultyLabels[quest.difficulty]}
-            </div>
+            </motion.div>
+            <motion.div 
+              className={`px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${difficultyColor} text-white shadow-lg flex items-center gap-1 ${difficultyGlow[quest.difficulty]}`}
+              whileHover={{ scale: 1.05 }}
+              animate={{
+                boxShadow: [
+                  `0 0 10px ${difficultyGlow[quest.difficulty].split('/')[0].replace('shadow-', 'rgba(').replace('-', ', ').replace('500', '0.3)')}`,
+                  `0 0 20px ${difficultyGlow[quest.difficulty].split('/')[0].replace('shadow-', 'rgba(').replace('-', ', ').replace('500', '0.6)')}`,
+                  `0 0 10px ${difficultyGlow[quest.difficulty].split('/')[0].replace('shadow-', 'rgba(').replace('-', ', ').replace('500', '0.3)')}`
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              {/* Difficulty Stars */}
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0.3 }}
+                    animate={{ 
+                      opacity: i < ['E', 'D', 'C', 'B', 'A', 'S'].indexOf(quest.difficulty) + 1 ? 1 : 0.3,
+                      scale: i < ['E', 'D', 'C', 'B', 'A', 'S'].indexOf(quest.difficulty) + 1 ? [1, 1.2, 1] : 1
+                    }}
+                    transition={{ 
+                      delay: i * 0.1,
+                      scale: { duration: 1, repeat: Infinity, repeatDelay: 2 }
+                    }}
+                  >
+                    <Star size={10} fill="currentColor" />
+                  </motion.div>
+                ))}
+              </div>
+              <span className="ml-1">{quest.difficulty} - {difficultyLabels[quest.difficulty]}</span>
+            </motion.div>
           </div>
           
           <div className="text-right">
-            <div className="text-yellow-400 font-bold flex items-center gap-1">
-              <Zap size={16} />
+            <motion.div 
+              className="text-yellow-400 font-bold flex items-center gap-1"
+              animate={{ 
+                textShadow: ['0 0 5px rgba(251, 191, 36, 0.5)', '0 0 15px rgba(251, 191, 36, 0.8)', '0 0 5px rgba(251, 191, 36, 0.5)']
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              >
+                <Zap size={16} />
+              </motion.div>
               {quest.xp_reward} XP
-            </div>
+            </motion.div>
             {quest.tasks.length > 0 && (
-              <div className="text-xs text-blue-300">
+              <motion.div 
+                className="text-xs text-blue-300"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
                 +{totalTaskXP} from tasks
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
 
         {/* Quest Title & Description */}
         <div className="mb-4">
-          <h3 className={`text-xl font-bold mb-2 ${
-            completed ? 'text-green-300 line-through' : 
-            missed ? 'text-red-300 line-through' : 
-            'text-white'
-          }`}>
-            {quest.title}
-          </h3>
+          <div className="flex items-start gap-3 mb-3">
+            <motion.div
+              className="text-2xl mt-1"
+              animate={{ 
+                rotate: [0, 5, -5, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
+              {quest.category === 'daily' ? '⚔️' : 
+               quest.category === 'weekly' ? '🏆' : 
+               quest.category === 'monthly' ? '👑' : '💎'}
+            </motion.div>
+            <div className="flex-1">
+              <h3 className={`text-xl font-bold mb-2 ${
+                completed ? 'text-green-300 line-through' : 
+                missed ? 'text-red-300 line-through' : 
+                'text-white hover:text-cyan-300 transition-colors'
+              }`}>
+                {quest.title}
+              </h3>
+              
+              {/* Quest Lore */}
+              <motion.div
+                className="mb-2 p-2 bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-lg border-l-2 border-cyan-400/50"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <p className="text-cyan-300 text-xs italic font-medium">
+                  "A {difficultyLabels[quest.difficulty].toLowerCase()} challenge awaits. {
+                    quest.difficulty === 'S' ? 'Only the strongest hunters dare attempt this legendary quest.' :
+                    quest.difficulty === 'A' ? 'This quest will test your mastery and resolve.' :
+                    quest.difficulty === 'B' ? 'A formidable task that requires skill and determination.' :
+                    quest.difficulty === 'C' ? 'A solid challenge for the aspiring hunter.' :
+                    quest.difficulty === 'D' ? 'Perfect for building your foundation as a hunter.' :
+                    'An ideal starting point for new hunters.'
+                  }"
+                </p>
+              </motion.div>
+            </div>
+          </div>
           
           <p className="text-gray-300 text-sm leading-relaxed">
             {quest.description}
@@ -269,29 +361,53 @@ export const EnhancedQuestCard: React.FC<EnhancedQuestCardProps> = ({
             <motion.button
               onClick={(e) => onComplete(quest.id, e)}
               disabled={quest.tasks.length > 0 && !allTasksCompleted}
-              className={`flex-1 font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg ${
+              className={`flex-1 font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-green-500/50 ${
                 quest.tasks.length > 0 && !allTasksCompleted
                   ? 'bg-gray-500/50 text-gray-400 cursor-not-allowed'
                   : 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600'
               }`}
               whileHover={quest.tasks.length === 0 || allTasksCompleted ? { scale: 1.05, y: -2 } : {}}
               whileTap={quest.tasks.length === 0 || allTasksCompleted ? { scale: 0.95 } : {}}
+              aria-label={`Complete quest: ${quest.title}`}
+              aria-disabled={quest.tasks.length > 0 && !allTasksCompleted}
             >
-              <CheckCircle size={16} />
-              Complete Quest
-              {quest.tasks.length > 0 && !allTasksCompleted && (
-                <span className="text-xs">({completedTasks.length}/{quest.tasks.length} tasks)</span>
+              {/* Success sparkle effect */}
+              {(quest.tasks.length === 0 || allTasksCompleted) && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-400/20"
+                  animate={{ 
+                    opacity: [0, 0.5, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
               )}
+              <CheckCircle size={16} />
+              <span className="relative z-10">
+                Complete Quest
+                {quest.tasks.length > 0 && !allTasksCompleted && (
+                  <span className="text-xs block">({completedTasks.length}/{quest.tasks.length} tasks)</span>
+                )}
+              </span>
             </motion.button>
             
             <motion.button
               onClick={(e) => onMiss(quest.id, e)}
-              className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+              className="flex-1 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold py-3 px-4 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-red-500/50"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
+              aria-label={`Mark quest as failed: ${quest.title}`}
             >
+              {/* Failure warning effect */}
+              <motion.div
+                className="absolute inset-0 bg-red-400/10"
+                animate={{ 
+                  opacity: [0, 0.3, 0]
+                }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
               <XCircle size={16} />
-              Mark Failed
+              <span className="relative z-10">Mark Failed</span>
             </motion.button>
           </div>
         )}

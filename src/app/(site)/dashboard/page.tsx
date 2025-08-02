@@ -308,50 +308,119 @@ const RPGUserProfile = ({ userStats, traitScores, hunterRank }: {
 
 // Enhanced Quest Card Component removed - now using imported component
 
-// Floating XP Badge Component
+// Enhanced Floating XP Badge Component
 const FloatingXPBadge = ({ xp, position, onComplete }: { xp: number, position: { x: number, y: number }, onComplete: () => void }) => {
   return (
     <motion.div
       className="fixed pointer-events-none z-50"
       style={{ left: position.x, top: position.y }}
-      initial={{ opacity: 0, scale: 0, y: 0 }}
+      initial={{ opacity: 0, scale: 0, y: 0, rotate: -15 }}
       animate={{ 
         opacity: [0, 1, 1, 0], 
-        scale: [0, 1.3, 1, 0.8], 
-        y: -120 
+        scale: [0, 1.4, 1.2, 0.8], 
+        y: -140,
+        rotate: [0, 15, -10, 0]
       }}
       transition={{ 
-        duration: 2.5,
-        ease: "easeOut"
+        duration: 3,
+        ease: "easeOut",
+        rotate: { duration: 2 }
       }}
       onAnimationComplete={onComplete}
     >
-      <div className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-bold px-6 py-3 rounded-full shadow-2xl ui-font text-lg relative">
-        +{xp} XP
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full blur-md opacity-60 -z-10" />
+      <div className="relative">
+        {/* Main XP Badge */}
+        <motion.div 
+          className="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-black font-bold px-6 py-3 rounded-full shadow-2xl ui-font text-lg relative border-2 border-yellow-300"
+          animate={{
+            boxShadow: [
+              '0 0 20px rgba(251, 191, 36, 0.8)',
+              '0 0 40px rgba(251, 191, 36, 1)',
+              '0 0 20px rgba(251, 191, 36, 0.8)'
+            ]
+          }}
+          transition={{ duration: 1.5, repeat: 2 }}
+        >
+          <motion.span
+            animate={{ 
+              textShadow: [
+                '0 0 5px rgba(0, 0, 0, 0.8)',
+                '0 0 15px rgba(0, 0, 0, 1)',
+                '0 0 5px rgba(0, 0, 0, 0.8)'
+              ]
+            }}
+            transition={{ duration: 1, repeat: 2 }}
+          >
+            +{xp} XP
+          </motion.span>
+          
+          {/* Glowing background */}
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-full blur-md opacity-60 -z-10" />
+        </motion.div>
         
         {/* Burst particles */}
-        {[...Array(6)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-yellow-400 rounded-full"
+            className="absolute w-2 h-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
             style={{
               left: '50%',
               top: '50%',
             }}
+            initial={{ opacity: 0, scale: 0 }}
             animate={{
-              x: Math.cos((i * Math.PI * 2) / 6) * 30,
-              y: Math.sin((i * Math.PI * 2) / 6) * 30,
-              opacity: [1, 0],
-              scale: [1, 0],
+              x: Math.cos((i * Math.PI * 2) / 8) * (40 + Math.random() * 20),
+              y: Math.sin((i * Math.PI * 2) / 8) * (40 + Math.random() * 20),
+              opacity: [0, 1, 0],
+              scale: [0, 1.5, 0],
             }}
             transition={{
-              duration: 1,
-              delay: 0.2,
+              duration: 1.5,
+              delay: 0.3 + i * 0.1,
               ease: "easeOut"
             }}
           />
         ))}
+        
+        {/* Sparkle effects */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={`sparkle-${i}`}
+            className="absolute text-yellow-400"
+            style={{
+              left: '50%',
+              top: '50%',
+              fontSize: '12px'
+            }}
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{
+              x: (Math.random() - 0.5) * 80,
+              y: (Math.random() - 0.5) * 80,
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
+              rotate: [0, 360]
+            }}
+            transition={{
+              duration: 2,
+              delay: 0.5 + Math.random() * 0.5,
+              ease: "easeOut"
+            }}
+          >
+            ✨
+          </motion.div>
+        ))}
+        
+        {/* Level up notification for high XP */}
+        {xp >= 100 && (
+          <motion.div
+            className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-cyan-400 text-sm font-bold whitespace-nowrap"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: [0, 1, 1, 0], y: [-10, -20, -30, -40] }}
+            transition={{ duration: 2.5, delay: 0.5 }}
+          >
+            🆙 LEVEL UP!
+          </motion.div>
+        )}
       </div>
     </motion.div>
   )
@@ -629,9 +698,54 @@ export default function DashboardPage() {
   const [hunterRank, setHunterRank] = useState<any>(RANK_SYSTEM['E-Class'])
   const [assessmentResults, setAssessmentResults] = useState<AssessmentResults | null>(null)
 
-  const playSound = (type: 'xp' | 'levelup') => {
+  const playSound = (type: 'xp' | 'levelup' | 'quest_complete' | 'click') => {
     if (!soundEnabled) return
-    console.log(`Playing ${type} sound`)
+    
+    // Create audio context for better sound management
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)()
+    
+    // Generate appropriate sound based on type
+    const generateSound = (frequency: number, duration: number, type: OscillatorType = 'sine') => {
+      const oscillator = audioContext.createOscillator()
+      const gainNode = audioContext.createGain()
+      
+      oscillator.connect(gainNode)
+      gainNode.connect(audioContext.destination)
+      
+      oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime)
+      oscillator.type = type
+      
+      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime)
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + duration)
+      
+      oscillator.start()
+      oscillator.stop(audioContext.currentTime + duration)
+    }
+    
+    switch (type) {
+      case 'xp':
+        // Ascending chime for XP gain
+        generateSound(523, 0.2) // C5
+        setTimeout(() => generateSound(659, 0.2), 100) // E5
+        setTimeout(() => generateSound(784, 0.3), 200) // G5
+        break
+      case 'levelup':
+        // Epic level up fanfare
+        generateSound(261, 0.3, 'square') // C4
+        setTimeout(() => generateSound(392, 0.3, 'square'), 150) // G4
+        setTimeout(() => generateSound(523, 0.4, 'square'), 300) // C5
+        setTimeout(() => generateSound(659, 0.5, 'triangle'), 450) // E5
+        break
+      case 'quest_complete':
+        // Success sound
+        generateSound(440, 0.2) // A4
+        setTimeout(() => generateSound(554, 0.3), 100) // C#5
+        break
+      case 'click':
+        // Subtle click sound
+        generateSound(800, 0.1, 'square')
+        break
+    }
   }
 
   const completeQuest = async (questId: string, event: React.MouseEvent) => {
@@ -645,12 +759,15 @@ export default function DashboardPage() {
       y: rect.top + rect.height / 2
     }
 
-    // Add floating XP
+    // Add floating XP with enhanced visual feedback
     const newXpId = xpCounter + 1
     setXpCounter(newXpId)
-    setFloatingXP(prev => [...prev, { id: newXpId, xp: quest.xp_reward || 50, position }])
+    const xpAmount = quest.xp_reward || 50
+    setFloatingXP(prev => [...prev, { id: newXpId, xp: xpAmount, position }])
 
-    playSound('xp')
+    // Play sounds with delay for better audio experience
+    playSound('quest_complete')
+    setTimeout(() => playSound('xp'), 300)
 
     // Complete quest in store (this will also update stats)
     try {
@@ -850,7 +967,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-black text-white p-4 sm:p-6 md:ml-64">
       {/* System Controls */}
       <SystemTooltip soundEnabled={soundEnabled} toggleSound={toggleSound} />
       
@@ -861,10 +978,10 @@ export default function DashboardPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-6xl font-bold mb-4 fantasy-font bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent text-shadow-glow">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 fantasy-font bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 bg-clip-text text-transparent text-shadow-glow">
           Hunter Command Center
         </h1>
-        <p className="text-xl text-blue-300/80 ui-font">
+        <p className="text-lg sm:text-xl text-blue-300/80 ui-font">
           Welcome back, Shadow Hunter. Your ascension continues...
         </p>
       </motion.div>
@@ -877,7 +994,7 @@ export default function DashboardPage() {
       {/* Stats Grid */}
       <ScrollReveal direction="up" delay={0.4}>
         <div className="mb-8">
-          <h2 className="text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 fantasy-font text-blue-100 flex items-center gap-3">
             <motion.span
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -886,7 +1003,7 @@ export default function DashboardPage() {
             </motion.span>
             Power Statistics
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {statsLoading ? (
               // Loading skeleton
               Array.from({ length: 6 }).map((_, index) => (
@@ -916,14 +1033,14 @@ export default function DashboardPage() {
       <ScrollReveal direction="up" delay={0.6}>
         <div>
           <div className="flex items-center justify-between mb-6">
-          <h2 className="text-4xl font-bold fantasy-font text-blue-100 flex items-center gap-3">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold fantasy-font text-blue-100 flex items-center gap-3">
             <motion.span
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               🗡️
             </motion.span>
-            {hunterGoal ? `${hunterGoal.name} Quests` : 'Active Quests'}
+            <span className="truncate">{hunterGoal ? `${hunterGoal.name} Quests` : 'Active Quests'}</span>
           </h2>
           {hunterGoal && (
             <div className="text-sm text-blue-300/70 bg-blue-900/20 px-3 py-1 rounded-full border border-blue-500/30">
@@ -943,7 +1060,7 @@ export default function DashboardPage() {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
             {dynamicQuests.length > 0 ? (
               // Render dynamic quests from database
               dynamicQuests.slice(0, 4).map((quest, index) => (

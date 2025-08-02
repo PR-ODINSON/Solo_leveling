@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { ScrollReveal, ParallaxScroll, useSmoothScrollContext } from '../components/SmoothScrollProvider'
 import { useAuthStore } from '../lib/store'
 import AuthForm from '../components/AuthForm'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Clock } from 'lucide-react'
 
 // Particle Canvas Component
 const ParticleCanvas = () => {
@@ -239,6 +239,25 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
+      {/* Preload critical fonts */}
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" as="style" />
+      <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" />
+      
+      {/* SEO Meta Tags */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "AscendOS",
+            "description": "A Solo Leveling inspired self-improvement system",
+            "url": "https://ascendos.netlify.app",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "Web"
+          })
+        }}
+      />
       {/* Particle Background */}
       <ParticleCanvas />
       
@@ -255,7 +274,7 @@ export default function LandingPage() {
             className="mb-12"
           >
             <div className="relative">
-              <h1 className="text-8xl md:text-9xl font-black bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6 tracking-wider">
+              <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-6 tracking-wider">
                 ASCENDOS
               </h1>
               <motion.div
@@ -272,7 +291,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-2xl md:text-3xl text-gray-300 mb-8 font-light"
+              className="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-8 font-light"
             >
               THE HUNTER'S REALITY SYSTEM
             </motion.p>
@@ -308,29 +327,77 @@ export default function LandingPage() {
             </div>
           </motion.div>
 
-          {/* Assessment Notice */}
+          {/* Value Proposition Cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 2.5, duration: 0.8 }}
             className="mb-8"
           >
-            <div className="bg-black/40 backdrop-blur-lg border border-yellow-500/30 rounded-2xl p-6 max-w-2xl mx-auto shadow-2xl shadow-yellow-500/10">
-              <div className="flex items-center justify-center mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {[
+                { icon: '🎯', title: 'Personalized Quests', desc: 'AI-generated missions tailored to your goals' },
+                { icon: '📊', title: 'Real Progress', desc: 'Track your growth with RPG-style stats' },
+                { icon: '🏆', title: 'Level Up IRL', desc: 'Turn daily tasks into epic adventures' }
+              ].map((benefit, index) => (
                 <motion.div
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                  className="text-4xl mr-3"
+                  key={index}
+                  className="bg-black/40 backdrop-blur-lg border border-blue-500/30 rounded-xl p-6 text-center hover:border-blue-400/50 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2.8 + index * 0.2 }}
+                  whileHover={{ y: -5, scale: 1.02 }}
                 >
-                  ⚠️
+                  <motion.div 
+                    className="text-4xl mb-3"
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                  >
+                    {benefit.icon}
+                  </motion.div>
+                  <h4 className="text-lg font-bold text-cyan-400 mb-2">{benefit.title}</h4>
+                  <p className="text-gray-300 text-sm">{benefit.desc}</p>
                 </motion.div>
-                <h3 className="text-xl font-bold text-yellow-400">HUNTER ASSESSMENT REQUIRED</h3>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Assessment Notice */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 3.5, duration: 0.8 }}
+            className="mb-8"
+          >
+            <div className="bg-black/40 backdrop-blur-lg border border-yellow-500/30 rounded-2xl p-6 max-w-2xl mx-auto shadow-2xl shadow-yellow-500/10 relative overflow-hidden">
+              {/* Animated background pulse */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-yellow-500/10 to-orange-500/10"
+                animate={{ opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              
+              <div className="relative z-10">
+                <div className="flex items-center justify-center mb-4">
+                  <motion.div
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                    className="text-4xl mr-3"
+                  >
+                    ⚠️
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-yellow-400">HUNTER ASSESSMENT REQUIRED</h3>
+                </div>
+                <p className="text-gray-300 text-center leading-relaxed mb-4">
+                  Before entering the gate, all potential hunters must undergo the{' '}
+                  <span className="text-cyan-400 font-semibold">Hunter Awakening Assessment</span> to determine their 
+                  innate abilities and rank classification.
+                </p>
+                <div className="flex items-center justify-center gap-2 text-sm text-yellow-300">
+                  <Clock size={16} />
+                  <span>Assessment takes ~5 minutes</span>
+                </div>
               </div>
-              <p className="text-gray-300 text-center leading-relaxed">
-                Before entering the gate, all potential hunters must undergo the{' '}
-                <span className="text-cyan-400 font-semibold">Hunter Awakening Assessment</span> to determine their 
-                innate abilities and rank classification.
-              </p>
             </div>
           </motion.div>
 
@@ -338,14 +405,17 @@ export default function LandingPage() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.5, duration: 0.8 }}
+            transition={{ delay: 4.2, duration: 0.8 }}
           >
               <motion.button
                 onClick={handleGateEntry}
                 disabled={isTransitioning}
-                className="relative group px-16 py-6 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-2xl font-bold overflow-hidden shadow-2xl shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
-                whileHover={!isTransitioning ? { scale: 1.05 } : {}}
+                className="relative group px-8 sm:px-12 md:px-16 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-lg sm:text-xl md:text-2xl font-bold overflow-hidden shadow-2xl shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed transform transition-transform min-h-[56px] touch-manipulation focus:outline-none focus:ring-4 focus:ring-cyan-500/50"
+                whileHover={!isTransitioning ? { scale: 1.05, y: -4 } : {}}
                 whileTap={!isTransitioning ? { scale: 0.95 } : {}}
+                aria-label={isTransitioning ? "Accessing hunter gate..." : "Begin hunter assessment"}
+                role="button"
+                tabIndex={0}
               >
                 <span className="relative z-10 flex items-center gap-3">
                   <motion.span
@@ -391,42 +461,33 @@ export default function LandingPage() {
                 />
               </motion.button>
             
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 4, duration: 0.8 }}
-              className="text-gray-400 mt-4 text-sm"
-            >
-              Begin your hunter awakening journey
-            </motion.p>
-            
-            {/* Scroll Down Indicator */}
+            {/* Subtitle & Trust Indicators */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 5, duration: 1 }}
-              className="mt-16"
+              transition={{ delay: 4.5, duration: 0.8 }}
+              className="mt-6 space-y-3"
             >
-              <motion.button
-                onClick={() => scrollToSection('features')}
-                className="flex flex-col items-center text-gray-400 hover:text-cyan-400 transition-colors group"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <span className="text-sm mb-2 group-hover:text-cyan-400">Learn More</span>
-                <motion.div
-                  className="w-6 h-10 border-2 border-gray-400 group-hover:border-cyan-400 rounded-full flex justify-center"
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <motion.div
-                    className="w-1 h-3 bg-gray-400 group-hover:bg-cyan-400 rounded-full mt-2"
-                    animate={{ y: [0, 12, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </motion.div>
-              </motion.button>
+              <p className="text-gray-400 text-sm">
+                Begin your hunter awakening journey
+              </p>
+              <div className="flex items-center justify-center gap-6 text-xs text-gray-500">
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                  Free Assessment
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  5-Min Setup
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                  Instant Results
+                </span>
+              </div>
             </motion.div>
+            
+
           </motion.div>
         </div>
       </section>
@@ -469,7 +530,7 @@ export default function LandingPage() {
       </section>
 
       {/* Screenshot Carousel */}
-      <section id="interface" className="relative py-32 px-4 z-20 bg-black/30">
+      <section id="interface" className="relative py-10 px-4 z-20 bg-black/30">
         <div className="max-w-6xl mx-auto">
           <ScrollReveal direction="up" delay={0.2}>
             <div className="text-center mb-20">
@@ -596,11 +657,25 @@ export default function LandingPage() {
             
             <Link href="/onboarding/assessment">
               <motion.button
-                className="relative group px-20 py-8 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-3xl font-bold overflow-hidden shadow-2xl"
-                whileHover={{ scale: 1.05 }}
+                className="relative group px-20 py-8 bg-gradient-to-r from-cyan-600 to-purple-600 rounded-full text-3xl font-bold overflow-hidden shadow-2xl hover:shadow-cyan-500/30"
+                whileHover={{ scale: 1.05, y: -4 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="relative z-10">BEGIN ASSESSMENT</span>
+                <span className="relative z-10 flex items-center gap-3">
+                  <motion.span
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  >
+                    🔮
+                  </motion.span>
+                  BEGIN ASSESSMENT
+                  <motion.span
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    ⚡
+                  </motion.span>
+                </span>
                 <motion.div
                   className="absolute inset-0 bg-white/20"
                   animate={{ 
@@ -613,8 +688,48 @@ export default function LandingPage() {
                   className="absolute -inset-4 bg-gradient-to-r from-cyan-500/50 to-purple-500/50 blur-2xl opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.3 }}
                 />
+                {/* Sparkle effects on hover */}
+                <motion.div
+                  className="absolute inset-0 pointer-events-none"
+                  whileHover={{
+                    background: [
+                      'radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)',
+                      'radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.3) 0%, transparent 50%)',
+                      'radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
               </motion.button>
             </Link>
+            
+            {/* Social Proof */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="mt-8 text-center"
+            >
+              <p className="text-gray-400 text-sm mb-4">
+                Join thousands of hunters who've unlocked their potential
+              </p>
+              <div className="flex items-center justify-center gap-8 text-xs text-gray-500">
+                <div className="flex items-center gap-2">
+                  <div className="flex -space-x-2">
+                    {[...Array(5)].map((_, i) => (
+                      <div key={i} className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full border-2 border-black/50 flex items-center justify-center text-xs">
+                        {['👤', '🧙', '⚔️', '🏹', '🛡️'][i]}
+                      </div>
+                    ))}
+                  </div>
+                  <span>2,847+ Active Hunters</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="text-yellow-400">★★★★★</span>
+                  <span>4.9/5 Rating</span>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

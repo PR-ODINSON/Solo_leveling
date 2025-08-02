@@ -21,6 +21,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.50.1",
     "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.19.1",
     "json2csv": "^6.0.0-alpha.2",
     "lucide-react": "^0.523.0",
@@ -30,6 +31,7 @@
     "react-dom": "^19.1.0",
     "react-hot-toast": "^2.5.2",
     "recharts": "^3.0.2",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.17",
     "zustand": "^5.0.5"
   },
